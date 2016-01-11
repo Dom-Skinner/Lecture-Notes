@@ -3,14 +3,15 @@
 %
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{empheq}
 \usepackage{graphicx}
-\usepackage{epstopdf}
-\usepackage{color}
-\usepackage{pgfplots}
+%\usepackage{epstopdf}
+%\usepackage{color}
+%\usepackage{pgfplots}
 \usepackage{caption}
 \usepackage{amsfonts}
 \usepackage[margin=3cm]{geometry}
-\usepackage{float}
+%\usepackage{float}
 
 \begin{document}
 
@@ -18,5 +19,143 @@
 \author{Dominic Skinner}
 \maketitle
 \section*{Introduction}
+A dynamical system is a set of equations describing the evolution of a system
+with respect to a time-like variable. Usually they are non-linear.
+\\
+The possible states of the system define the state space/phase space.
+\\
+\\
+\textbf{Example:}   The logistic map
+\[ x_{n+1} = \mu x_n ( 1- x_n) \]
+For $ 0 \leq \mu \leq 4 $ this describes evolution with respect to a discrete time 
+$n$ in a state space $[0,1]$.
+\\
+\\
+\textbf{Example:}   The Lotka-Voltera equations
+\begin{align*}
+\dot{r} &= r(a - br -cs) \\
+\dot{s} &= s(d - er -fs)
+\end{align*}
+Where \emph{a-f} are positive constants. These describe continous evolution 
+in a state space $(r,s) \in [0 , \infty] \times [0, \infty]$ as a model for 
+the population of two species competing for the same food supply.
+\\
+\\
+\textbf{Example:}   The non-linear Schr\"odinger equation
+\[ i \frac{\partial \Psi}{ \partial t} = \nabla^2 \Psi + |\Psi|^2 \Psi \]
+This describes evolution in an infinite dimensional statespace of possible
+wavefunctions.
+\\
+\\
+Because the equations are non-linear, it is often impossible to find a complete
+set of closed form analytic solutions. Instead, we resort to a mixture of 
+geometric and analytic arguments, and aim to say something about the generic
+long-term behaviour.
+\\
+\\
+\textbf{Example:}   
+\begin{align*}
+\dot{r} &= r(3 - r -s) \\
+\dot{s} &= s(2 - r -s)
+\end{align*}
+Consider the regions where $\dot{r}$ and $\dot{s}$ are $>0, \; <0, \; =0$. 
+\\
+If $r,s >0$ then
+\begin{align*}
+r+s &< 2 \implies \dot{r}, \dot{s} > 0 \\
+2 < r+s &< 3 \implies \dot{r} >0 , \; \dot{s} < 0 \\
+r+s &> 3 \implies \dot{r}, \dot{s} < 0 \\
+\end{align*}
+$\dot{r} = 0$ if $r=0$ or $r+s = 3$. \\
+$\dot{s} = 0$ if $s=0$ or $r+s = 2$. \\
+Therefore $\dot{r} = \dot{s} = 0$ at the fixed points $(0,0), \; (3,0), \; (0,2)$.
+This gives the phase portrait/diagram/plane%
+\footnote{Phase portrait, phase diagram, phase plane will be used interchangably}
+% INCLUDE GRAPHIS HERE
+The most important feature of the phase portrait is that all solutions with 
+$r >0$ tend to the stable fixed point $(3,0)$. The fixed points $(0,0)$ and
+$(0,2)$ are unstable. There are no periodic orbits.
+\\
+\\
+\textbf{Example:}   
+\begin{align*}
+\dot{r} &= r(3 - r -s) \\
+\dot{s} &= s(2 - \mu r -s)
+\end{align*}
+In this case, a new fixed point $(\frac{1}{1- \mu} , \frac{2 - 3 \mu}{1- \mu})$
+appears in the state space at $\mu = \frac{2}{3}$ and for $\mu < \frac{2}{3}$ 
+is the long term stable attractor. 
+\\
+A qualitative change in the solution structure is called a bifurcation.
+\\
+\\
+\textbf{Example:}   
+\begin{align*}
+\dot{x} &= -y + \epsilon x (\mu - x^2 - y^2) \\
+\dot{y} &= \;\;\; x + \epsilon y (\mu - x^2 - y^2)
+\end{align*}
+Use polar coordinates which are a more natural choice for this problem.
+In general:
+\begin{empheq}[box=\fbox]{align}
+\dot{r} &= \frac{x \dot{x} + y \dot{y}}{r} \nonumber \\
+\dot{\theta} &= \frac{x \dot{y} - y \dot{x} }{ r^2} \nonumber
+\end{empheq}
+Which are equations that will be referred to frequently. \footnote{so learn them now!}
+In our example, they become
+\begin{align*}
+\dot{r} &= \epsilon r (\mu - r^2) \\
+\dot{\theta} &= 1
+\end{align*}
+Consider $\dot{r}$ and $\dot{\theta}$:
+% INSERT DIAGRAM HERE
+\\
+The infinite set of periodic solutions for $\epsilon = 0$ is destroyed by any 
+perturbation to $\epsilon \neq 0$. This is an example of structural instability.
+If $\mu > 0$ then just one limit cycle survives and is stable (unstable) for 
+$\epsilon >0$ ($\epsilon < 0$). The appearance of the limit cycle as $\mu \uparrow$ 
+through $0$ is another form of bifurcation.
+\\
+\\
+\textbf{Example:} In 2D the points of successive interection $x_n$ of a 
+solution near a limit cycle with a line $\varepsilon$ perpendicular to the cycle,
+move monotonically towards/away from the point of intersection $x^{*}$ of 
+$\varepsilon$ with the limit cycle.
+% INSERT PLOT HERE
+\\
+The point $x^{*}$ is a stable/unstable fixed point of this Poincar\'e recurrence
+map.
+\\
+In 3 or higher dimensions, or in 2D with time-dependent coefficients there is 
+room for much more complicated behaviour including \underline{chaos}.
+%%%%%%%%%%%%%CHAPTER 1
+\section{Basic Definitions}
+We need some termonology.
+\subsection{Notation}
+We only consider ODEs of the form 
+\begin{equation}\tag{*}
+\dot{\textbf{x}} = \textbf{f(x)}
+\end{equation}
+for \textbf{x} in a phase space/state space $E \subset \mathbb{R}^{n}$.
+The n first order ODEs form a dynamical system of order (dimension) n.
+\\
+\\
+Since
+\[ \frac{\partial \textbf{f} } { \partial t} = 0 \]
+ we call the system \underline{autonomous}.
+\\
+\\
+A non-autonomous system $\dot{\textbf{x}} = \textbf{f}(\textbf{x} ,t) $ can be
+made autonomous by setting
+\[ \textbf{y} = ( \textbf{x},t) \quad \mbox{ with } \quad \dot{\textbf{y}} = ( \textbf{f}(\textbf{y}),1) \]
+The n$^{th}$ order ODE
+\[ \frac{d ^n x}{d t^n} = g \left( x , \frac{d x}{d t} , \dots , \frac{d^{n-1} x}{d t^{n-1}} \right) \]
+can be put in the form (*) by setting
+\[ \textbf{y} =  \left( x , \frac{d x}{d t} , \dots , \frac{d^{n-1} x}{d t^{n-1}} \right) \]
+with 
+\[ \dot{\textbf{y}} =  \left( y_2 , y_3 , \dots , g( \textbf{y}) \right) \]
+Similarly we will consider maps in the form
+\[ \textbf{x}_{n+1} = \textbf{F}(\textbf{x}_n) \]
+
+
 
 \end{document}
