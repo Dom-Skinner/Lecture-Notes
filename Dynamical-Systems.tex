@@ -1,5 +1,4 @@
 %
-% Catam project simulating wind forced ocean currents
 %
 \documentclass{article}
 \usepackage{amsmath}
@@ -14,6 +13,10 @@
 \usepackage{amsfonts}
 \usepackage[margin=3cm]{geometry}
 \usepackage{float}
+
+\newcommand{\cO}{\mathcal{O}} %
+\newcommand{\bp}{\bm{\phi}}   % These are used a lot!
+\newcommand{\xeqn}{\dot{\bm{x}} = \bm{f}(\vm{x})} %
 
 \begin{document}
 
@@ -231,20 +234,20 @@ This motivates the idea of a flow.
 \\
 \textbf{Definition:} (Flow) \\
 Given \textbf{f}, the corresponding flow is defined to be a (the) function
-$\bm{\phi}_t (\textbf{x}) $ from $E \times \mathbb{R} \to E$ such that
+$\bp_t (\textbf{x}) $ from $E \times \mathbb{R} \to E$ such that
 \[ 
-\frac{\partial}{\partial t} \bm{\phi}_t ( \bm{x} ) = \bm{f}(\bm{\phi}_t (\bm{x} ) ), \qquad\
-\bm{\phi}_0(\bm{x}) = \bm{x} 
+\frac{\partial}{\partial t} \bp_t ( \bm{x} ) = \bm{f}(\bp_t (\bm{x} ) ), \qquad\
+\bp_0(\bm{x}) = \bm{x} 
  \]
 The solution to the IVP $\dot{\bm{x}} = \bm{f}(\bm{x}), \; \bm{x}(t_0) = \bm{x}_0$,
-is just $\bm{x}(t) = \bm{\phi}_{t - t_0} (\bm{x}_0)$
+is just $\bm{x}(t) = \bp_{t - t_0} (\bm{x}_0)$
 \\
 Clearly 
-\[ \bm{\phi}_{s+t}(\bm{x}) = \bm{\phi}_s(\bm{\phi}_t(\bm{x})) = \bm{\phi}_t ( \bm{\phi}_s (\bm{x} ) ) \]
+\[ \bp_{s+t}(\bm{x}) = \bp_s(\bp_t(\bm{x})) = \bp_t ( \bp_s (\bm{x} ) ) \]
 \begin{framed}
 \noindent Aside: We can establish another link with maps, by defining 
-$\bm{x}_{n+1} = \bm{F}(\bm{x}_n) = \bm{\phi}_{\Delta t} (\bm{x}_n)$. \\
-Clearly $\bm{\phi}_{n \Delta t} (\bm{x} ) = \bm{F} ( \bm{\phi}_{(n-1) \Delta t} (\bm{x} )) = \bm{F}^n(\bm{x}) $ 
+$\bm{x}_{n+1} = \bm{F}(\bm{x}_n) = \bp_{\Delta t} (\bm{x}_n)$. \\
+Clearly $\bp_{n \Delta t} (\bm{x} ) = \bm{F} ( \bp_{(n-1) \Delta t} (\bm{x} )) = \bm{F}^n(\bm{x}) $ 
 \end{framed}
 \subsection{Flows, Trajectories, Orbits, Invariant Sets, \& Limiting Sets}
 Using the idea of a flow, we define the following:
@@ -252,17 +255,17 @@ Using the idea of a flow, we define the following:
 \\
 \textbf{Definition:} Orbits/Trajectories
 \\
- The orbit of $\bm{\phi}_t(\bm{x})$ through $\bm{x}_0$ is
-the set $\mathcal{O}(\bm{x}_0) = \{ \bm{\phi}_t(\bm{x}_0): -\infty < t < \infty \}$.
+ The orbit of $\bp_t(\bm{x})$ through $\bm{x}_0$ is
+the set $\cO(\bm{x}_0) = \{ \bp_t(\bm{x}_0): -\infty < t < \infty \}$.
 \\
 The forwards (backwards) orbit is 
-\[\mathcal{O}^{+ \, (-)}(\bm{x}_0) = \{ \bm{\phi}_t(\bm{x}_0):  t \geq 0 \; (t \leq 0) \} \]
+\[\cO^{+ \, (-)}(\bm{x}_0) = \{ \bp_t(\bm{x}_0):  t \geq 0 \; (t \leq 0) \} \]
 \textbf{Definition:} Invariant sets
 \\
 A set of points $\Lambda \subset E$ is invariant if
-$\bm{x} \in \Lambda \implies \mathcal{O}(\bm{x}) \subset \Lambda$
+$\bm{x} \in \Lambda \implies \cO(\bm{x}) \subset \Lambda$
 \\
-Clearly $\mathcal{O}(\bm{x}_0)$ is invariant, and so is any union of orbits.
+Clearly $\cO(\bm{x}_0)$ is invariant, and so is any union of orbits.
 \\
 \\
 Particular cases of interest are
@@ -270,9 +273,9 @@ Particular cases of interest are
 \\
 \textbf{Definition:} Fixed points
 \\
-$\bm{x}_0$ is a periodic point with period $T$ if $\bm{\phi}_T(\bm{x}_0)= \bm{x}_0$
-for some $T>0$ and $\bm{\phi}_t (\bm{x}_0) \neq \bm{x}_0$ for $0 < t < T$.
-The set $ \{ \bm{\phi}_t ( \bm{x}_0) : 0 \leq t < T \}$ is the periodic orbit
+$\bm{x}_0$ is a periodic point with period $T$ if $\bp_T(\bm{x}_0)= \bm{x}_0$
+for some $T>0$ and $\bp_t (\bm{x}_0) \neq \bm{x}_0$ for $0 < t < T$.
+The set $ \{ \bp_t ( \bm{x}_0) : 0 \leq t < T \}$ is the periodic orbit
 through $\bm{x}_0$.
 \\
 \\
@@ -285,14 +288,14 @@ orbits within a sufficiently small neighbourhood.
 \textbf{Definition:} Homoclinic and Heteroclinic orbits
 \\
 If $\bm{x}_0$ is a fixed point and $\exists \; \bm{y} \neq \bm{x}_0$ such that
-$\bm{\phi}_t(\bm{y}) \to \bm{x}_0$ as $t \to \pm \infty$ then 
-$\mathcal{O}(\bm{y})$ is a homoclinic orbit.
+$\bp_t(\bm{y}) \to \bm{x}_0$ as $t \to \pm \infty$ then 
+$\cO(\bm{y})$ is a homoclinic orbit.
 \\
 \\
 If $\bm{x}_0$, $\bm{x}_1$ are fixed points and 
-$\exists \; \bm{y} \neq \bm{x}_0 , \, \bm{x}_1$ with $\bm{\phi}_t (\bm{y}) \to \bm{x}_0$
-as $t \to - \infty$, $\bm{\phi}_t(\bm{y}) \to \bm{x}_1$ as $t \to + \infty$ then
-$\mathcal{O}(\bm{y})$ is a heteroclinic orbit.
+$\exists \; \bm{y} \neq \bm{x}_0 , \, \bm{x}_1$ with $\bp_t (\bm{y}) \to \bm{x}_0$
+as $t \to - \infty$, $\bp_t(\bm{y}) \to \bm{x}_1$ as $t \to + \infty$ then
+$\cO(\bm{y})$ is a heteroclinic orbit.
 %
 \begin{figure}[H]
 \centering\caption*{Example of a Heteroclinic and a Homoclinic orbit}
@@ -300,7 +303,7 @@ $\mathcal{O}(\bm{y})$ is a heteroclinic orbit.
 \end{figure}
 \noindent If we are interested in the long-term behaviour of trajectories, it is not 
 enough simply to think of 
-\[ \lim_{t \to \infty} \bm{\phi}_t(\bm{x}) \]
+\[ \lim_{t \to \infty} \bp_t(\bm{x}) \]
 because the limit might not exist; for example a limit cycle.
 \\
 \\
@@ -308,7 +311,7 @@ because the limit might not exist; for example a limit cycle.
 \\
 The $\omega$-limit set of $\bm{x}$ is 
 \[ \omega (\bm{x}) = \{ \bm{y} : \exists \mbox{ a sequence } (t_n) \mbox{ with }\
- \bm{\phi}_{t_n}(\bm{x}) \to \bm{y} \mbox{ and } t_n \to \infty \} \]
+ \bp_{t_n}(\bm{x}) \to \bm{y} \mbox{ and } t_n \to \infty \} \]
 Similarly the $\alpha$ limit set is defined by sequences with $t_n \to - \infty$.
 \\
 \\
@@ -332,13 +335,13 @@ For $|\bm{x}|>1$
 \\
 In fact, the limit sets are always invariant sets since
 \begin{itemize}
-\item If $\mathcal{O}(\bm{x})$ is bounded then $\omega(\bm{x})$ is non-empty.
-\item If $\bm{\phi}_t(\bm{x}) \to \infty$ then $\omega(\bm{x}) = \{ \} $.
+\item If $\cO(\bm{x})$ is bounded then $\omega(\bm{x})$ is non-empty.
+\item If $\bp_t(\bm{x}) \to \infty$ then $\omega(\bm{x}) = \{ \} $.
 \end{itemize}\vspace{3mm}
 \textbf{Definition:} (For maps) 
 \\
 Fixed points solve $\bm{F}(\bm{x}) = \bm{x}$. Orbits, periodic points etc.
-are defined as above by replacing $\bm{\phi}_t(\bm{x})$ by $\bm{F}^n(\bm{x})$,
+are defined as above by replacing $\bp_t(\bm{x})$ by $\bm{F}^n(\bm{x})$,
 etc.
 \\
 \\
@@ -359,7 +362,7 @@ in a Taylor series with $\bm{f}(\bm{x}_0)=\bm{0}$ to obtain
 is the Jacobian matrix (Written $D\bm{f}$ in Glendinning).
 \\
 \\
-The hope (see below when it is true) is that the flow $\bm{\phi}_t^{\bm{f}}$ is
+The hope (see below when it is true) is that the flow $\bp_t^{\bm{f}}$ is
 like the flow corresponding to the linearization $\dot{\bm{y}} = A \bm{y}$.
 \\
 \subsection{Classification of fixed points}
@@ -556,9 +559,9 @@ with linear stable and unstable invariant subspaces $E^s$ and $E^u$ then in a
 sufficiently small neighbourhood of the origin, there exist local stable and
 unstable manifolds
 \begin{align*}
-W^s_{loc}(\bm{0}) &= \{ \bm{x} : \bm{\phi}_t(\bm{x}) \to \bm{0} \mbox{ as } \
+W^s_{loc}(\bm{0}) &= \{ \bm{x} : \bp_t(\bm{x}) \to \bm{0} \mbox{ as } \
 t \to \infty \} \\
-W^u_{loc}(\bm{0}) &= \{ \bm{x} : \bm{\phi}_t(\bm{x}) \to \bm{0} \mbox{ as } \
+W^u_{loc}(\bm{0}) &= \{ \bm{x} : \bp_t(\bm{x}) \to \bm{0} \mbox{ as } \
 t \to -\infty \} 
 \end{align*}
 these have the same dimension as $E^s$ and $E^u$ and are tangent to them
@@ -751,17 +754,17 @@ invariand sets, because there are at least two notions of stability.
 \\
 \textbf{Definition:} Lyapunov stability
 \\
-A fixed point $\bm{x}_0$ of a flow $\bm{\phi}_t$ is Lyapunov stable if
+A fixed point $\bm{x}_0$ of a flow $\bp_t$ is Lyapunov stable if
 $\forall \epsilon > 0, \; \exists \delta > 0$ s.t. $|\bm{x}-\bm{x}_0| < \delta$
-$\implies |\bm{\phi}_t(\bm{x}) - \bm{x}_0| < \epsilon$ $\forall t>0$.
+$\implies |\bp_t(\bm{x}) - \bm{x}_0| < \epsilon$ $\forall t>0$.
 A motto is ``Start near, stay near'' stability.
 \\
 \\
 \textbf{Definition:} Quasi-asymptotic stability (QAS)
 \\
-A fixed point $\bm{x}_0$ of a flow $\bm{\phi}_t$ is quasi-asymptotically 
+A fixed point $\bm{x}_0$ of a flow $\bp_t$ is quasi-asymptotically 
 stable if $\exists \delta > 0$ s.t. $|\bm{x}-\bm{x}_0| < \delta$ $\implies
-\bm{\phi}_t(\bm{x}) \to \bm{x}_0$ as $t \to \infty$.
+\bp_t(\bm{x}) \to \bm{x}_0$ as $t \to \infty$.
 \\
 \\
 These are not the same!
@@ -802,18 +805,18 @@ For other kinds of invariant sets $\Lambda$ e.g. limit cycles, define
 \[ N_{\delta}(\Lambda) = \{ \bm{x} : \exists \bm{y} \in \Lambda \mbox{ with } \
 |\bm{x} - \bm{y}| < \delta \} \]
 and say 
-\[ \bm{\phi}_t(\bm{x}) \to \Lambda\]
+\[ \bp_t(\bm{x}) \to \Lambda\]
 if
 \[\min_{\bm{y} \in \Lambda} \
-\{ | \bm{\phi}_t(\bm{x}) - \bm{y}| \} \to 0 \quad \mbox{ as } \quad t \to \infty \]
+\{ | \bp_t(\bm{x}) - \bm{y}| \} \to 0 \quad \mbox{ as } \quad t \to \infty \]
 \\
 Then say $\Lambda$ is Lyapunov stable if $\forall \epsilon > 0$ $\exists \delta>0$ s.t.
-$\bm{x} \in N_{\delta}(\Lambda) \implies \bm{\phi}_t(\bm{x}) \in N_{\epsilon}(\Lambda)$
+$\bm{x} \in N_{\delta}(\Lambda) \implies \bp_t(\bm{x}) \in N_{\epsilon}(\Lambda)$
 $\forall t >0$.
 \\
 \\
 Say $\Lambda$ is QAS if $\exists \delta >0$ s.t. $\bm{x} \in N_{\delta}(\Lambda) \implies \
-\bm{\phi}_t(\bm{x}) \to \Lambda$ as $t \to \infty$.
+\bp_t(\bm{x}) \to \Lambda$ as $t \to \infty$.
 \\
 \\
 Say $\Lambda$ is AS if it is both LS and QAS.
