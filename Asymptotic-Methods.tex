@@ -1,0 +1,129 @@
+%
+%
+\documentclass{article}
+\usepackage{amsmath}
+%\usepackage{empheq}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{array}
+%\usepackage{pgfplots}
+%\usepackage{caption}
+\usepackage{amsfonts}
+\usepackage[margin=3cm]{geometry}
+%\usepackage{float}
+
+\newcommand{\definition}{\textbf{Definition:}} 
+\newcommand{\example}{\textbf{Example:}} 
+\newcommand{\examples}{\textbf{Examples:}} 
+\newcommand{\question}{\textbf{Question:}} 
+\newcommand{\theorem}{\textbf{Theorem:}} 
+
+\begin{document}
+
+\title{Asymptotic Methods}
+\author{Course given by Dr.  \\
+\LaTeX\  by Dominic Skinner \\
+Dom-Skinner@github.com}
+\maketitle
+\subsection*{What we'll learn in this course}
+\textbf{Examples:} 
+\\
+\begin{enumerate}[(1)]
+\item $I(\lambda) = \int_{\infty}^{\infty} \exp[-\lambda \cosh u] du $
+		\\ We expect that $I(\lambda) \to 0$ as $\lambda \to \infty$. But how fast?
+\item $i \hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m} \
+		\frac{\partial ^2 \psi}{\partial x^2} + V(x)$ with $\psi(x,t) \in \mathbb{C}$,
+		$V = V(x)$. \\
+		Look for a solution $\psi(x,t) = \exp \left[\frac{-iEt}{\hbar} \right] f(x)$
+		$\implies \hbar^2 f'' = 2m(V(x) -E)f$ 
+		\\
+		$\hbar$ is very small. So a natural problem is to try and understand
+		$\epsilon^2 \frac{d^2y}{dx^2} = Q(x)y$ when $\epsilon \ll 1$.
+		\\ The ``semi-classical limit'' or ``geometric optics''.
+\item Put $\hbar = 1$, $m=\frac{1}{2}$, $V=0$; specify $\psi(x,0) = \psi_0(x)$
+		\\
+		Fourier transform $\to \psi(x,t) = \frac{1}{(4\pi i t)^{1/2}} \int_{\mathbb{R}} \
+		\exp\left[ \frac{i|x-y|^2}{4t} \right] \psi_0(y) dy$.
+		\\
+		Question: Does $\psi(x,t)$ really approach $\psi_0(x)$ as $t\to0$?
+\end{enumerate}
+%
+\section{Asymptotic expansions of functions}
+\[ \sinh x = \frac{e^x - e^{-x}}{2} = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \dots\]
+say $\sinh x \sim x$ as $x \to 0$.
+\\
+\definition\ $f \sim g$ as $x \to x_0$ is $|f(x) - g(x)| = o(g(x))$ as $x \to x_0$.
+\\
+\\
+\example\ $|\sinh x - x| = |\frac{x^3}{3!} + \frac{x^5}{5!} + \dots| = O(x^3) = o(x)$
+\\
+($F=O(G)$ as $x \to x_0$ means $\exists C>0$ such that $|F(x)| \leq C|G(x)|$ in
+some open interval $I$, with $x_0 \in I$)
+\\
+In fact, by remainder estimate for Taylor expansion
+\[ \left| \sinh x - \sum_{0}^{N} \frac{x^{2n+1}}{(2n+1)!} \right| = \
+O(x^{2n+3}) = o(x^{2n+1}) \mbox{ as } x \to 0\]
+We write $\sinh x \sim \sum_{0}^{\infty} \frac{x^{2n+1}}{(2n+1)!}$
+\\
+\\
+\definition\ Asymptotic sequence and asymptotic expansion.
+\begin{enumerate}[(i)]
+\item $\{\phi_n\}_{n=0}^{\infty}$ is an asymptotic sequence (of functions) as 
+		$x \to x_0$ if $\phi_{n+1}(x) = o(\phi_n(x))$ as $x \to x_0$. ($\forall n$)
+\item A function f has asymptotic expansion w.r.t. $\{ \phi_n\}$ as $x \to x_0$ 
+		written $f \sim \sum_{n=0}^{\infty} a_n \phi_n$ if 
+		$\left| f(x) - \sum_0^N a_n \phi_n(x) \right| = o(\phi_N(x))$ as $x \to x_0$
+		$\forall N$
+		\\
+		Notice the difference with Taylor expansion - an asymptotic expansion 
+		need not converge as $N\to \infty$ for any $x$!
+\end{enumerate}
+\examples\ 
+\begin{itemize}
+\item $\{ \phi_n(x) = x^n \}$ as $x \to 0$, the most common sequence.
+\item $\{ \phi_n(x) = x^{2n+1} \}$ as $x \to 0$
+\item $\{ \phi_n(x) = e^{-n/x} \}$ as $x \to 0^+$ (i.e. $x>0$ and $x\to 0$ on right)
+\end{itemize}
+%
+%
+\begin{framed}
+\noindent \textbf{Warning:} $\sin x \sim x - x - \frac{x^3}{3!} +\
+\frac{x^5}{5!} + \dots$ as $x \to 0$.
+\\
+$\sin x + e^{-1/x} \sim x - x - \frac{x^3}{3!} + \frac{x^5}{5!} + \dots$ 
+as $x \to 0^{+}$.
+\end{framed}
+Why?
+\[ \left| \sin x + e^{-1/x} - \sum_0^N \frac{ (-1)^n x^{2n+1}}{(2n+1)!} \right| \
+= \left| \sum_{n = 2N+1}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!} + e^{-1/x} \right| \
+=O(x^{2N+3}) = o(x^{2N+1}) \]
+Moral: information is lost in asymptotic expansions!
+\\
+\\
+However, given $f$ and asymptotic sequence, the $a_j$'s are unique, i.e.
+\begin{align*}
+a_0 &= \lim_{x \to x_0} \frac{f(x)}{\phi_0(x)} \\
+a_1 &= \lim_{x \to x_0} \frac{f(x)-a_0 \phi_0(x)}{\phi_1(x)} \\
+& \vdots
+\end{align*}
+\question\ Is it possible that $f(x) \sim 0$ as $x \to 0$?
+\\
+If $|f(x) - 0| = o(0)=0$ in some interval $I$, containing $0$, then
+$f \equiv 0$ on $I$.
+\\
+\\
+\example\ Consider $Ei(x) = \int_{x}^{\infty} \frac{e^{-t}}{t} dt$ as 
+$x \to + \infty$.
+\\
+Consider the asymptotic sequence $\phi_n(x) = \frac{1}{n}$ as $x \to + \infty$
+\[ Ei(x) = \int_{x}^{\infty} \frac{-d(e^{-t})}{t} = \left[ -\frac{e^{-t}}{t} \right]_{x}^{\infty} \
+- \int_x^{\infty} \frac{e^{-t}}{t^2} dt = \frac{e^{-x}}{x} - \
+\int_x^{\infty} \frac{e^{-t}}{t^2} dt\]
+Claim: $Ei(x) \sim \frac{e^{-x}}{x}$ as $x \to + \infty$.
+\[ \left| Ei(x) - \frac{e^{-x}}{x} \right| = \left| \int_x^{\infty} \frac{e^{-t}}{t^2} dt \right|
+\leq \frac{1}{x^2} \int_x^{\infty} e^{-t} dt = \frac{e^{-t}}{x^2} = \
+o\left(\frac{e^{-x}}{x} \right) \]
+Work out full expansion of $Ei$ w.r.t. $\phi_n = \frac{e^{-x}}{x^n}$.
+\end{document}
