@@ -2,6 +2,7 @@
 %
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{empheq}
 \usepackage{graphicx}
 \usepackage{bm}
@@ -14,9 +15,14 @@
 \usepackage[margin=3cm]{geometry}
 \usepackage{float}
 
-\newcommand{\cO}{\mathcal{O}} %
-\newcommand{\bp}{\bm{\phi}}   % These are used a lot!
-\newcommand{\xeqn}{\dot{\bm{x}} = \bm{f}(\vm{x})} %
+\newcommand{\cO}{\mathcal{O}}                               %
+\newcommand{\domain}{\mathcal{D}}                           %
+\newcommand{\example}{\textbf{Example:}}                    %
+\newcommand{\definition}{\textbf{Definition:}}              %
+\newcommand{\theorem}{\textbf{Theorem:}}                    %
+\newcommand{\bp}{\bm{\phi}}                                 % These are used a lot!
+\newcommand{\bx}{\bm{x}}                                    %
+\newcommand{\xeq}[1] { \dot{\bm{ #1 }} = \bm{f}(\bm{ #1}) } %
 
 \begin{document}
 
@@ -32,13 +38,13 @@ with respect to a time-like variable. Usually they are non-linear.
 The possible states of the system define the state space/phase space.
 \\
 \\
-\textbf{Example:}   The logistic map
+\example\   The logistic map
 \[ x_{n+1} = \mu x_n ( 1- x_n) \]
 For $ 0 \leq \mu \leq 4 $ this describes evolution with respect to a discrete time 
 $n$ in a state space $[0,1]$.
 \\
 \\
-\textbf{Example:}   The Lotka-Voltera equations
+\example\   The Lotka-Voltera equations
 \begin{align*}
 \dot{r} &= r(a - br -cs) \\
 \dot{s} &= s(d - er -fs)
@@ -48,7 +54,7 @@ in a state space $(r,s) \in [0 , \infty] \times [0, \infty]$ as a model for
 the population of two species competing for the same food supply.
 \\
 \\
-\textbf{Example:}   The non-linear Schr\"odinger equation
+\example\   The non-linear Schr\"odinger equation
 \[ i \frac{\partial \Psi}{ \partial t} = \nabla^2 \Psi + |\Psi|^2 \Psi \]
 This describes evolution in an infinite dimensional statespace of possible
 wavefunctions.
@@ -60,7 +66,7 @@ geometric and analytic arguments, and aim to say something about the generic
 long-term behaviour.
 \\
 \\
-\textbf{Example:}   
+\example\   
 \begin{align*}
 \dot{r} &= r(3 - r -s) \\
 \dot{s} &= s(2 - r -s)
@@ -88,7 +94,7 @@ $r >0$ tend to the stable fixed point $(3,0)$. The fixed points $(0,0)$ and
 $(0,2)$ are unstable. There are no periodic orbits.
 \\
 \\
-\textbf{Example:}   
+\example\   
 \begin{align*}
 \dot{r} &= r(3 - r -s) \\
 \dot{s} &= s(2 - \mu r -s)
@@ -100,7 +106,7 @@ is the long term stable attractor.
 A qualitative change in the solution structure is called a bifurcation.
 \\
 \\
-\textbf{Example:}   
+\example\   
 \begin{align*}
 \dot{x} &= -y + \epsilon x (\mu - x^2 - y^2) \\
 \dot{y} &= \;\;\; x + \epsilon y (\mu - x^2 - y^2)
@@ -130,7 +136,7 @@ $\epsilon >0$ ($\epsilon < 0$). The appearance of the limit cycle as $\mu \uparr
 through $0$ is another form of bifurcation.
 \\
 \\
-\textbf{Example:} In 2D the points of successive interection $x_n$ of a 
+\example\ In 2D the points of successive interection $x_n$ of a 
 solution near a limit cycle with a line $\varepsilon$ perpendicular to the cycle,
 move monotonically towards/away from the point of intersection $x^{*}$ of 
 $\varepsilon$ with the limit cycle.
@@ -150,7 +156,7 @@ We need some termonology.
 \subsection{Notation}
 We only consider ODEs of the form 
 \begin{equation}\tag{*}
-\dot{\textbf{x}} = \textbf{f(x)}
+\xeq{x}
 \end{equation}
 for \textbf{x} in a phase space/state space $E \subset \mathbb{R}^{n}$.
 The n first order ODEs form a dynamical system of order (dimension) n.
@@ -194,7 +200,7 @@ exist, are unique and they depend continously on $\textbf{x}' , \, t$.
 Note we are not guaranteed existence for all times.
 \\
 \\
-\textbf{Example:} 
+\example\ 
 \[ \dot{x} = x^2  \]
 \[ x(0)  = 1\]
 This has solution
@@ -206,7 +212,7 @@ If $|\textbf{x}(t)| \to \infty$ as $t \to T \;(< \infty)$ then we call this
 finite time blow up.
 \\
 \\
-\textbf{Example:} Non-uniqueness when $\textbf{f}$ is non-Lipshitz. If
+\example\ Non-uniqueness when $\textbf{f}$ is non-Lipshitz. If
 \[ \dot{x} = \left\{\begin{array}{lr}
 				\sqrt{x} & \mbox{for } x >0 \\
 				0        & \mbox{for } x \leq 0
@@ -232,7 +238,7 @@ and we could consider lots of starting points $\textbf{x}_0$.
 This motivates the idea of a flow. 
 \\
 \\
-\textbf{Definition:} (Flow) \\
+\definition\ (Flow) \\
 Given \textbf{f}, the corresponding flow is defined to be a (the) function
 $\bp_t (\textbf{x}) $ from $E \times \mathbb{R} \to E$ such that
 \[ 
@@ -253,14 +259,14 @@ Clearly $\bp_{n \Delta t} (\bm{x} ) = \bm{F} ( \bp_{(n-1) \Delta t} (\bm{x} )) =
 Using the idea of a flow, we define the following:
 \\
 \\
-\textbf{Definition:} Orbits/Trajectories
+\definition\ Orbits/Trajectories
 \\
  The orbit of $\bp_t(\bm{x})$ through $\bm{x}_0$ is
 the set $\cO(\bm{x}_0) = \{ \bp_t(\bm{x}_0): -\infty < t < \infty \}$.
 \\
 The forwards (backwards) orbit is 
 \[\cO^{+ \, (-)}(\bm{x}_0) = \{ \bp_t(\bm{x}_0):  t \geq 0 \; (t \leq 0) \} \]
-\textbf{Definition:} Invariant sets
+\definition\ Invariant sets
 \\
 A set of points $\Lambda \subset E$ is invariant if
 $\bm{x} \in \Lambda \implies \cO(\bm{x}) \subset \Lambda$
@@ -271,7 +277,7 @@ Clearly $\cO(\bm{x}_0)$ is invariant, and so is any union of orbits.
 Particular cases of interest are
 \\
 \\
-\textbf{Definition:} Fixed points
+\definition\ Fixed points
 \\
 $\bm{x}_0$ is a periodic point with period $T$ if $\bp_T(\bm{x}_0)= \bm{x}_0$
 for some $T>0$ and $\bp_t (\bm{x}_0) \neq \bm{x}_0$ for $0 < t < T$.
@@ -279,13 +285,13 @@ The set $ \{ \bp_t ( \bm{x}_0) : 0 \leq t < T \}$ is the periodic orbit
 through $\bm{x}_0$.
 \\
 \\
-\textbf{Definition:} Limit Cycle
+\definition\ Limit Cycle
 \\
 A limit cycle is an isolated periodic orbit, i.e. there are no other periodic
 orbits within a sufficiently small neighbourhood.
 \\
 \\
-\textbf{Definition:} Homoclinic and Heteroclinic orbits
+\definition\ Homoclinic and Heteroclinic orbits
 \\
 If $\bm{x}_0$ is a fixed point and $\exists \; \bm{y} \neq \bm{x}_0$ such that
 $\bp_t(\bm{y}) \to \bm{x}_0$ as $t \to \pm \infty$ then 
@@ -307,7 +313,7 @@ enough simply to think of
 because the limit might not exist; for example a limit cycle.
 \\
 \\
-\textbf{Definition:} Limit set
+\definition\ Limit set
 \\
 The $\omega$-limit set of $\bm{x}$ is 
 \[ \omega (\bm{x}) = \{ \bm{y} : \exists \mbox{ a sequence } (t_n) \mbox{ with }\
@@ -315,7 +321,7 @@ The $\omega$-limit set of $\bm{x}$ is
 Similarly the $\alpha$ limit set is defined by sequences with $t_n \to - \infty$.
 \\
 \\
-\textbf{Example:} \\
+\example\ \\
 %
 \begin{center}
 \begin{tabular}{ m{4.5cm} m{4.5cm}  }\centering 
@@ -338,7 +344,7 @@ In fact, the limit sets are always invariant sets since
 \item If $\cO(\bm{x})$ is bounded then $\omega(\bm{x})$ is non-empty.
 \item If $\bp_t(\bm{x}) \to \infty$ then $\omega(\bm{x}) = \{ \} $.
 \end{itemize}\vspace{3mm}
-\textbf{Definition:} (For maps) 
+\definition\ (For maps) 
 \\
 Fixed points solve $\bm{F}(\bm{x}) = \bm{x}$. Orbits, periodic points etc.
 are defined as above by replacing $\bp_t(\bm{x})$ by $\bm{F}^n(\bm{x})$,
@@ -497,7 +503,7 @@ The fragility is because there are one or two eigenvalues on the border
 Re$(\lambda) = 0$ between stability and instability.
 \\
 \\
-\textbf{Definition:} Hyperbolic fixed point
+\definition\ Hyperbolic fixed point
 \\
 \\
 A fixed point $\bm{x}_0$ of the system $\dot{\bm{x}} = \bm{f}(\bm{x})$ is a
@@ -535,7 +541,7 @@ First, we formalise the idea of stable and unstable directions in the linearised
 system.
 \\
 \\
-\textbf{Definition:} The stable, unstable and center invariant subspaces of the
+\definition\ The stable, unstable and center invariant subspaces of the
 linearisation of $\bm{f}$ at a fixed point are the local linear subspaces.
 \\
 \\
@@ -603,7 +609,7 @@ Since $W^s$ and $W^u$ are invariant,
  \left.\dot{y}\right|_{(x,U)} = \frac{dU}{dx} \left.\dot{y}\right|_{(x,U)}
 \]
 \\
-\textbf{Example:} 
+\example\ 
 \[ \left( \begin{array}{c} \dot{x} \\ \dot{y} \end{array} \right) = 
 \left( \begin{array}{c} x - xy \\ -y+x^2 \end{array} \right) \qquad \qquad
 A|_{\bm{x} = \bm{0}} = \left( \begin{array}{cr} 1 & 0 \\ 0 & -1 \end{array} \right) \]
@@ -632,7 +638,7 @@ There are many possibilities depending on the non-linear terms.
 really closed?
 \\
 \\
-\textbf{Example:}
+\example\
 \[ \left. \begin{array}{lr} 
 				\dot{x} = & - y \pm x^3 \\
 				\dot{y} = & x \pm y^3
@@ -643,7 +649,7 @@ Now as $r \to 0$, $\dot{\theta} \to 1$. Thus the system is a stable focus if we 
 and an unstable focus if we choose '$-$'.
 \\
 \\
-\textbf{Example:}
+\example\
 \begin{alignat*}{4} 
 & \dot{x} &&=  - && y - 2yx^2 =  &&\frac{\partial H}{\partial y} \\
 & \dot{y} &&=    && x + 2xy^2 = -&&\frac{\partial H}{\partial x} 
@@ -657,7 +663,7 @@ periodic orbits.
 along $\bm{e}_1$?
 \\
 \\
-\textbf{Example:} \\ 
+\example\ \\ 
 \begin{center}
 \begin{tabular}{ m{3cm} m{3cm} m{3cm}  } 
 $\begin{array}{lr}
@@ -681,7 +687,7 @@ In some cases, it is useful to switch to polars and consider the sign of
 $\dot{r}$ and $\dot{\theta}$ as $r \to 0$.
 \\
 \\
-\textbf{Example:} $\dot{\theta} >0$ \\
+\example\ $\dot{\theta} >0$ \\
 \begin{center}
 \includegraphics[scale = 0.15]{fig17.png} \\
 \includegraphics[scale = 0.16]{fig18.png}
@@ -695,7 +701,7 @@ In nastier cases, the curves $\dot{\theta} = 0$ can form a cusp.
 %
 \subsection{Sketching phase planes/portraits}
 %
-\textbf{Example:}
+\example\
 \\
 \begin{align*}
 \dot{x} &= x(1-y) \\
@@ -752,7 +758,7 @@ ned to be more careful with the stability of other kinds of fixed points or
 invariand sets, because there are at least two notions of stability.
 \\
 \\
-\textbf{Definition:} Lyapunov stability
+\definition\ Lyapunov stability
 \\
 A fixed point $\bm{x}_0$ of a flow $\bp_t$ is Lyapunov stable if
 $\forall \epsilon > 0, \; \exists \delta > 0$ s.t. $|\bm{x}-\bm{x}_0| < \delta$
@@ -760,7 +766,7 @@ $\implies |\bp_t(\bm{x}) - \bm{x}_0| < \epsilon$ $\forall t>0$.
 A motto is ``Start near, stay near'' stability.
 \\
 \\
-\textbf{Definition:} Quasi-asymptotic stability (QAS)
+\definition\ Quasi-asymptotic stability (QAS)
 \\
 A fixed point $\bm{x}_0$ of a flow $\bp_t$ is quasi-asymptotically 
 stable if $\exists \delta > 0$ s.t. $|\bm{x}-\bm{x}_0| < \delta$ $\implies
@@ -770,7 +776,7 @@ stable if $\exists \delta > 0$ s.t. $|\bm{x}-\bm{x}_0| < \delta$ $\implies
 These are not the same!
 \\
 \\
-\textbf{Example:}
+\example\
 \\
 \begin{tabular}{m{3cm} m{4cm} m{9cm}  } 
 $\begin{array}{lr} 
@@ -790,13 +796,13 @@ The point $r=1$, $\theta = 0$ is QAS but not Lyapunov stable
 \end{tabular}
 \\
 \\
-\textbf{Definition:} Asymptotic stability (AS)
+\definition\ Asymptotic stability (AS)
 \\
 A fixed point $\bm{x}_0$ is asymptotically stable if it is both Lyapunov stable
 and quasi-asymptotically stable.
 \\
 \\
-\textbf{Example:} A sink (Re $\lambda_i <0 \; \forall \, i$) is asymptotically
+\example\ A sink (Re $\lambda_i <0 \; \forall \, i$) is asymptotically
 stable. (Choose $\delta$ sufficiently small that the linear terms dominate)
 A saddle or source is obviously not Lyapunov stable, hence not AS.
 \\
@@ -822,5 +828,156 @@ Say $\Lambda$ is QAS if $\exists \delta >0$ s.t. $\bm{x} \in N_{\delta}(\Lambda)
 Say $\Lambda$ is AS if it is both LS and QAS.
 \\
 \subsection{Lyapunov functions}
+These allow us to say more about the stability of a fixed point which wlog
+we take to be $\bm{x}=0$.
+\\
+\\
+\definition\ Lyapunov function
+\\
+A continously differentiable function $V : \mathbb{R}^n \to \mathbb{R}$ is a Lyapunov
+function for $\xeq{x}$ in a domain $\mathcal{D} \subset \mathbb{R}^n$ if
+%
+\begin{enumerate}[(i)]
+\item $V(\bm{0}) = 0$ and $V(\bm{x}) > 0$ for 
+      $\bm{x} \in \mathcal{D} \backslash \{\bm{0}\}$.
+     ``\emph{Positive semi-definite}''.
 
+\item $\dot{V}(\bm{x}) \equiv \bm{f}\cdot \nabla V \leq 0$
+      $\forall \bm{x} \in \mathcal{D}$. ``\emph{Non-increasing}''.
+
+\end{enumerate}
+%
+Note that (ii) means trajectories head ``downhill'' (or at least not uphill)
+and (i) means that $\bm{0}$ is the lowest point. These properties allow us to
+prove:
+\\
+\\
+\theorem\ Lyapunov's First Theorem
+\\
+If a Lyapunov function exists, then $\bm{0}$ is Lyapunov stable.
+\begin{proof}
+Wlog we can assume $\epsilon$ is sufficiently small that 
+$\{ | \bm{x} | < \epsilon \} \subset\mathcal{D}$. Let
+\[ m = \inf \{ V(\bm{x}) : | \bm{x} | = \epsilon \} \]
+$m$ is attained, and $m>0$ since $\{ |\bm{x}| = \epsilon \}$ is compact.
+Define
+\[ C_{m, \epsilon}  = \{ \bx : V(\bx)<m \mbox{ and } |\bx| < \epsilon \} \]
+Then $\bx \in C_{m,\epsilon} \implies \bp_t(\bx) \in C_{m,\epsilon}$ 
+$\forall \, t>0$ since V is non-increasing and $V \geq m$ on the
+boundary of $C_{m,\epsilon}$. 
+\\
+\\
+Finally, choose $\delta >0$ such that 
+$\{ |\bx| < \delta \} \subset C_{m,\epsilon}$. Then
+\\
+\[|\bx|< \delta \implies |\bp_t(\bx)|<\epsilon \;\; \forall \, t>0 \]
+% Include diagram here
+\end{proof}
+%
+%
+\noindent
+A trajectory can head downhill and still not end up at $\bm{0}$.
+However, there is an important constraint.
+\\
+\\
+\theorem\ La Sale's Invariance Principle
+\\
+If V is a Lyapunov function on a bounded domain $\domain$ and
+$\cO^+(\bx) \subset \domain$, then $\bp_t(\bx) \to$ an invariant subset of
+$\{ \bx : \dot{V}(\bx) = 0 \} $.
+%
+\begin{proof} ~
+\\
+$\cO^+(\bx) \subset \domain$ so $V(\bp_t(\bx))$ is monotonically decreasing
+and bounded below by $0 \implies V(\bp_t(\bx)) \to \alpha$ for some 
+$\alpha \geq 0$ as $t \to \infty$.
+\\
+\\
+$\domain$ is bounded $\implies \omega(\bx)$ is non empty.
+\\
+\\
+Let $\bm{y} \in \omega(\bx)$ then 
+$\exists \, \{t_n\}$ s.t. $\bp_{t_n}(\bx) \to \bm{y} \implies V(\bm{y}) = \alpha$ 
+by continuity of V.
+\\
+\\
+Therefore $V(\bp_t(\bm{y})) = \alpha$ since $\bp_t(\bm{y}) \in \omega(\bx)$.
+\\
+\\
+Now $V(\bp_t(\bm{y})) = \alpha \;\; \forall \, t \implies \dot{V}(\bm{y}) = 0$.
+\\
+\\
+This holds for any $\bm{y} \in \omega(\bx)$ and thus
+\[ \omega(\bx) \subset \{ \dot{V} = 0 \} \]
+We know $\omega$ is invariant, and thus we are done.
+\end{proof}
+\noindent \textbf{Corollary:} If V is a Lyapunov function on a domain $\domain$ 
+containing $\bm{0}$, and the only invariant subset of 
+$\{ \bx:\dot{V}(\bx) = 0\} \cap \domain$ is $\{ \bm{0} \}$, then $\bx = \bm{0}$
+is asymptotically stable.
+%
+\begin{proof} ~
+\\
+Choose $k$ such that 
+\[ C_k \equiv \{ \bx : V(\bx) <k \} \subset \domain \]
+and choose $\delta$ such that $ \{ \bx :| \bx | < \delta \} \subset C_k$.
+\\
+Then $|\bx| < \delta \implies V(\bx) <k \implies V(\bp_t(\bx)) < k \implies \
+\bp_t(\bx) \subset \domain$
+\end{proof}
+\noindent \\ \\
+\example\ Let
+\[\dot{\bx} = A \bx + o(|\bx|)\]
+and let $\lambda_i$ be the distinct eigenvalues of A with corresponding 
+eigenvectors $\bm{e}_i$.
+\\ 
+Suppose that Re$(\lambda_i) <0$,and let $v_i$ be any positive real
+constants. Then, writing 
+\[ \bx = \sum_{i=1}^{n} a_i \bm{e}_i, \qquad V(\bx) = \sum_{i=1}^{n} v_i |a_i|^2\]
+have that $V \geq 0$ ($=0$ only at
+$\bm{0}$) and $\dot{V}$ in a sufficiently small neighbourhood of $\bm{0}$.
+(See example sheet) Therefore have that $\bx = \bm{0}$ is asymptotically
+stable.
+\\
+\\
+The main use of Lyapunov functions, however, is to find information about the
+domain of stability.
+\\
+\\
+\definition\ Domain of stability
+\\
+The domain of stability (basin of attraction) of an asymptotically stable
+invariant set $\Lambda$ is 
+\[ \{ \bx : \bp_t(\bx) \to \Lambda \mbox{ as } t \to \infty \} \]
+i.e. $\bx$ such that 
+\[ \inf_{\bm{y} \in \Lambda} \{| \bp_t(\bx) - \bm{y} | \} \to 0 \quad \mbox{as } t \to \infty\]
+\\
+If the domain of stability in $\mathbb{R}^n$ then $\Lambda$ is globally stable.
+\\
+\\
+\example\ We can show that the non-hyperbolic fixed point of the system
+\begin{align*}
+ \dot{x} =& y-xy^2 \\
+ \dot{y} =& x^3
+\end{align*}
+is asymptotically stable.
+\\
+\\
+Without the $-xy^2$ term, the system would be Hamiltonian with 
+$H = \frac{1}{2}y^2+\frac{1}{4}x^4$ and $\dot{H}=0$.
+\\
+With the $-xy^2$ term, $\dot{H} = -x^4 y^2 \leq 0$.
+\\
+Therefore $H$ is a Lyapunov function and so $\bp_t(\bx) \to$ an invariant
+subset of $\{\dot{H}=0\} = \{ x = 0 \mbox{ or } y = 0 \}$.
+\\
+But the only invariant subset of $\{ \dot{H} = 0 \}$ is $\bx = \bm{0}$.
+Hence by the corollary, $\bx = \bm{0}$.
+\\
+\\
+\example\
+\[ \left. \begin{array}{cl} \dot{x} = & y + \mu ( \frac{1}{3} x^3 - x) \\
+			    \dot{y} = & -x \end{array}
+\right\} \mbox{ equivalent to } \ddot{x} + \mu (1 - x^2) \dot{x} + x = 0 \]
+The ``Time-reversed van der Pol oscillator''
 \end{document}
