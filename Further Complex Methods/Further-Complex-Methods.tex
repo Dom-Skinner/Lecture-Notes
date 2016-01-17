@@ -1,0 +1,164 @@
+%
+%
+\documentclass{article}
+\usepackage{amsmath}
+%\usepackage{empheq}
+\usepackage{graphicx}
+\usepackage{bm}
+%\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{array}
+%\usepackage{pgfplots}
+%\usepackage{caption}
+\usepackage{amsfonts}
+\usepackage[margin=3cm]{geometry}
+%\usepackage{float}
+
+\newcommand{\definition}{\textbf{Definition:}} 
+\newcommand{\example}{\textbf{Example:}} 
+\newcommand{\examples}{\textbf{Examples:}} 
+\newcommand{\question}{\textbf{Question:}} 
+\newcommand{\theorem}{\textbf{Theorem:}} 
+
+\begin{document}
+
+\title{Further Complex Methods}
+\author{Course given by Prof. M.Perry \\
+\LaTeX\  by Dominic Skinner \\
+Dom-Skinner@github.com}
+\maketitle
+\begin{tabular}{lr}
+\textbf{Books:} & ``Complex Variables,'' M.J Ablowitz \& A. Fokes (CUP)\\
+& ``A Course in Modern Analysis,'' Whittaker \& Watson
+\end{tabular}
+\\
+\\
+\\
+Any function of $x,y$ can be written as a function of $z , \;\bar{z}$ for
+$z = x+iy$.
+\\
+\\
+Functions of a complex variable are defined to be those functions of $x$ and
+$y$ that can be written entirely in terms of $z$ only.
+\\
+\\
+A function of a complex variable is continous if
+\[ \lim_{z \to z_0} f(z) = f(z_0) \quad \mbox{(as in real analysis) } \]
+The derivative of a function of a complex variable is
+\[ f'(z) - \lim_{\delta z \to 0} \frac{f(z+ \delta z) - f(z)}{\delta z} \]
+For a function to be differentiable, the limit must be independent of
+the direction that the limit is taken.
+\\
+\\
+If this is true, then the function is said to be differentiable at $z$.
+If $f'(z)$ exists, then $f(z)$ is continous (converse not true).
+\\
+\\
+Write $f(z) = u(x,y) + iv(x,y)$ with $u,v$ both real. Then
+\[ dz \, f'(z) = \lim_{\delta z = \delta x + i \delta y \to 0} \left(
+u(x+\delta x, y+ \delta y) + iv(x+\delta x,y+\delta y) - u(x,y) - iv(x,y) 
+\right) \]
+If $\delta y = 0$, $dz = dx$ and we get that
+\[ f'(z) = u_x + i v_x \]
+Suppose now that $\delta x = 0$.
+\[ i \delta y\, f'(z) = u_y+iv_y \]
+\[ \implies f'(z) = v_y - i u_y \]
+\[ \implies v_y - iu_y = u_x + iv_x \]
+\[ \implies \left. \begin{array}{cr}
+v_y = u_x \\
+v_x = -u_y \end{array} \right\} \mbox{ The Cauchy-Riemann equations} \]
+If the Cauchy-Riemann equations hold, the derivatives exist and are 
+continous, then $f(z)$ is differentiable. If the Cauchy-Rieman equations hold
+then $u, \; v$ are harmonic.
+\[ u_{xx} = v_{xy} = -u_{yy} \implies u_{xx}+u_{yy} =0 \]
+A similar equation holds with v.
+\\
+% A diagram goes here
+\\
+Consider surfaces of $u=const$, $v=const$. These surfaces are orthogonal.
+\begin{align*}
+\nabla u &= (u_x,u_y) \mbox{ -i normal to } u = const \\
+\nabla v &= (v_x,v_y) \mbox{ - normal to } v = const 
+\end{align*}
+and so
+\[ \nabla u \cdot \nabla v = u_xv_x + u_yv_y =0 \mbox{ from C-R} \]
+\\
+\definition\ Analytic function
+\\
+$f(z)$ is analytic at $z_0$ if $f(z)$ is differentiable in some neighbourgood
+of $z_0$. $f(z)$ is analytic in a region if a similar condition applies.
+\\
+\\
+\examples\
+\begin{enumerate}[(i)]
+\item $e^z$  is analytic in the finite complex $z$-plane
+\item $\bar{z}$ is analytic nowhere
+\item $1/z^3$ is analytic everywhere except at $z=0$
+\end{enumerate}
+\noindent \definition\ Entire functions
+\\
+A function is entire if it is analytic in the finite complex plane
+\\
+\\
+\examples\
+\begin{enumerate}[(i)]
+\item $e^z$ , this only fails to be analytic at $\infty$ 
+\item $\sin z$ 
+\item $z^2$ 
+\end{enumerate}
+~\\
+\definition\ Isolated singularity
+\\
+A function is said to have an isolated singularity if it fails to
+be analytic at a point.
+\\
+\\
+\example\ $1/z^3$ has an isolated singularity at the origin.
+\\
+\\
+Suppose that a function has an isolated singularity at $z=z_0$. Then it can
+be expanded as a Laurent series around $z_0$.
+\[ f(z) = \sum_{-\infty}^{\infty} c_n (z - z_0)^n \]
+Note that this sum is over all positive and negative powers.
+\\
+\\
+Suppose that $c_n=0$ for all $n< -N$ where $N>0$. 
+\begin{itemize}
+\item If $c_n = 0 \; \forall \, n >0$ then it is not singular.
+\item If $c_n = 0$ for all $n<-N$ for $N>0$, then one has a pole of order
+	$N$.
+\end{itemize}
+\noindent \example\ $1/z^3$ has a pole of order 3 at $z=0$.
+\\
+The coefficient $c_{-1}$ is special, it is the residue of the pole at 
+$z_0$.
+\\
+\\
+\definition\ Removable singularities
+\\
+Fake singularities where the building blocks of $f(z)$ have isolated
+singularities, but $f(z)$ does not.
+\\
+\\
+\example\
+\[ f(z) = \frac{\sin z}{z} = \frac{1}{z} ( z - \frac{z^3}{6} + \dots) 
+= 1 - \frac{z^2}{6} \]
+$f(z)$ has a removable singularity at $z=0$.
+\\
+\\
+\example\
+\[ f(z) = \frac{1}{z} - \frac{1}{z + z^2} = \frac{1}{1+z} \]
+so $f(z)$ has a removable singularity at the origin.
+\\
+\\
+\definition\ Essential Singularity \\
+An essential singularity is where the order of the pole of an isolated
+singularity is infinite.
+\\
+\\
+\example\ $f(z) = e^{1/z}$, $z=0$ is an isolated singularity, as a Laurent
+series
+\[ f(z) = \sum_{\infty}^{0} \frac{1}{(-n)!} z^n \]
+Note that in this exaple, $f(z)$ is not even continous at $z=0$, its value
+depends on how one approaches $z=0$.
+\end{document}

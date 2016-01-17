@@ -21,8 +21,10 @@
 \newcommand{\definition}{\textbf{Definition:}}              %
 \newcommand{\theorem}{\textbf{Theorem:}}                    %
 \newcommand{\corollary}{\textbf{Corollary:}}                %
+\newcommand{\lemma}{\textbf{Lemma:}}                        %
 \newcommand{\bp}{\bm{\phi}}                                 % These are used a lot!
 \newcommand{\bx}{\bm{x}}                                    %
+\newcommand{\rtwo}{\mathbb{R}^2}                            %
 \newcommand{\xeq}[1] { \dot{\bm{ #1 }} = \bm{f}(\bm{ #1}) } %
 
 \begin{document}
@@ -1067,7 +1069,7 @@ Properties:
 \item %
 \[ 2\pi I(\Gamma) = \oint_{\Gamma} d\psi = \oint_{\Gamma} d\left( \tan^{-1} \
 \frac{f_1}{f_2} \right) = \oint_{\Gamma} \frac{ f_1 df_2 - f_2 df_1}{f_1^2 + f_2^2} \]
-\item $I(\Gamma)$ is unchanged by deformations of $\Gamma$ that donot cross 
+\item $I(\Gamma)$ is unchanged by deformations of $\Gamma$ that do not cross 
 a fixed point. 
 \\
 (Proof: $I(\Gamma)$ is integrable and a continous function of $\bm{f}$
@@ -1204,6 +1206,7 @@ Note:
 	theorem mean it can't go to $\infty$ or a fixed point.
 \end{enumerate}
 % A figure goes here
+The full (sketch) proof is in handout 4.4.\\
 \example\
 \begin{align*}
 \dot{x} &= x - y - 2x(x^2+y^2) \\
@@ -1211,5 +1214,296 @@ Note:
 \end{align*}
 The linear terms $\implies \bm{0}$ is an unstable foci. The cubic terms
 look inward from $-\infty$.
-
+\\
+Try for an annulus in polar coordinates
+\[ \dot{r} = \frac{1}{r}(x^2+y^2)(1-2x^2-y^2) = r(1-r^2(1+\cos^2 \theta)) \]
+minimising/maximising over $\theta$ gives
+\[ r(1-2r^2) \leq \dot{r} \leq r(1-r^2) \]
+and therefore
+\begin{align*}
+\dot{r}>0 &\mbox{ in } r < \frac{1}{\sqrt{2}} \\
+\dot{r}<0 &\mbox{ in } r > 1
+\end{align*}
+So trajectories entering the annulus $C = \{ \frac{1}{\sqrt{2}} \leq r \leq 1 \}$
+remain there.
+\\
+No other fixed points?
+\[\dot{\theta} = \frac{x \dot{y} - y \dot{x}}{r^2} = 1 + \frac{1}{2}r^2 \sin \
+2\theta \implies \dot{\theta} > 0 \mbox{ in } r < \sqrt{2} \]
+$C$ contains no fixed points. By Poincar\'e-Bendixson theorem, $C$ contains a
+periodic orbit.
+\\
+\\
+( $\nabla \cdot \bm{f} = 2 - 5r^2 -2x^2 <0$ in $C$, therefore there is
+only one periodic orbit)
+\\
+\\
+\example\ Forced damped pendulum again
+\begin{align*}
+\dot{\theta} &= p \\
+\dot{p}      &= F - kp - \sin \theta
+\end{align*}
+From bounding functions in \S 3.3, we know that all trajectories enter
+and remain in the compact set
+\footnote{I actually have no idea what V is! my notes don't contain any 
+reference, and apparently I didn't notice at the time...}
+\[ V \leq \frac{1}{2} \left(\frac{F}{k} \right)^2 +2\]
+If $F>1$ then there are no fixed points $\implies$ there is a periodic
+orbit by Poincar\'e-Bendixson. (and only one by corollory to Dulac's
+criterion)
+\\
+\subsection{Nearly Hamiltonian Flows}
+This can be a negative or positive test.
+\\
+\\
+Consider a system 
+\begin{align*}
+\dot{x} &= f_1(x,y) + \epsilon g_1(x,y) \\
+\dot{y} &= f_2(x,y) + \epsilon g_2(x,y) 
+\end{align*}
+Where
+\[ f_1 = \frac{\partial H}{\partial y}, \qquad f_2 = -\frac{\partial H}{\partial x}\]
+If $\epsilon =0$ then $\dot{H} = 0$ and closed contours of $H$ are periodic 
+orbits. If $\epsilon \neq 0$ then 
+\[\dot{H} = \frac{\partial H}{\partial x} \dot{x} + \frac{\partial H}{\partial y}\
+\dot{y} = \epsilon \dot{x} g_2 - \epsilon g_1 \dot{y} = \epsilon(g_2f_1-g_1f_2) \]
+For a periodic orbit $\Gamma$, we must have
+\[ \oint_{\Gamma} dH = 0 \implies \oint_{\Gamma} \epsilon (g_2f_1 - g_1f_2) dt = 0\]
+Hence there are no periodic orbits that lie entirely in a region where 
+$g_2f_1 - g_1f_2 > 0$ (or $<0$).
+\\
+\\
+If $0< \epsilon \ll 1$ then $\dot{H} = O(\epsilon)$, therefore the trajectories 
+of the peturbed system are very similar to the contours of $H$.
+So changes in $H$ can be approximated by integrating along the trajectories
+$H=H_0$ of the unpeturbed Hamiltonian system.
+\[ \Delta H(H_0) = \epsilon \oint_{H=H_0} (g_2 f_1 - g_1 f_2)dt + O(\epsilon ^2) \
+= \epsilon \oint_{H=H_0} g_2dx - g_1dy + O(\epsilon^2) \]
+Where the $O(\epsilon^2)$ terms arise as the trajectory is not exactly $H=H_0$.
+\\
+\\
+Fixed points $\Delta H = 0$ of the energy return map 
+$H_{n+1} = H_n + \Delta H(H_n)$ correspond to periodic orbits. Finding 
+approximations to them by neglecting the $O(\epsilon^2)$ terms is called the 
+energy balance equation.
+\\
+\\
+Note that the $O(\epsilon^2)$ can make a double root of $\Delta H =0$ 
+disappear, but not a single root.
+\\
+\\
+\example\
+\[ \left( \begin{array}{c} \dot{x} \\ \dot{y} \end{array} \right)
+= \left( \begin{array}{c} y \\ -x+x^2 + \epsilon y(a-x) \end{array} \right) \]
+Settubg $\epsilon =0$ yields a Hamiltonian system with 
+$H= \frac{1}{2}(x^2+y^2) - \frac{1}{3}x^3$.
+% A diagram goes here!
+\\
+If $\epsilon \neq 0$, the fixed points are still $(0,0)$ (node/focus) and $(1,0)$
+(saddle). However, $\dot{H} = \epsilon y^2 (a-x)$ so any periodic orbit must be
+in partly $x>a$ and partly in $x<a$. Any periodic orbit must enclose $(0,0)$
+but not $(1,0)$ by Poincar\'e index.
+\\
+\\
+$x_{\max}$ and $x_{\min}$ occur when $\dot{x}=0 \implies y=0$. Hence 
+$x_{\min} < a, \, 0 < x_{\max} < 1$.\footnote{Consider the sign of $\dot{H}$!}
+Therefore there are no periodic orbits if $a>1$.
+\\
+\\
+If $0 < \epsilon \ll 1$ then 
+\[ \Delta H \approx \oint_{H =H_0} \epsilon g_2 dx =\;\; 2 \epsilon\
+\int_{x_{\min}}^{x_{\max}} (2H_0 - x^2 + \frac{2}{3} x^3)^{\frac{1}{2}} \
+(a-x) dx \]
+(This integral gas to be integrated numerically except for the special case
+$H_0 = \frac{1}{6}$, when $()^{\frac{1}{2}} = (1-x)(1+\frac{2}{3} x)^{\frac{1}{2}}$
+which corresponds to the homoclinic orbit.)
+\\
+\\
+Setting $\Delta H(H_0,a) =0$ gives a unique approximate periodic orbit
+$H = H^{*}(a)$ for $0<a<\frac{1}{7}$ $(0<H^{*}<\frac{1}{6})$.
+\\
+\\
+The periodic orbit appears at $a=0$ by a Hopf bifurcation and is destroyed
+at $a = \frac{1}{7}$ by a homoclinic bifurcation.
+% Figure goes here
+\\
+\subsection{Stability of Periodic Orbits}
+Suppose $\xeq{x}$ has a periodic orbit $\bx = \bm{X}(t)$ with 
+$\bm{X}(T) = \bm{X}(0) = \bm{X}_0$.
+\\
+Consider a small perturbation $\bx = \bm{X}(t) + \bm{\eta}(t)$.
+Linearising, 
+\[ \dot{\bm{X}} + \dot{\bm{\eta}} = \bm{f}(\bm{X}) +\
+(\bm{\eta}\cdot \nabla) \bm{f} ( \bm{X}) + O(|\bm{\eta}|^2) \
+\implies \dot{\bm{\eta}} =(\bm{\eta}\cdot \nabla) \bm{f} ( \bm{X}) + O(|\bm{\eta}|^2) \]
+and so
+\[ \dot{\bm{\eta}} = A \bm{\eta} \;\; \mbox{ where } A_{ij}(t) = \left. \
+\frac{\partial f_i}{\partial x_j} \right|_{\bm{X}(t)} \]
+This is a linear ODE.
+\[ \implies \bm{\eta}(t) = \Phi(t) \bm{\eta}(0) \]
+Since $\bm{\eta}(0)$ is arbitrary
+\begin{align*}
+\dot{\Phi}_{ij}\quad \; &= A_{ik} \Phi_{kj} \\
+\Phi_{ij}(0) &= \delta_{ij}
+\end{align*}
+But $A(t)$ is periodic with period $T$, and so
+\[ \bm{\eta}(nT) = \Phi(T) \, \bm{\eta}\left( (n-1)T\right) = \dots (\Phi(T))^n \bm{\eta}(0) \]
+Thus whether an arbitrary perturbation $\bm{\eta}(0)$ grows/decays after n
+times round the orbit, depends on the eigenvalues of $\Phi(T)$ compared to 1.
+\\
+\\
+\definition\ Floquet Multipliers
+\\
+The Floquet multipliers of a periodic orbit are the eigenvalues $\lambda_i$ of
+the matrix $\Phi(T)$ defined above.
+\\
+\\
+One of the Floquet multipliers is always unity, since if $\bm{\eta}(0) = \bm{f}(\bx_0) 
+\delta t$ then $\dot{\bm{\eta}} = A \bm{\eta}$ has solution,
+$\bm{\eta}(t) = \bm{f}(\bm{X}(T))\delta t \implies \bm{\eta}(T) = \bm{f}(\bm{X}(T))\delta t\
+= \bm{f}(\bm{X}_0)\delta t$
+\\
+\\
+Hence
+\begin{enumerate}[(i)]
+\item A periodic orbit is asymptotically stable if all of the non-trivial
+	Floquet multipliers satisfy $|\lambda|<1$.
+\item A periodic orbit is Lyapunov unstable if any satisfy $|\lambda|>1$
+	(and so asymptotically unstable).
+\end{enumerate}
+\definition\ Hyperbolicity
+\\
+A periodic orbit is hyperbolic if all of the non-trivial eigenvalues
+satisfy $|\lambda|\neq 1$ and is non-hyperbolic if at least one lies on
+the unit circle $|\lambda|=1$.
+\\
+\\
+Hyperbolic periodic orbits (like hyperbolic fixed points) are structurally
+stable i.e. the orbit is unaffected by small perturbations to $\bm{f}$.
+\\
+\\
+\textbf{Stability in $\mathbb{R}^2$}
+\\
+In $\mathbb{R}^2$ we only have one non trivial $\lambda$ to worry about.
+(Which is real and positive -cf lemma for the Poincar\'e-Bendixson
+theorem\footnote{ Not sure what this lemma is; here's my explanation.
+If $\lambda_1=1$ then $\lambda_2$ must be real. In addition it must be
+positive as Jordan curve lemma means peturbed trajectory cannot cross
+the periodic orbit.})
+\[ \det(\Phi(T)) = \lambda_1 \lambda_2, \qquad \lambda_1=1\]
+\lemma\ 
+\[ \frac{d}{dt} \det \Phi = (\nabla \cdot \bm{f}) \det \Phi \]
+\begin{proof} ($n=2$ for simplicity)
+\[ \det \Phi = \epsilon_{ij} \Phi_{1i}\Phi_{2j} \implies \frac{d}{dt} \det \Phi
+= \epsilon_{ij}[ \dot{\Phi}_{ij}\Phi_{2j} + \Phi_{1i} \dot{\Phi}_{2j}] = \epsilon_{ij}
+[A_{1k} \Phi_{ki} \Phi_{2j} + \Phi_{1i}(A_{2k} \Phi_{kj})] \]
+Now $\epsilon_{ij}\Phi_{2i}\Phi_{1j} = 0$
+\[ \implies \frac{d}{dt} \det \Phi = A_{11}(\epsilon_{ij} \Phi_{1i}\Phi_{2j}) +
+A_{22}(\epsilon_{ij} \Phi_{1i} \Phi_{2j}) = (\nabla \cdot \bm{f}) \det \Phi \]
+\end{proof}
+\noindent \textbf{Corollories:}
+%
+\begin{enumerate}[1.]
+\item In $\rtwo$ the non trivial Floquet multiplier is
+\[ \lambda_2 = \exp\left[ \oint_0^T \left. \nabla \cdot \bm{f} \right|_{\bm{X}(t)} dt \right] \]
+Which is easy to calculate.
+%
+%
+\item A periodic orbit is 
+\[ \left. \begin{array}{l} \mbox{stable} \\ \mbox{unstable} \\ 
+\mbox{non-hyperbolic} \end{array} \right\} \mbox{ if }
+\oint_0^T \nabla \cdot \bm{f} \, dt \mbox{ is } \; \left\{ \begin{array}{l} <0 \\
+  >0 \\  =0 \end{array} \right. \]
+%
+%
+\item In higher dimensions $\oint_0^T \nabla \cdot \bm{f} \, dt \, <0$ is 
+necessary for stability, but not sufficient.
+\end{enumerate}
+\example\
+\begin{align*}
+\dot{r} &= r(1-r^2) \\
+\dot{\theta} &= \frac{1}{r}
+\end{align*}
+This has a periodic orbit $r =1, \, \theta = t, \, T = 2\pi$. Make a linear
+perturbation to $r = 1+ \delta$, $\theta = t+\epsilon$.
+\[ \implies \begin{array}{rl}
+\dot{\delta}   &=  -2\delta \\
+\dot{\epsilon} &=  - \delta \end{array} \implies
+\begin{array}{rl} 
+\delta(t)   &= \delta(0) e^{-2t} \\
+\epsilon(t) &= \epsilon(0) + \delta(0) \frac{e^{-2t} -1}{2} \end{array} \]
+Therefore
+\[ \Phi(T) = \left( \begin{array}{cc} e^{-2T} & 0 \\ \frac{1}{2}(e^{-2T}-1) & 1 
+\end{array} \right) \]
+Which has eigenvalues 
+\[ \begin{array}{ccc}
+e^{-4\pi} & \mbox{ and } & 1 \\
+\mbox{stable} & & \mbox{trivial} 
+\end{array} \]
+More simply, 
+\[ \nabla \cdot \bm{f} = \frac{1}{r} \frac{\partial}{\partial r}(r \dot{r}) 
++ \frac{1}{r}\frac{\partial}{\partial \theta}(r \dot{\theta}) = 2 - 4r^2 = -2
+\mbox{ at } r=1 \]
+\[ \implies \lambda = \exp \left[ \int_0^{2\pi} (-2) dt \right] = \exp(-4\pi) \]
+\\
+\subsection{The Van der Pol Oscillator}
+\vspace{3mm}
+\[ \left. \begin{array}{cl} \dot{x} = & y + -\mu ( \frac{1}{3} x^3 - x) \\
+			    \dot{y} = & -x \end{array}
+\right\} \mbox{ equivalent to } \ddot{x} + \mu (x^2-1) \dot{x} + x = 0 \]
+(Lienard variables)
+\\
+The only fixed point is $\bx = \bm{0}$ and is unstable. (Unstable focus for 
+$0 < \mu < 2$, unstable node for $\mu >2$)
+\[ H = \frac{1}{2}(x^2 + y^2) \implies \dot{H} = \mu x^2 ( 1- \frac{1}{3}x^2) \]
+So if $0<x^2+y^2<3$ then $\dot{H} \geq 0$ and $H$ increases monotonically along
+$\cO^+(\bx)$ and eventually crosses $|\bx|^2=3$ going outwards and cannot return.
+\\
+(cf arguments in \S 3.3 and \S 3.4 for La Salle's invariance principle,
+bounding functions, and domain of stability of the time reversed problem
+$\mu \to - \mu$.)
+\\
+\\
+So certainly ``outwards'' from $\bm{0}$, but is it ``inwards'' from $\infty$?
+\\
+The question is complicated by the strip $|x|<\sqrt{3}$ where $\dot{H} \geq 0$
+extends to $\infty$.
+% Insert Diagram here!
+Consider part trajectories of ABC as shown for different $y(A)$
+\[ H(B) - H(A) = \int_A^B \frac{\dot{H}}{\dot{x}} dx =
+\int_A^B \frac{\mu x^2 (1-\frac{1}{3}x^2)}{y - \mu x(\frac{1}{3}x^2-1)}dx \]
+Which is positive, but is a monotonically decreasing function of $y$.
+\[H(C) - H(B) = \int_C^B \frac{\dot{H}}{\dot{y}} dy = \int_B^C \mu x (1-\frac{1}{3} x^2)
+dy \]
+is negative and increasingly so; as $y(B)-y(C)$ increases, there are larger
+values of $x(y)$.
+\\
+\\
+Hence $H(C)-H(A)$ is a monotonic function of $y(A)$ with a unique root corresponding
+to a unique periodic orbit.
+\\
+\\
+For $0 < \mu \ll 1$ we can use the energy balance method (\S4.4)
+$H = \frac{1}{2}(x^2+y^2)$, the unperturbed orbits $(\mu =0)$ are
+$H = H_0 = const$, $x= \sqrt{2H_0} \cos t$.
+\[ \Delta H(H_0) = \oint_{r^2 = 2H_0} \mu x^2 (1-\frac{1}{3}x^2) dt + O(\mu^2)
+\approx \mu \int_0^{2\pi} (2H_0 \cos^2 t - \frac{4H_0^2}{3} \cos ^4 t) dt \]
+\[2\pi \mu ( H_0 - \frac{1}{2} H_0^2) \]
+So the limit cycle is $H_0 =2$ or $x^2+y^2 = 4$.
+\\
+\\
+Now consider $\mu \gg 1$. $\dot{x} = y - \mu x (\frac{1}{3} x^2 -1)$ so
+$|\dot{x}| \gg 1$ except for $y \approx \mu x (\frac{1}{3} x^2 -1)$.
+% Include another diagram here!
+\\
+\\
+Time taken: \begin{tabular}{c} $A\to B$ or $C\to D$ $\sim \frac{\Delta y}{\dot{y}} = O(\mu)$ which
+is large. \\ \noalign{\vskip 2mm}
+$B \to C$ or $D \to A$ $\sim \frac{\Delta x}{x} = O(\frac{1}{\mu})$ which is small
+\end{tabular}
+\\
+The period is dominated by the time on the ``Slow Manifold,'' $y = \mu 
+x(\frac{1}{3}x^2 -1)$ from $A \to B$ and $C \to D$. Hence
+\[ T \approx 2\int_A^B dt = 2 \int_A^B \frac{1}{\dot{y}} \frac{dy}{dx} dx
+= 2 \mu \int_{-2}^{-1} \frac{1-x^2}{x} dx = \mu(3-2\log 2)\]
 \end{document}
