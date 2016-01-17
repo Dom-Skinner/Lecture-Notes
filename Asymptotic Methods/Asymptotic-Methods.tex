@@ -23,14 +23,18 @@
 \begin{document}
 
 \title{Asymptotic Methods}
-\author{Course given by Dr.  \\
+\author{Course given by Dr. D. Stuart \\
 \LaTeX\  by Dominic Skinner \\
 Dom-Skinner@github.com}
 \maketitle
+\noindent \textbf{Books:} Bender and Orszag, ``\emph{Advanced Mathematical methods for 
+scientists and engineers}'', Chapters 3,6,10 \\
+More details can be found on the Moodle course site; self-enrol into the
+Asymptotic methods course.
+\\
 \subsection*{What we'll learn in this course}
 \textbf{Examples:} 
-\\
-\begin{enumerate}[(1)]
+\begin{enumerate}[1.]
 \item $I(\lambda) = \int_{\infty}^{\infty} \exp[-\lambda \cosh u] du $
 		\\ We expect that $I(\lambda) \to 0$ as $\lambda \to \infty$. But how fast?
 \item $i \hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m} \
@@ -54,6 +58,7 @@ Dom-Skinner@github.com}
 \[ \sinh x = \frac{e^x - e^{-x}}{2} = x + \frac{x^3}{3!} + \frac{x^5}{5!} + \dots\]
 say $\sinh x \sim x$ as $x \to 0$.
 \\
+\\
 \definition\ $f \sim g$ as $x \to x_0$ is $|f(x) - g(x)| = o(g(x))$ as $x \to x_0$.
 \\
 \\
@@ -71,11 +76,11 @@ We write $\sinh x \sim \sum_{0}^{\infty} \frac{x^{2n+1}}{(2n+1)!}$
 \definition\ Asymptotic sequence and asymptotic expansion.
 \begin{enumerate}[(i)]
 \item $\{\phi_n\}_{n=0}^{\infty}$ is an asymptotic sequence (of functions) as 
-		$x \to x_0$ if $\phi_{n+1}(x) = o(\phi_n(x))$ as $x \to x_0$. ($\forall n$)
+		$x \to x_0$ if $\phi_{n+1}(x) = o(\phi_n(x))$ as $x \to x_0$. 
 \item A function f has asymptotic expansion w.r.t. $\{ \phi_n\}$ as $x \to x_0$ 
 		written $f \sim \sum_{n=0}^{\infty} a_n \phi_n$ if 
-		$\left| f(x) - \sum_0^N a_n \phi_n(x) \right| = o(\phi_N(x))$ as $x \to x_0$
-		$\forall N$
+		\[ \left| f(x) - \sum_{n=0}^N a_n \phi_n(x) \right| = o(\phi_N(x)) \mbox{ as }
+		 x \to x_0 \forall N\]
 		\\
 		Notice the difference with Taylor expansion - an asymptotic expansion 
 		need not converge as $N\to \infty$ for any $x$!
@@ -89,10 +94,10 @@ We write $\sinh x \sim \sum_{0}^{\infty} \frac{x^{2n+1}}{(2n+1)!}$
 %
 %
 \begin{framed}
-\noindent \textbf{Warning:} $\sin x \sim x - x - \frac{x^3}{3!} +\
+\noindent \textbf{Warning:} $\sin x \sim x - \frac{x^3}{3!} -\
 \frac{x^5}{5!} + \dots$ as $x \to 0$.
 \\
-$\sin x + e^{-1/x} \sim x - x - \frac{x^3}{3!} + \frac{x^5}{5!} + \dots$ 
+$\sin x + e^{-1/x} \sim x  - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots$ 
 as $x \to 0^{+}$.
 \end{framed}
 Why?

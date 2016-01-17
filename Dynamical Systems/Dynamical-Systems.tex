@@ -20,6 +20,7 @@
 \newcommand{\example}{\textbf{Example:}}                    %
 \newcommand{\definition}{\textbf{Definition:}}              %
 \newcommand{\theorem}{\textbf{Theorem:}}                    %
+\newcommand{\corollary}{\textbf{Corollary:}}                %
 \newcommand{\bp}{\bm{\phi}}                                 % These are used a lot!
 \newcommand{\bx}{\bm{x}}                                    %
 \newcommand{\xeq}[1] { \dot{\bm{ #1 }} = \bm{f}(\bm{ #1}) } %
@@ -751,6 +752,7 @@ and $\dot{y}$.
 %
 %
 %
+For an additional example, see handout 2.4, ``Example of Phase-Plane sketching.''
 \section{Stability}
 \subsection{Definitions}
 It is clear what it means for a hyperbolic node or focus to be stable, but we
@@ -979,5 +981,235 @@ Hence by the corollary, $\bx = \bm{0}$.
 \[ \left. \begin{array}{cl} \dot{x} = & y + \mu ( \frac{1}{3} x^3 - x) \\
 			    \dot{y} = & -x \end{array}
 \right\} \mbox{ equivalent to } \ddot{x} + \mu (1 - x^2) \dot{x} + x = 0 \]
-The ``Time-reversed van der Pol oscillator''
+The ``Time-reversed van der Pol oscillator''. Observe that $\bx = \bm{0}$ 
+is a sink for $\mu >0$.
+\\
+\\
+Guess $V = x^2 + y^2$ (e.g. from case $\mu = 0$). This implies that
+$\dot{V} = 2 \mu x^2 ( \frac{x^2}{3} -1)$ so $\dot{V} \leq 0$ in $x^2 <3$.
+%Include a figure here
+\\
+Let $C_3 = \{ V < 3 \}$ so $\bx \in C_3 \implies \bp_t(\bx) \in C_3$.
+\\
+\\
+La Salle's invariance principle $\implies \bx \in C_3$ then $\bp_t(\bx)$ tends
+to an invariant subset of $\{ \dot{V}=0 \}$. But the only invariant subset of
+$\{ x = 0 \}$ is $\{ x = y =0\} \implies \bm{0}$ is AS and the domain of
+stability \underline{includes} $C_3$. 
+\\
+\\
+\textbf{General method}
+\begin{enumerate}[(1)]
+\item Find a domain $\domain$ and function V such that
+	\begin{enumerate}[(i)]
+	\item $V \geq 0$ on $\domain$ and $V=0$ iff $\bx = \bm{0}$
+		(easy)
+	\item $\dot{V} \leq 0$ on $\domain$ (harder, often restricts the 
+		size of $\domain$ )
+	\end{enumerate}
+\item Choose $k$ such that $C_k = \{V<k\} \subset \domain$.
+\item If necessary, adjust $k$ (or V), so that the only invariant subset of
+      $\{ \dot{V} = 0 \} \cap C_k$ is $\bx = \bm{0}$. Then La Salle implies
+      that the origin is AS stable \underline{and} the domain of stability
+      includes $C_k$.
+\item Try different $V$ to maximise $C_k$ or take a union of them.
+\end{enumerate}
+\example\
+\[ \left. \begin{array}{cl} \dot{x}  &= -x +xy^2 \\
+			    \dot{y}  &= -y +yx^2 \end{array}
+\right\} \mbox{ Try } V = x^2 +by^2 \]
+\[ \implies \dot{V} = -2(x^2+b^2y^2) + 2(1+b^2)x^2y^2\]
+Clearly $\dot{V} \leq 0$ sufficiently close to $\bm{0}$.
+\\
+Let $(x,by) = \sqrt{V}(\cos \phi, \sin \phi )$
+\\
+\[ \implies \dot{V} = -2V + 2V^2 \left( \frac{1+b^2}{b^2} \right) \
+\underbrace{\cos ^2 \phi \sin ^2 \phi}_{\leq \, 1/4} \]
+\[ \implies \dot{V} \leq 0 \mbox{ in } 0 \leq V \leq \frac{4b^2}{1+b^2} \]
+The domain of stability includes the union over $b$ of these regions.
+% Small picture here!
+\\
+\\
+For another example see handout 3.2, ``Examples of Domains of Stability''.
+\subsection{Bounding Functions}
+The idea of a function decreasing along trajectories.
+\\
+If V is a function with bounded contours and $\dot{V} < \delta <0$ in the
+region $V(\bx) >M$, then all trajectories eventually enter and remain in 
+the set $\{ V(\bx) < M \}$. Such a V is called a bounding function.
+% Another figure
+\\
+%%%%%%%%%%%%%%%%%%%%%%%%%55
+\section{Existence and Stability of Periodic orbits in $\mathbb{R}^n$}
+There is a toolkit of standard techniques, particular to $\mathbb{R}^2$, 
+to prove that there either is or isn't one or more periodic orbits.
+\\
+\subsection{Poincar\'{e} index test}
+Consider 
+\[ \left( \begin{array}{c} \dot{x} \\ \dot{y} \end{array} \right) = \
+ \left( \begin{array}{c} f_1 \\ f_2 \end{array} \right) \]
+Except at a fixed point $(\bm{f} = \bm{0})$, the trajectory through a point
+$\bx$ makes a well defined angle $\psi(\bx)$ with the $x$-axis.
+% A little picture goes here.
+\\
+\\
+\definition\ Poincar\'e index of a curve
+\\
+If $\Gamma$ is a simple closed curve, not necessarily a trajectory, that
+doesn't pass through any fixed points,  then moving around $\Gamma$ once
+anticlockwise, $\psi = \tan^{-1} \frac{f_1}{f_2}$ changes continously and
+returns to its original value plus an integer multiple of $2\pi$. This multiple
+is the Poincar\'e index $I(\Gamma)$ of $\Gamma$.
+\\
+\\
+Properties:
+\begin{enumerate}[1.]
+\item %
+\[ 2\pi I(\Gamma) = \oint_{\Gamma} d\psi = \oint_{\Gamma} d\left( \tan^{-1} \
+\frac{f_1}{f_2} \right) = \oint_{\Gamma} \frac{ f_1 df_2 - f_2 df_1}{f_1^2 + f_2^2} \]
+\item $I(\Gamma)$ is unchanged by deformations of $\Gamma$ that donot cross 
+a fixed point. 
+\\
+(Proof: $I(\Gamma)$ is integrable and a continous function of $\bm{f}$
+(from 1) provided $\bm{f} \neq \bm{0}$.
+\item If $\Gamma$ encloses no fixed points, then $I(\Gamma) =0$.
+\item The Poincar\'e index is additive,
+% Insert a figre here
+$I(\Gamma_1) = I(\Gamma_2) + I(\Gamma_3)$
+\item If $\Gamma$ is a closed trajectory, i.e. a periodic orbit, then 
+$I(\Gamma)=1$. % Insert another picture here
+\item If time is reversed $(\bm{f} \to -\bm{f})$ then $I(\Gamma)$ is unaffected
+(from 1).
+\\
+\\
+\definition\ Poincar\'e index of a fixed point
+\\
+The Poincar\'e index of an isolated fixed point is the Poincar\'e index of any
+simple closed curve enclosing this fixed point and no others. (Well defined by 
+2.)
+\\
+\item $I(\Gamma)$ is the sum of the Poincar\'e indices of the fixed points it 
+encloses.
+\item The Poincar\'e index of a node, focus, or center is $+1$.
+% A figure goes here
+\item The Poincar\'e index of a saddle is $-1$.
+% Another figure goes here
+\end{enumerate}
+Non-hyperbolic fixed points other than centers need to be done on a case
+by case basis.
+\\
+\\
+\example\ $\dot{x} = x^2, \quad \dot{y} = -y$
+\\ 
+Index = 0
+% Another figure goes here.
+\\
+\\
+\textbf{Important Corollaries} \\
+If there are any periodic orbits, then each must contain at least one fixed point.
+The fixed point(s) enclosed by a periodic orbit must have indicies summing to $+1$.
+\\
+\\
+If the above is not possible then there are no periodic orbits. This is the 
+Poincar\'e index test. (a negative test)
+\\
+\\
+\example\
+\begin{align*}
+\dot{r} &= r(3 - r -s) \\
+\dot{s} &= s(2 - r -s)
+\end{align*}
+Any periodic orbit canot cross the trajectories $r=0$ and $s=0$. Therefore
+it cannot enclose any of the nodes. A periodic orbit cannot enclose only the
+saddle (index $-1$), hence there are no periodic orbits.
+\\
+\subsection{Dulac's Criterion}
+Another negative test.
+\\
+\\
+\theorem\ Dulac's criterion
+\\
+If there is a continously differentiable funciton $\phi(x,y)$ such that
+$\nabla \cdot ( \phi \bm{f}) \neq 0$ in a simply connected domain 
+$\domain \subset \mathbb{R}^2$ then there are no periodic orbits lying
+entirely within $\domain$.
+\begin{proof} ~
+\\
+Assume, wlog, $\nabla \cdot ( \phi \bm{f} ) > 0$, suppose that $\Gamma$ is
+a periodic orbit lying entirely in $\domain$, and enclosing an area A with
+outward normal $\bm{n}$.
+% A diagram here...
+\[ \int_{\Gamma} \phi \bm{f} \cdot \bm{n} \, ds = 0 = \int_{A} \nabla \
+\cdot ( \phi \bm{f} ) dA \; >0 \]
+which is a contradiction.
+\end{proof}
+%
+\noindent Often we just take $\phi = 1$, this is known as the divergence test.
+\\
+\\
+\corollary\ If $\nabla \cdot ( \phi \bm{f}) \neq 0 $ in a doubly connected
+domain $\domain$, then there is at most one periodic orbit lying entirely in
+$\domain$.
+\begin{proof}
+Apply the divergence theorem to the area between two hypothetical periodic 
+orbits in $\domain$.
+\end{proof}
+\noindent
+\example\   The Lotka-Voltera equations
+\begin{align*}
+\dot{r} &= r(a - br -cs) \\
+\dot{s} &= s(d - er -fs)
+\end{align*}
+Choose $\phi = \frac{1}{rs}$. Then $\nabla \cdot ( \phi \bm{f}) = \
+-\frac{b}{s} - \frac{f}{r} <0$ in $r,s \, >0$, for $b,f \, >0$.
+Therefore there can be no periodic orbits entirely in $r,s \, > 0$.
+\\
+\\
+\example\ Damped pendulum with torque
+\\
+\begin{align*}
+\dot{\theta} &= p \\
+\dot{p}      &= F - kp - \sin \theta
+\end{align*}
+The argument is slightly complicated by the phase space having the topology 
+of a cylinder.
+\\
+% Figure of a cylinder
+Can work on the cylinder and use $\frac{\partial \dot{\theta}}{\partial \theta} +\
+\frac{\partial \dot{p}}{\partial p} = -k <0$ to deduce that there is at most one
+periodic orbit, which must encircle the cylinder.
+\\
+\\
+Alternatively can let $r = e^p$ to map onto plane polars, and use $\phi = 1/r^2$,
+\[ \nabla \cdot (\phi \bm{f}) = \nabla \cdot ( \phi( \dot{r} \bm{e}_r + r \
+\dot{\theta} \bm{e}_{\theta})) = -\frac{k}{r^2} < 0\]
+\\
+\\
+\subsection{Poincar\'e-Bendixson Theorem}
+A positive test!
+\\
+\\
+\theorem\ Poincar\'e-Bendixson
+\\
+If the forward orbit $\cO^+(\bx)$ of a point $\bx$ remains in a compact 
+(closed and bounded) set $K \subset \mathbb{R}^2$, and $K$ contains no 
+fixed points, then $\omega(\bx)$ is a periodic orbit.
+\\
+\\
+Note:
+\begin{enumerate}[1.]
+\item From 3.1, $K$ must be multiply connected with a fixed point in one
+	of the holes.
+\item Idea: The trajectory must go somewhere, and the conditions of the 
+	theorem mean it can't go to $\infty$ or a fixed point.
+\end{enumerate}
+% A figure goes here
+\example\
+\begin{align*}
+\dot{x} &= x - y - 2x(x^2+y^2) \\
+\dot{y} &= x+y -y(x^2+y^2)
+\end{align*}
+The linear terms $\implies \bm{0}$ is an unstable foci. The cubic terms
+look inward from $-\infty$.
+
 \end{document}
