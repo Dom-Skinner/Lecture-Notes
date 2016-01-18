@@ -5,7 +5,7 @@
 %\usepackage{empheq}
 \usepackage{graphicx}
 \usepackage{bm}
-%\usepackage{framed}
+\usepackage{framed}
 \usepackage{enumerate}
 \usepackage{array}
 %\usepackage{pgfplots}
@@ -65,8 +65,8 @@ Suppose now that $\delta x = 0$.
 \[ \implies f'(z) = v_y - i u_y \]
 \[ \implies v_y - iu_y = u_x + iv_x \]
 \[ \implies \left. \begin{array}{cr}
-v_y = u_x \\
-v_x = -u_y \end{array} \right\} \mbox{ The Cauchy-Riemann equations} \]
+v_y =& u_x \\
+v_x =& -u_y \end{array} \right\} \mbox{ The Cauchy-Riemann equations} \]
 If the Cauchy-Riemann equations hold, the derivatives exist and are 
 continous, then $f(z)$ is differentiable. If the Cauchy-Rieman equations hold
 then $u, \; v$ are harmonic.
@@ -77,7 +77,7 @@ A similar equation holds with v.
 \\
 Consider surfaces of $u=const$, $v=const$. These surfaces are orthogonal.
 \begin{align*}
-\nabla u &= (u_x,u_y) \mbox{ -i normal to } u = const \\
+\nabla u &= (u_x,u_y) \mbox{ - normal to } u = const \\
 \nabla v &= (v_x,v_y) \mbox{ - normal to } v = const 
 \end{align*}
 and so
@@ -115,13 +115,13 @@ be analytic at a point.
 \\
 \example\ $1/z^3$ has an isolated singularity at the origin.
 \\
-\\
-Suppose that a function has an isolated singularity at $z=z_0$. Then it can
-be expanded as a Laurent series around $z_0$.
+\begin{framed}
+\noindent Suppose that a function has an isolated singularity at $z=z_0$. Then
+it can be expanded as a Laurent series around $z_0$.
 \[ f(z) = \sum_{-\infty}^{\infty} c_n (z - z_0)^n \]
 Note that this sum is over all positive and negative powers.
-\\
-\\
+\end{framed}
+\noindent
 Suppose that $c_n=0$ for all $n< -N$ where $N>0$. 
 \begin{itemize}
 \item If $c_n = 0 \; \forall \, n >0$ then it is not singular.
@@ -161,4 +161,111 @@ series
 \[ f(z) = \sum_{\infty}^{0} \frac{1}{(-n)!} z^n \]
 Note that in this exaple, $f(z)$ is not even continous at $z=0$, its value
 depends on how one approaches $z=0$.
+\\
+\\
+\definition\ Meromorphic functions
+\\
+These are functions of $z$ that only have poles of any finite order
+in the finite complex plane. \\
+\\
+\examples\
+\begin{enumerate}[(a)]
+\item $1/z^2$ has a pole of order 2 at the origin.
+\item $\cot z$ has poles of order 1 at $z = n\pi, \, n \in \mathbb{Z}$
+\end{enumerate}
+\noindent \theorem\ Cauchy's Theorem
+\[ \int_C f(z) \, dz = 2 \pi i \left( \sum \mbox{ Residues of the poles
+enclosed by C} \right) \]
+The integral is taken around $C$ in the anti-clockwise direction, and
+$f(z)$ is meromorphic.
+\\
+\\
+The complex plane is really a sphere, the Riemann sphere.
+% Big Diagram of the Rieman sphere goes here
+\\
+$w$ is the perpendicular distance from the $x-y$ plane.
+The north pole corresponds to infinity, and all of infinity 
+has become a point.
+\\
+\\
+\definition\ Stereographic projection
+\\
+Construct a straight line staring at $N$, through $P$ to meet the
+complex plane at $C$.
+\[ N = (0,0,2), \qquad P = (X,Y,\,) \]
+Construct this line by saying that $s$ is a parameter along the line 
+such that $s=0$ at the north pole and $s=1$ at $P$.
+\[ \left. \begin{array}{cc}
+x &= X_s \\
+y &= Y_s \end{array} \right\} \mbox{ What about w?} \]
+\[ w = 2 - (1 \pm \sqrt{1-X^2-Y^2})s \]
+at $C$, $w=0$
+\[ \implies s = \frac{2}{1 \pm \sqrt{1 - X^2 -Y^2}} \mbox{ at } C \]
+Hence the coordinates of the point $C$ are
+\[ x= \frac{2X}{1 \pm \sqrt{1 - X^2 -Y^2}} \;, \quad
+ y= \frac{2Y}{1 \pm \sqrt{1 - X^2 -Y^2}} \]
+Thus if $X,Y$ both $\to 0$, then $x,y \to \infty$ with the choice of sign.
+All of infinity gets mapped to the north pole of the Riemann sphere. This
+motivates how to think about infinity.
+\[ z \mapsto 1/z = w \mbox{ maps infinity to the origin} \]
+Suppose $f(z)=z$, then $f(w) = 1/w$.
+$f(w)$ has a simple pole of residue 1 at $w = 0$
+$\implies f(z) = z$ has a simple pole of residue 1 at infinity.
+\\
+\\
+This holds true for any function of a complex variable; to 
+examine the behaviour of a funcion at $\infty$, send 
+$z \mapsto 1/z = w$ and ask what happens at $w=0$.
+\\
+\\
+\example\ $f(z) = e^z= e^{1/w}$ has an essential singularity at $w=0$.
+% a diagram of the essential singularity.
+\\
+\\
+\theorem\ Liouville's theorem
+\\
+If $f$ is analytic everywhere including $\infty$ then it must be a constant.
+\\
+\\
+\subsection*{Multi-valued functions}
+For a real variable, the square root of a positive number has two forms
+$\pm \sqrt{x} $.
+\\
+Now consider $z^{1/2}$ and decompose into modulus and argument.
+\[z^{1/2} = \rho^{1/2} e^{i\theta /2} \]
+As one moves around the circle,
+\begin{align*}
+\theta & \mapsto \theta + 2\pi \\
+z^{1/2} & \mapsto \rho^{1/2} e^{i(\theta + 2\pi)/2} = -\rho^{1/2}
+e^{i\theta /2} 
+\end{align*}
+So $f(z)$ changes sign. If one goes around the circle twice then
+$\theta \mapsto \theta + 4\pi$, and so $f(z)$ is invariant.
+\\
+\begin{framed}
+\noindent The effect of going around the circle is usually called the monodromy,
+and for the case $f(z) = z^{1/2}$ this is $(-1)^n$.
+\\
+\\
+The monodromy always forms a group. So in this case, the monodromy group
+is just $\mathbb{Z}_2$,
+\\
+\\
+A point where the monodromy is not 1 is called a branch point
+\end{framed}
+% Include diagram of branch point
+\noindent For $f(z) = z^{1/2}$, the origin is a branch point. Around $z_0$
+the function returns to its starting point. This holds for any $z_0 \neq 0$
+in the finite complex plane.
+\\
+\\
+Infinity is also a branch point.
+\[ z \mapsto 1/w \, , \;\; w^{-\frac{1}{2}} \mapsto (\rho')^{-\frac{1}{2}} 
+e^{-\frac{i\theta'}{2}}\]
+and so when $\theta \mapsto \theta + 2\pi$, $w^{-1/2}$ changes sign.
+Therefore $z= \infty, \; w=0$ is also a branch point.
+\\
+\\
+There is always more than one branch point, so always look at infinity.
+Branch points represent a failure of analycity.
 \end{document}
