@@ -19,6 +19,7 @@
 \newcommand{\examples}{\textbf{Examples:}} 
 \newcommand{\question}{\textbf{Question:}} 
 \newcommand{\theorem}{\textbf{Theorem:}} 
+\newcommand{\pder}[2] {\frac{\partial {#1}}{\partial {#2} }}%
 
 \begin{document}
 
@@ -35,23 +36,27 @@ Asymptotic methods course.
 \subsection*{What we'll learn in this course}
 \textbf{Examples:} 
 \begin{enumerate}[1.]
-\item $I(\lambda) = \int_{\infty}^{\infty} \exp[-\lambda \cosh u] du $
-		\\ We expect that $I(\lambda) \to 0$ as $\lambda \to \infty$. But how fast?
-\item $i \hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m} \
-		\frac{\partial ^2 \psi}{\partial x^2} + V(x)$ with $\psi(x,t) \in \mathbb{C}$,
-		$V = V(x)$. \\
-		Look for a solution $\psi(x,t) = \exp \left[\frac{-iEt}{\hbar} \right] f(x)$
-		$\implies \hbar^2 f'' = 2m(V(x) -E)f$ 
-		\\
-		$\hbar$ is very small. So a natural problem is to try and understand
-		$\epsilon^2 \frac{d^2y}{dx^2} = Q(x)y$ when $\epsilon \ll 1$.
-		\\ The ``semi-classical limit'' or ``geometric optics''.
+\item $\displaystyle I(\lambda) = \int_{\infty}^{\infty} \exp[-\lambda \cosh u] du $
+      \\ We expect that $I(\lambda) \to 0$ as $\lambda \to \infty$. But how fast?
+\\
+\item $\displaystyle i \hbar \pder{\psi}{t} = -\frac{\hbar^2}{2m}
+      \pder{^2 \psi}{x^2} + V(x)$ with $\psi(x,t) \in \mathbb{C}$,
+      $V = V(x)$. \\
+      Look for a solution $\displaystyle \psi(x,t) = \exp \left[\frac{-iEt}{\hbar} 
+      \right] f(x)$
+      $\implies \hbar^2 f'' = 2m(V(x) -E)f$ 
+      \\
+      $\hbar$ is very small. So a natural problem is to try and understand
+      $\displaystyle \epsilon^2 \frac{d^2y}{dx^2} = Q(x)y$ when $\epsilon \ll 1$.
+      \\ The ``semi-classical limit'' or ``geometric optics''.
+\\
 \item Put $\hbar = 1$, $m=\frac{1}{2}$, $V=0$; specify $\psi(x,0) = \psi_0(x)$
-		\\
-		Fourier transform $\to \psi(x,t) = \frac{1}{(4\pi i t)^{1/2}} \int_{\mathbb{R}} \
-		\exp\left[ \frac{i|x-y|^2}{4t} \right] \psi_0(y) dy$.
-		\\
-		Question: Does $\psi(x,t)$ really approach $\psi_0(x)$ as $t\to0$?
+      \\[2pt]
+      Fourier transform $\displaystyle \to \psi(x,t) = \frac{1}{(4\pi i t)^{1/2}} 
+      \int_{\mathbb{R}} \exp\left[ \frac{i|x-y|^2}{4t} \right] \psi_0(y) dy$.
+      \\
+      \\
+      Question: Does $\psi(x,t)$ really approach $\psi_0(x)$ as $t\to0$?
 \end{enumerate}
 %
 \section{Asymptotic expansions of functions}
@@ -62,7 +67,8 @@ say $\sinh x \sim x$ as $x \to 0$.
 \definition\ $f \sim g$ as $x \to x_0$ is $|f(x) - g(x)| = o(g(x))$ as $x \to x_0$.
 \\
 \\
-\example\ $|\sinh x - x| = |\frac{x^3}{3!} + \frac{x^5}{5!} + \dots| = O(x^3) = o(x)$
+\example 
+\[|\sinh x - x| = |\frac{x^3}{3!} + \frac{x^5}{5!} + \dots| = O(x^3) = o(x)\]
 \\
 ($F=O(G)$ as $x \to x_0$ means $\exists C>0$ such that $|F(x)| \leq C|G(x)|$ in
 some open interval $I$, with $x_0 \in I$)
@@ -70,7 +76,7 @@ some open interval $I$, with $x_0 \in I$)
 In fact, by remainder estimate for Taylor expansion
 \[ \left| \sinh x - \sum_{0}^{N} \frac{x^{2n+1}}{(2n+1)!} \right| = \
 O(x^{2n+3}) = o(x^{2n+1}) \mbox{ as } x \to 0\]
-We write $\sinh x \sim \sum_{0}^{\infty} \frac{x^{2n+1}}{(2n+1)!}$
+We write $\displaystyle \sinh x \sim \sum_{0}^{\infty} \frac{x^{2n+1}}{(2n+1)!}$
 \\
 \\
 \definition\ Asymptotic sequence and asymptotic expansion.
@@ -94,11 +100,12 @@ We write $\sinh x \sim \sum_{0}^{\infty} \frac{x^{2n+1}}{(2n+1)!}$
 %
 %
 \begin{framed}
-\noindent \textbf{Warning:} $\sin x \sim x - \frac{x^3}{3!} -\
-\frac{x^5}{5!} + \dots$ as $x \to 0$.
-\\
-$\sin x + e^{-1/x} \sim x  - \frac{x^3}{3!} + \frac{x^5}{5!} - \dots$ 
-as $x \to 0^{+}$.
+\noindent \begin{tabular}{cl} 
+\textbf{Warning:} & $\displaystyle \sin x \sim x - \frac{x^3}{3!} -
+\frac{x^5}{5!} + \dots$ as $x \to 0$. \\
+& $\displaystyle \sin x + e^{-1/x} \sim x  - \frac{x^3}{3!} + \frac{x^5}{5!}
+ - \dots$ as $x \to 0^{+}$. 
+\end{tabular}
 \end{framed}
 Why?
 \[ \left| \sin x + e^{-1/x} - \sum_0^N \frac{ (-1)^n x^{2n+1}}{(2n+1)!} \right| \
@@ -119,8 +126,8 @@ If $|f(x) - 0| = o(0)=0$ in some interval $I$, containing $0$, then
 $f \equiv 0$ on $I$.
 \\
 \\
-\example\ Consider $Ei(x) = \int_{x}^{\infty} \frac{e^{-t}}{t} dt$ as 
-$x \to + \infty$.
+\example\ Consider $\displaystyle Ei(x) = \int_{x}^{\infty} \frac{e^{-t}}{t} dt$
+as $x \to + \infty$.
 \\
 \\
 Consider the asymptotic sequence $\phi_n(x) = 1/x^n$ as $x \to + \infty$
@@ -156,11 +163,13 @@ Where
 \[ |Rem_{n+1}(x)| \leq \frac{(n+1)!}{x^{n+2}} \int_x^{\infty} e^{-t} dt =
 \frac{(n+1)! e^{-x}}{x^{n+2}} = o\left( \frac{e^{-x}}{x^{n+1}} \right) 
 \mbox{ as } x \to + \infty \]
-So it is an asymptotic expansion. Not convergent because $\sum (-1)^n n! y^{n+1}$
+So it is an asymptotic expansion. Not convergent because 
+$\displaystyle \sum (-1)^n \,n! \, y^{n+1}$
 has radius of convergence 0. (In fact for fixed $y$ the terms become unbounded.)
 \\
 \\
-Consider magnitudes of successive terms $f_n(x) = (-1)^n n! e^{-x}/x^{n+1}$
+Consider magnitudes of successive terms $\displaystyle 
+f_n(x) =\frac{ (-1)^n\, n!\, e^{-x}}{x^{n+1}}$
 \[ \left| \frac{f_{n+1}(x)}{f_n(x)}\right| = \frac{n+1}{x} \]
 % A figure goes here
 \underline{Optimal truncation:} Truncate the asymptotic expansion at the 

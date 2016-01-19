@@ -93,6 +93,7 @@ This gives the phase portrait/diagram/plane%
 \centering
 \includegraphics[width=4cm, height=4cm]{fig0.png}
 \end{figure}
+\noindent
 The most important feature of the phase portrait is that all solutions with 
 $r >0$ tend to the stable fixed point $(3,0)$. The fixed points $(0,0)$ and
 $(0,2)$ are unstable. There are no periodic orbits.
@@ -103,7 +104,8 @@ $(0,2)$ are unstable. There are no periodic orbits.
 \dot{r} &= r(3 - r -s) \\
 \dot{s} &= s(2 - \mu r -s)
 \end{align*}
-In this case, a new fixed point $(\frac{1}{1- \mu} , \frac{2 - 3 \mu}{1- \mu})$
+In this case, a new fixed point 
+$\displaystyle \left(\frac{1}{1- \mu} , \frac{2 - 3 \mu}{1- \mu} \right)$
 appears in the state space at $\mu = \frac{2}{3}$ and for $\mu < \frac{2}{3}$ 
 is the long term stable attractor. 
 \\
@@ -149,6 +151,7 @@ $\varepsilon$ with the limit cycle.
 \centering
 \includegraphics[width=7cm, height=4cm]{fig2.png}
 \end{figure}
+\noindent
 The point $x^{*}$ is a stable/unstable fixed point of this Poincar\'e recurrence
 map.
 \\
@@ -512,7 +515,7 @@ Re$(\lambda) = 0$ between stability and instability.
 \\
 A fixed point $\bm{x}_0$ of the system $\dot{\bm{x}} = \bm{f}(\bm{x})$ is a
 hyperbolic fixed point if none of the eigenvalues $\lambda$ of the Jacobian
-$ \left. \frac{\partial f_i}{\partial x_j} \right| _{\bm{x} = \bm{0}} $ satisfy
+$\displaystyle \left. \pder{f_i}{x_j} \right| _{\bm{x} = \bm{0}} $ satisfy
 Re$(\lambda) = 0$, and is non-hyperbolic otherwise.
 \\
 \\
@@ -658,7 +661,7 @@ and an unstable focus if we choose '$-$'.
 & \dot{x} &&=  - && y - 2yx^2 =  &&\frac{\partial H}{\partial y} \\
 & \dot{y} &&=    && x + 2xy^2 = -&&\frac{\partial H}{\partial x} 
 \end{alignat*} 
-for $H = - \frac{x^2+y^2}{2} - x^2y^2$. 
+for $\displaystyle H = - \frac{x^2+y^2}{2} - x^2y^2$. 
 The trajectories are contours of H, which are closed near the maximum at 
 $\bm{0}$. So the fixed point really is a non-linear centre with nested 
 periodic orbits.
@@ -1060,9 +1063,9 @@ $\bx$ makes a well defined angle $\psi(\bx)$ with the $x$-axis.
 \\
 If $\Gamma$ is a simple closed curve, not necessarily a trajectory, that
 doesn't pass through any fixed points,  then moving around $\Gamma$ once
-anticlockwise, $\psi = \tan^{-1} \frac{f_1}{f_2}$ changes continously and
-returns to its original value plus an integer multiple of $2\pi$. This multiple
-is the Poincar\'e index $I(\Gamma)$ of $\Gamma$.
+anticlockwise, $\displaystyle \psi = \tan^{-1} \frac{f_1}{f_2}$ changes 
+continously and returns to its original value plus an integer multiple of
+$2\pi$. This multiple is the Poincar\'e index $I(\Gamma)$ of $\Gamma$.
 \\
 \\
 Properties:
@@ -1163,8 +1166,8 @@ orbits in $\domain$.
 \dot{r} &= r(a - br -cs) \\
 \dot{s} &= s(d - er -fs)
 \end{align*}
-Choose $\phi = \frac{1}{rs}$. Then $\nabla \cdot ( \phi \bm{f}) = \
--\frac{b}{s} - \frac{f}{r} <0$ in $r,s \, >0$, for $b,f \, >0$.
+Choose $\displaystyle \phi = \frac{1}{rs}$. Then $\displaystyle \nabla \cdot 
+( \phi \bm{f}) = -\frac{b}{s} - \frac{f}{r} <0$ in $r,s \, >0$, for $b,f \, >0$.
 Therefore there can be no periodic orbits entirely in $r,s \, > 0$.
 \\
 \\
@@ -1178,7 +1181,7 @@ The argument is slightly complicated by the phase space having the topology
 of a cylinder.
 \\
 % Figure of a cylinder
-Can work on the cylinder and use $\frac{\partial \dot{\theta}}{\partial \theta} +\
+Can work on the cylinder and use $\displaystyle \pder{\dot{\theta}}{\theta} +
 \frac{\partial \dot{p}}{\partial p} = -k <0$ to deduce that there is at most one
 periodic orbit, which must encircle the cylinder.
 \\
@@ -1229,7 +1232,7 @@ So trajectories entering the annulus $C = \{ \frac{1}{\sqrt{2}} \leq r \leq 1 \}
 remain there.
 \\
 No other fixed points?
-\[\dot{\theta} = \frac{x \dot{y} - y \dot{x}}{r^2} = 1 + \frac{1}{2}r^2 \sin \
+\[\dot{\theta} = \frac{x \dot{y} - y \dot{x}}{r^2} = 1 + \frac{r^2}{2} \sin
 2\theta \implies \dot{\theta} > 0 \mbox{ in } r < \sqrt{2} \]
 $C$ contains no fixed points. By Poincar\'e-Bendixson theorem, $C$ contains a
 periodic orbit.
@@ -1417,8 +1420,8 @@ Which is easy to calculate.
   >0 \\  =0 \end{array} \right. \]
 %
 %
-\item In higher dimensions $\oint_0^T \nabla \cdot \bm{f} \, dt \, <0$ is 
-necessary for stability, but not sufficient.
+\item In higher dimensions $\displaystyle \oint_0^T \nabla \cdot \bm{f} \, dt 
+\, <0$ is necessary for stability, but not sufficient.
 \end{enumerate}
 \example\
 \begin{align*}
@@ -1603,9 +1606,9 @@ then this is indistinguishable from $y=h(x)$ in a power series.)
 \\
 The above analysis applies at the bifurcation point $\mu=0$, but if now
 $f=f(x,y\, ;\mu)$ etc. then the fixed point will not be at $x=0$ if 
-$\frac{\partial f}{\partial \mu} \neq 0$ or $y=0$ if 
-$\frac{\partial g}{\partial \mu} \neq 0$ and it won't be non-hyperbolic if
-$\frac{\partial^2 f}{\partial x \partial \mu} \neq 0$. We can get round this
+$\displaystyle \pder{f}{\mu} \neq 0$ or $y=0$ if 
+$\displaystyle \pder{g}{\mu} \neq 0$ and it won't be non-hyperbolic if
+$\displaystyle \pder{^2 f}{x \partial \mu} \neq 0$. We can get round this
 by means of a trick. We regard $\mu$ as a variable and add $\dot{\mu}=0$ to
 the system (wlog assume $\mu_0=0$).
 \\
@@ -1622,10 +1625,10 @@ The extended system is
  g - \mu \pder{g}{\mu}|_{\mu =0} \end{array} \right) 
 \]
 The extended centre subspace is the plane 
-$y= \frac{1}{\lambda} \frac{\partial g}{\partial \mu} \mu $ (with $E^s$ the line
+$\displaystyle y= \frac{1}{\lambda} \pder{ g}{ \mu} \mu $ (with $E^s$ the line
 $x=\mu=0$) and the extended centre manifold is a surface $y = h(x,\mu)$ with
-$h = \pder{h}{x} =0$, $\pder{h}{\mu} = \frac{1}{\lambda} \pder{g}{\mu}$ at 
-$x=\mu=0$.
+$\displaystyle h = \pder{h}{x} =0$, $\displaystyle \pder{h}{\mu} = \frac{1}{\lambda} 
+\pder{g}{\mu}$ at $x=\mu=0$.
 \\
 \\
 We can find this by solving
@@ -1650,7 +1653,7 @@ So the extended centre subspace is the plane (in $\mathbb{R}^3$),
 $y = 2 \mu$.
 An extended centre manifold is the surface
 \[ y = 2\mu + a_{20}x^2 + a_{11}x\mu + a_{02}\mu^2 + O(3) \]
-From $\dot{y} = \frac{dy}{dx}\dot{x} +0$ get that
+From $\displaystyle \dot{y} = \frac{dy}{dx}\dot{x} +0$ get that
 \[ 2\mu - \{2\mu + a_{20}x^2 + a_{11}x\mu + a_{02}\mu^2 + O(3)\} + x^2+x\{2\mu +O(2)\}
 = \{2a_{20}x + a_{11} \mu +O(2)\}\{\mu + O(2)\}  \]
 Equating coefficients of $x^2, \, x\mu , \, \mu^2$ $\implies a_{20} =1, \, 
