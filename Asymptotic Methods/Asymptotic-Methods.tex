@@ -122,13 +122,100 @@ $f \equiv 0$ on $I$.
 \example\ Consider $Ei(x) = \int_{x}^{\infty} \frac{e^{-t}}{t} dt$ as 
 $x \to + \infty$.
 \\
-Consider the asymptotic sequence $\phi_n(x) = \frac{1}{n}$ as $x \to + \infty$
+\\
+Consider the asymptotic sequence $\phi_n(x) = 1/x^n$ as $x \to + \infty$
 \[ Ei(x) = \int_{x}^{\infty} \frac{-d(e^{-t})}{t} = \left[ -\frac{e^{-t}}{t} \right]_{x}^{\infty} \
 - \int_x^{\infty} \frac{e^{-t}}{t^2} dt = \frac{e^{-x}}{x} - \
 \int_x^{\infty} \frac{e^{-t}}{t^2} dt\]
-Claim: $Ei(x) \sim \frac{e^{-x}}{x}$ as $x \to + \infty$.
+Claim: $Ei(x) \sim e^{-x}/x$ as $x \to + \infty$.
 \[ \left| Ei(x) - \frac{e^{-x}}{x} \right| = \left| \int_x^{\infty} \frac{e^{-t}}{t^2} dt \right|
 \leq \frac{1}{x^2} \int_x^{\infty} e^{-t} dt = \frac{e^{-t}}{x^2} = \
 o\left(\frac{e^{-x}}{x} \right) \]
-Work out full expansion of $Ei$ w.r.t. $\phi_n = \frac{e^{-x}}{x^n}$.
+Working out the full expansion of $Ei$ with respect to
+$\phi_n = e^{-x}/x^n$ gives that.
+\[ Ei(x) \sim \sum_{n=0}^{\infty} \frac{(-1)^n n! e^{-x}}{x^{n+1}} \]
+\underline{What do we mean?}
+\begin{enumerate}[(i)]
+\item $\phi_n (x) - e^{-x}/x^{n+1}$ satisfies
+		$\phi_{n+1}(x) = o(\phi_n(x))$ as $x \to + \infty$.
+		i.e. it forms an ``asymptotic sequence.''
+\item The notation ``$\sim$'' (``asymptotic to'') means
+\[ \left|Ei(x) - \sum_{n=0}^N \frac{(-1)^n n! e^{-x} }{x^{n+1}} \right| = o\left(
+\frac{e^{-x}}{x^{n+1}} \right) \mbox{ as } x \to + \infty\]
+\end{enumerate}
+This can be proved with integration by parts:
+\begin{align*}
+Ei(x) &= -\int_x^{\infty} \frac{1}{t} d(e^{-t}) = e^{-x}/x + \int_x^{\infty}
+\frac{1}{t^2} d(e^{-t}) \\
+&= e^{-x}/x - e^{-x}/x^2 + 2 \int_x^{\infty} \frac{e^{-t}}{t^3}dt  \\
+&= e^{-x} \left[ \frac{1}{x} - \frac{1}{x^2} + \frac{2!}{x^3} - \frac{3!}{x^4}
++ \dots + \frac{(-1)^n n!}{x^{n+1}} \right] + \underbrace{(-1)^{n+1} (n+1)!
+\int_x^{\infty} \frac{e^{-t}}{t^{n+2}} dt}_{Rem_{n+1}(x)}
+\end{align*}
+Where
+\[ |Rem_{n+1}(x)| \leq \frac{(n+1)!}{x^{n+2}} \int_x^{\infty} e^{-t} dt =
+\frac{(n+1)! e^{-x}}{x^{n+2}} = o\left( \frac{e^{-x}}{x^{n+1}} \right) 
+\mbox{ as } x \to + \infty \]
+So it is an asymptotic expansion. Not convergent because $\sum (-1)^n n! y^{n+1}$
+has radius of convergence 0. (In fact for fixed $y$ the terms become unbounded.)
+\\
+\\
+Consider magnitudes of successive terms $f_n(x) = (-1)^n n! e^{-x}/x^{n+1}$
+\[ \left| \frac{f_{n+1}(x)}{f_n(x)}\right| = \frac{n+1}{x} \]
+% A figure goes here
+\underline{Optimal truncation:} Truncate the asymptotic expansion at the 
+point $n=N_x$, such that the first term excluded is the smallest.
+\\
+\\
+In our example, choose $N_x = [x] -1 = \sup \{j-1: j \leq x, \, j\in \mathbb{N} \}$
+\[ \left. \begin{array}{ccc}
+\left| f_{N_x+1}(x)/f_{N_x}(x)\right| &= (N_x+1)/x &\leq 1 \\
+\\
+\left| f_{N_x+2}(x)/f_{N_x+1}(x)\right| &= (N_x+2)/x &> 1 \end{array}
+\right\} \mbox{ so } f_{N_x+1} \mbox{ is the smallest term, later terms are larger} \]
+So we write
+\[ Ei(x) = \sum^{N_x} \frac{(-1)^n n! e^{-x}}{x^{n+1}} + Rem_{N_x+1}(x) \]
+\[ |Rem_{n+1}(x)| \leq \frac{(N_x+1)!}{x^{N_x+2}}e^{-x} =
+\frac{[x]! e^{-x}}{x^{[x]+1}} \leq
+\frac{2 \left( \frac{[x]}{e} \right)^{[x]} \sqrt{2\pi [x]} e^{-x}}{x^{[x]+1}}
+\leq \frac{2\sqrt{2\pi[x]}}{[x]} e^{-x} e^{-[x]} \]
+Where we have used Stirling's formula. 
+\[ \lim_{n \to \infty} \frac{n!}{(n/e)^n \sqrt{2\pi n}} \to 1 \mbox{ as } n \to \infty \]
+The good new is the additional 
+$e^{-[x]}$ term. Optimal truncation (often) gives an exponentially small 
+remainder.
+\\
+\\
+\examples\
+\[ \sinh x = \frac{e^x - e^{-x}}{2} \sim e^{-x}/2 \mbox{ as } x \to + \infty \]
+Works because $e^{-x} = o(e^x)$ as $x \to \infty$
+\\
+\\
+\[ \mathrm{sech}  \, x = \frac{2}{e^x + e^{-x}} = \frac{2}{e^x}(1 + e^{-2x})^{-1} =
+\frac{2}{e^x}(1 - e^{-2x} + e^{-4x} - \dots) \]
+This gives an asymptotic expansion for the sequence $\phi_n = e^{-nx}$
+(Which is asymptotic since $e^{-x} = o(e^x)$ as $x \to + \infty$)
+\\
+\\
+Note: $\sinh x \sim -e^{-x}/2$ as $x \to -\infty$
+\\
+\\
+Consider $\sinh z, \mbox{ for }\, z \in \mathbb{C} $
+\[ \sinh z = \frac{e^z- e^{-z}}{2} = \frac{e^{x+iy} - e^{-x-iy}}{2} \]
+\begin{alignat*}{2}
+& \sim  e^z/2 &\mbox{ as } z \to \infty \mbox{ in sector } \{ -\frac{\pi}{2}
+< arg(z) < \frac{\pi}{2} \} \\
+& \sim  e^{-z}/2 &\mbox{ as } z \to \infty \mbox{ in sector } \{ \frac{\pi}{2}
+< arg(z) < \frac{3\pi}{2} \} 
+\end{alignat*}
+\underline{Conclusion:} The asymptotic seems to change suddenly when going from
+sector to sector. % Figure of said sectors
+\\
+\\
+The lines separating the different sectors are Stokes Lines.
+\\
+\\
+\textbf{Excercise:} Prove that the definition of asymptotics in a sector must satisfy
+that you do not approach Stokes lines too fast.
+
 \end{document}
