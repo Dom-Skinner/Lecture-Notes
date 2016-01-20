@@ -1,24 +1,18 @@
-%
-%
 \documentclass{article}
 \usepackage{amsmath}
-%\usepackage{empheq}
-\usepackage{graphicx}
 \usepackage{bm}
 \usepackage{framed}
 \usepackage{enumerate}
 \usepackage{array}
-%\usepackage{pgfplots}
-%\usepackage{caption}
 \usepackage{amsfonts}
 \usepackage[margin=3cm]{geometry}
-%\usepackage{float}
 
 \newcommand{\definition}{\textbf{Definition:}} 
 \newcommand{\example}{\textbf{Example:}} 
 \newcommand{\examples}{\textbf{Examples:}} 
 \newcommand{\question}{\textbf{Question:}} 
 \newcommand{\theorem}{\textbf{Theorem:}} 
+\newcommand{\Log}{\mathrm{Log} \,} 
 
 \begin{document}
 
@@ -32,28 +26,27 @@ Dom-Skinner@github.com}
 & ``A Course in Modern Analysis,'' Whittaker \& Watson
 \end{tabular}
 \\
+\section*{Introduction}
+Much of this section will be a recap of things learnt in the IB courses
+Complex Methods/Complex Analysis. In particular, the first three lectures
+seem to cover material familiar to anyone who understood IB Complex Methods.
 \\
-\\
+
 Any function of $x,y$ can be written as a function of $z , \;\bar{z}$ for
 $z = x+iy$.
-\\
-\\
 Functions of a complex variable are defined to be those functions of $x$ and
 $y$ that can be written entirely in terms of $z$ only.
-\\
-\\
 A function of a complex variable is continous if
 \[ \lim_{z \to z_0} f(z) = f(z_0) \quad \mbox{(as in real analysis) } \]
 The derivative of a function of a complex variable is
 \[ f'(z) - \lim_{\delta z \to 0} \frac{f(z+ \delta z) - f(z)}{\delta z} \]
 For a function to be differentiable, the limit must be independent of
 the direction that the limit is taken.
-\\
-\\
 If this is true, then the function is said to be differentiable at $z$.
 If $f'(z)$ exists, then $f(z)$ is continous (converse not true).
-\\
-\\
+%
+%
+\subsubsection*{Cauchy Riemann equations}
 Write $f(z) = u(x,y) + iv(x,y)$ with $u,v$ both real. Then
 \[ dz \, f'(z) = \lim_{\delta z = \delta x + i \delta y \to 0} \left(
 u(x+\delta x, y+ \delta y) + iv(x+\delta x,y+\delta y) - u(x,y) - iv(x,y) 
@@ -64,11 +57,13 @@ Suppose now that $\delta x = 0$.
 \[ i \delta y\, f'(z) = u_y+iv_y \]
 \[ \implies f'(z) = v_y - i u_y \]
 \[ \implies v_y - iu_y = u_x + iv_x \]
+\begin{framed}
 \[ \implies \left. \begin{array}{cr}
 v_y =& u_x \\
 v_x =& -u_y \end{array} \right\} \mbox{ The Cauchy-Riemann equations} \]
-If the Cauchy-Riemann equations hold, the derivatives exist and are 
-continous, then $f(z)$ is differentiable. If the Cauchy-Rieman equations hold
+\end{framed}
+If the Cauchy-Riemann equations (C-R) hold, the derivatives exist and are 
+continous, then $f(z)$ is differentiable. If the C-R equations hold
 then $u, \; v$ are harmonic.
 \[ u_{xx} = v_{xy} = -u_{yy} \implies u_{xx}+u_{yy} =0 \]
 A similar equation holds with v.
@@ -82,7 +77,9 @@ Consider surfaces of $u=const$, $v=const$. These surfaces are orthogonal.
 \end{align*}
 and so
 \[ \nabla u \cdot \nabla v = u_xv_x + u_yv_y =0 \mbox{ from C-R} \]
-\\
+%
+%
+\subsubsection*{Analytic functions}
 \definition\ Analytic function
 \\
 $f(z)$ is analytic at $z_0$ if $f(z)$ is differentiable in some neighbourgood
@@ -179,7 +176,7 @@ enclosed by C} \right) \]
 The integral is taken around $C$ in the anti-clockwise direction, and
 $f(z)$ is meromorphic.
 \\
-\\
+\subsubsection*{The Riemann Sphere}
 The complex plane is really a sphere, the Riemann sphere.
 % Big Diagram of the Rieman sphere goes here
 \\
@@ -254,18 +251,104 @@ is just $\mathbb{Z}_2$,
 A point where the monodromy is not 1 is called a branch point
 \end{framed}
 % Include diagram of branch point
-\noindent For $f(z) = z^{1/2}$, the origin is a branch point. Around $z_0$
+For $f(z) = z^{1/2}$, the origin is a branch point. Around $z_0$
 the function returns to its starting point. This holds for any $z_0 \neq 0$
 in the finite complex plane.
-\\
-\\
 Infinity is also a branch point.
 \[ z \mapsto 1/w \, , \;\; w^{-\frac{1}{2}} \mapsto (\rho')^{-\frac{1}{2}} 
 e^{-\frac{i\theta'}{2}}\]
 and so when $\theta \mapsto \theta + 2\pi$, $w^{-1/2}$ changes sign.
 Therefore $z= \infty, \; w=0$ is also a branch point.
-\\
-\\
 There is always more than one branch point, so always look at infinity.
 Branch points represent a failure of analycity.
+\\
+\\
+\example\ $f(z)-(z-z_0)^p$. If $p$ is an integer, then $(z-z_0)^p$ is single
+valued. Consider instead $p=m/n$ for $m,n$ integers.
+%Include diagram$
+\[ z = z_0 + \rho e^{i\theta}\]
+\[ (z-z_0)^p = \rho^p e^{ip\theta} = \rho^{n/m}e^{im\theta /n} \]
+Take $\theta \to \theta + 2\pi$. Then
+\[ (z-z_0)^p \to \rho^{m/n} e^{2\pi i m / n} \]
+The change of the phase of the function is $\displaystyle e^{2\pi im/n}$
+for going round $z=z_0$ once anticlockwise.
+\\
+
+Suppose one goes around $z=z_0$, $s$ times, then the phase factor is 
+$\displaystyle e^{2 \pi i m s /n}$. Thus if $s=n$ one gets back to the 
+original value, or indeed if $s$ is any multiple of $n$ times.
+The monodromy is therefore $\displaystyle e^{2\pi i m/n}, e^{4\pi i m/n},
+\dots$. Thus the monodromy group is the cyclic group of order $n$, i.e.
+$\mathbb{Z}_n$.
+\\
+\\
+Suppose that $p$ is not rational. Then one never gets back to the starting
+point. Monodromy for a single circle of $z_0$ is $\displaystyle e^{2\pi ip}$.
+The monodromy group is $\mathbb{Z}_{\infty}$.
+\\
+\\
+\example\ $f(z) = \Log z$. If $\displaystyle z = \rho e^{i\theta}$,
+then set
+\[f(z) = \log \rho + i\theta \]
+So going around a circle around the origin once has the effect that
+$\displaystyle \Log z \to \Log z + 2\pi i$.
+If one goes around the circle $n$ times then 
+$\displaystyle \Log z \to \Log z + 2n\pi i$.
+Thus there are an infinite number of possible values for $\Log z$.
+The monodromy is addition of $2\pi i$. The monodromy group is the 
+integers under addition.
+\\
+\\
+We can see that $z=0$ is a branch point, but
+$z = \infty$ is also a branch point:
+\[z \to 1/w, \quad \Log z \to \Log 1/w = - \Log w \]
+Thus $w=0$ is also a branch point, and so $z=\infty$ is a branch point.
+\\
+\\
+\example\ $f(z) = \sin ^{-1} z $ is multi-valued, since $\sin^{-1} z$ is
+ambigous under the addition of $2\pi n$. 
+\\
+\subsection*{Branch Cuts}
+This is a method of making $f(z)$ simgle-valued in the complex $z$ plane.
+\\
+\\
+\example\ $f(z) = z^{1/2} $. For $z = \rho e^{i\theta}$ this is
+\[f(z) = \underbrace{\rho^{1/2}}_{\geq 0} e^{i\theta/2} \]
+$f(z)$ is single-valued if $\theta$ lies in a range of $2\pi$.
+If we restrict $0 < \theta < 2\pi$ then the function is single valued, 
+but discontinous across the positive real axis. This is a failure of 
+analycity.
+To get around this, exclude the positive real axis from the definition of the
+function.
+\\
+\\
+If $z$ is real, $z^{1/2}$ can still be defined either by
+\begin{itemize}
+\item taking the limit from the top half-plane
+\item taking the limit from the bottom half-plane
+\end{itemize}
+There is always a discontinuity across a branch cut. The branch cut extends
+all the way out to infinity since the discontinuity between $\theta =0$ and
+$\theta = 2 \pi$ is non vanishing for all $\rho$.
+\\
+\\
+For a square root type branch cut, the discontinuity is always just a sign 
+corresponding to the nature of the monodromy. However, this is not the only
+way to arrange a branch cut. Another possibility is for $\theta$ to run from
+$-\pi$ to $+\pi$. In fact, one could (peversely) pick any $2\pi$ interval for
+$\theta$ and it could be $\rho$ dependent.
+% Figure of rho dependent branch cut
+\\
+\\
+\example\ $f(z) = (z-1)^{1/4} $. There is a branch point at $z=1$. There are
+four possible values for $f(z)$. If one goes around a little circle enclosing
+$z=1$ then
+\[ (z-1)^{1/4} \to e^{i\pi /2} (z-1)^{1/4}\] 
+There is a branch point at infinity, send $z \to 1/w$,
+\[ (z-1)^{1/4} \to \left( \frac{1}{w} -1 \right) ^{1/4} =
+w^{-\frac{1}{4}} ( 1-w)^{\frac{1}{4}} \]
+Hence a branch point at $w=0$ and so at $z=\infty$.
+
+
+
 \end{document}
