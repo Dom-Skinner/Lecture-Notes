@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.5)  20 JAN 2016 12:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.5)  22 JAN 2016 13:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -390,11 +390,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 330--346
 
  []
 
-[6] (./Further-Complex-Methods.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--360
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 398--408
+
+ []
+
+[7] (./Further-Complex-Methods.aux) ) 
 Here is how much of TeX's memory you used:
  1673 strings out of 493304
  21212 string characters out of 6139872
- 88177 words of memory out of 5000000
+ 89177 words of memory out of 5000000
  5124 multiletter control sequences out of 15000+600000
  16414 words of font info for 61 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
@@ -415,10 +425,10 @@ lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols
 /msbm10.pfb>
-Output written on Further-Complex-Methods.pdf (6 pages, 178326 bytes).
+Output written on Further-Complex-Methods.pdf (7 pages, 185335 bytes).
 PDF statistics:
- 87 PDF objects out of 1000 (max. 8388607)
- 62 compressed objects within 1 object stream
+ 92 PDF objects out of 1000 (max. 8388607)
+ 66 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

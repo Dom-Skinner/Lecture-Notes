@@ -348,6 +348,63 @@ There is a branch point at infinity, send $z \to 1/w$,
 \[ (z-1)^{1/4} \to \left( \frac{1}{w} -1 \right) ^{1/4} =
 w^{-\frac{1}{4}} ( 1-w)^{\frac{1}{4}} \]
 Hence a branch point at $w=0$ and so at $z=\infty$.
+\\
+\\
+\example\ $\displaystyle I = \int^{\infty}_0 \frac{x^{1/2}}{1+x^2} dx$
+with $x$ real. We can convert this to a contour integral taking
+$\displaystyle I = \int^{\infty}_0 \frac{z^{1/2}}{1+z^2} dz$ where now
+$\displaystyle f(z)= \frac{z^{1/2}}{1+z^2} $ has Branch points at
+$0,\infty$ and simple poles at $\pm i$. We restrict the argument of $z$ to
+run between $0$ and $2\pi$.
+%Diagram of Keyhole integral
+\[ \int_C \frac{z^{1/2}}{1+z^2} dz = 2\pi i \left( \mbox{residues at }
+e^{i\pi /2} \mbox{ and } e^{-3i\pi /2} \right) \]
+Along $C_1, \, z = x e^{0i}$ one just gets 
+$\displaystyle I = \int^{\infty}_0 \frac{x^{1/2}}{1+x^2} dx$\\
+Along $C_2, \, z = R e^{i\theta}$ for $R$ very large. Therefore
+$dz = iR e^{i\theta} d\theta$ and
+\[ \int_{C_2} f(z) dz = \int_0^{2\pi} \frac{R^{1/2} e^{i\theta/2}}{1 + R^2 e^{2i\theta}} 
+i R e^{i\theta} d\theta = O(R^{-1/2}) \to 0 \mbox{ as } R \to \infty \]
+Along $C_3, \, z = x e^{2\pi i}$  and so 
+\[ \int_{C_3} f(z) dz = \int_{\infty}^0 \frac{x^{1/2} e^{\pi i} }{1+ x^2 e^{4\pi i}} dx
+= \int_0^{\infty} \frac{x^{1/2}}{1+x^2} dx = I \]
+Along $C_4, \, z = \epsilon e^{i\theta}$ for $\theta$ very small. Therefore
+$dz = i\epsilon e^{i\theta} d\theta$ and
+\[ \int_{C_4} f(z) dz = \int_{2\pi}^0 \frac{\epsilon^{1/2} e^{i\theta/2}}
+{1 + \epsilon^2 e^{2i\theta}} i \epsilon e^{-i\theta} d\theta = O(\epsilon^{3/2})
+\to 0 \mbox{ as } \epsilon \to 0 \]
+What are the residues at $z = e^{i \pi /2}, \, e^{3 i \pi /2} $?
+Since these are simple poles, it is easiest to find
+\[ \lim_{z \to e^{i\pi/2}} \left( \frac{z - e^{i\pi /2}}{z^2 + 1} z^{1/2} 
+\right) \to  \lim_{z \to e^{i\pi/2}} \left( \frac{1}{2z} z^{1/2} \right)
+= \frac{1}{2} e^{-i\pi /4} \]
+and at $z = e^{3i \pi /2}$ the residue is 
+\[ \lim_{z \to e^{3i\pi/2}} \left( \frac{z - e^{3i\pi /2}}{z^2 + 1} z^{1/2} 
+\right) \to  \lim_{z \to e^{3i\pi/2}} \left( \frac{1}{2z} z^{1/2} \right)
+= \frac{1}{2} e^{-3i\pi /4} \]
+\[ \implies \int_C \frac{z^{1/2}}{1+z^2} dz = 2\pi i \left(
+\frac{1}{2} e^{-i \pi /4} + \frac{1}{2} e^{-3i\pi /4} \right) =
+2\pi \sin \frac{\pi}{4} = \frac{\pi}{\sqrt{2}} \]
+\\
+\example\ Another example of a branch cut.
+\[f(z) = \sqrt{(z-a)(z-b)}\]
+with $a,b \in \mathbb{R}, \; \>0,\, b<0$ This has branch points at $z= a, \, b$.
+What aboutat infinity? As usual take $z = 1/w$
+\[f(w) = \sqrt{\left(\frac{1}{w} - a\right)\left(\frac{1}{w} -b\right)} 
+= \frac{1}{w} \sqrt{(1-aw)(1-bw)}\]
+which is fine apart from a pole at $\infty$, which is not the same as a branch 
+point. 
+% Insert diagram here
+\[f(z) = \sqrt{(z-a)(z-b)} = \sqrt{\rho_1 \rho_2}e^{i(\theta_1+\theta_2)/2}\]
+with say $0 \leq \theta_1 , \, \theta_2 < 2\pi$. In this case the cut is 
+directly beween $a$ and $b$. Making a different choice, $-\pi \leq \theta_1 < \pi$.
+and $0 \leq \theta_2 < \pi$.
+% Diagram
+\\
+\\
+This cut appears to end at $+\infty$ and $-\infty$ which is not a branch point.
+However the complex plane is really a sphere, infinity is really a point and 
+the cut just happens to go through the point $\infty$.
 
 
 
