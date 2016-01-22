@@ -1,18 +1,12 @@
-%
-%
 \documentclass{article}
 \usepackage{amsmath}
-%\usepackage{empheq}
 \usepackage{graphicx}
 \usepackage{bm}
 \usepackage{framed}
 \usepackage{enumerate}
 \usepackage{array}
-%\usepackage{pgfplots}
-%\usepackage{caption}
 \usepackage{amsfonts}
 \usepackage[margin=3cm]{geometry}
-%\usepackage{float}
 
 \newcommand{\definition}{\textbf{Definition:}} 
 \newcommand{\example}{\textbf{Example:}} 
@@ -28,9 +22,11 @@
 \LaTeX\  by Dominic Skinner \\
 Dom-Skinner@github.com}
 \maketitle
+\tableofcontents
 \noindent \textbf{Books:} Bender and Orszag, ``\emph{Advanced Mathematical methods for 
 scientists and engineers}'', Chapters 3,6,10 \\
-More details can be found on the Moodle course site; self-enrol into the
+More details can be found on the Moodle course site; login to Moodle at
+https://www.vle.cam.ac.uk/login/index.php, then self-enrol into the
 Asymptotic methods course.
 \\
 \subsection*{What we'll learn in this course}
@@ -70,7 +66,7 @@ say $\sinh x \sim x$ as $x \to 0$.
 \example 
 \[|\sinh x - x| = |\frac{x^3}{3!} + \frac{x^5}{5!} + \dots| = O(x^3) = o(x)\]
 \\
-($F=O(G)$ as $x \to x_0$ means $\exists C>0$ such that $|F(x)| \leq C|G(x)|$ in
+($F=O(G)$ as $x \to x_0$ means $\exists \, C>0$ such that $|F(x)| \leq C|G(x)|$ in
 some open interval $I$, with $x_0 \in I$)
 \\
 In fact, by remainder estimate for Taylor expansion
@@ -126,33 +122,33 @@ If $|f(x) - 0| = o(0)=0$ in some interval $I$, containing $0$, then
 $f \equiv 0$ on $I$.
 \\
 \\
-\example\ Consider $\displaystyle Ei(x) = \int_{x}^{\infty} \frac{e^{-t}}{t} dt$
+\example\ Consider $\displaystyle E_1(x) = \int_{x}^{\infty} \frac{e^{-t}}{t} dt$
 as $x \to + \infty$.
 \\
 \\
 Consider the asymptotic sequence $\phi_n(x) = 1/x^n$ as $x \to + \infty$
-\[ Ei(x) = \int_{x}^{\infty} \frac{-d(e^{-t})}{t} = \left[ -\frac{e^{-t}}{t} \right]_{x}^{\infty} \
+\[ E_1(x) = \int_{x}^{\infty} \frac{-d(e^{-t})}{t} = \left[ -\frac{e^{-t}}{t} \right]_{x}^{\infty} \
 - \int_x^{\infty} \frac{e^{-t}}{t^2} dt = \frac{e^{-x}}{x} - \
 \int_x^{\infty} \frac{e^{-t}}{t^2} dt\]
-Claim: $Ei(x) \sim e^{-x}/x$ as $x \to + \infty$.
-\[ \left| Ei(x) - \frac{e^{-x}}{x} \right| = \left| \int_x^{\infty} \frac{e^{-t}}{t^2} dt \right|
+Claim: $E_1(x) \sim e^{-x}/x$ as $x \to + \infty$.
+\[ \left| E_1(x) - \frac{e^{-x}}{x} \right| = \left| \int_x^{\infty} \frac{e^{-t}}{t^2} dt \right|
 \leq \frac{1}{x^2} \int_x^{\infty} e^{-t} dt = \frac{e^{-t}}{x^2} = \
 o\left(\frac{e^{-x}}{x} \right) \]
-Working out the full expansion of $Ei$ with respect to
+Working out the full expansion of $E_1$ with respect to
 $\phi_n = e^{-x}/x^n$ gives that.
-\[ Ei(x) \sim \sum_{n=0}^{\infty} \frac{(-1)^n n! e^{-x}}{x^{n+1}} \]
+\[ E_1(x) \sim \sum_{n=0}^{\infty} \frac{(-1)^n n! e^{-x}}{x^{n+1}} \]
 \underline{What do we mean?}
 \begin{enumerate}[(i)]
 \item $\phi_n (x) - e^{-x}/x^{n+1}$ satisfies
 		$\phi_{n+1}(x) = o(\phi_n(x))$ as $x \to + \infty$.
 		i.e. it forms an ``asymptotic sequence.''
 \item The notation ``$\sim$'' (``asymptotic to'') means
-\[ \left|Ei(x) - \sum_{n=0}^N \frac{(-1)^n n! e^{-x} }{x^{n+1}} \right| = o\left(
+\[ \left|E_1(x) - \sum_{n=0}^N \frac{(-1)^n n! e^{-x} }{x^{n+1}} \right| = o\left(
 \frac{e^{-x}}{x^{n+1}} \right) \mbox{ as } x \to + \infty\]
 \end{enumerate}
 This can be proved with integration by parts:
 \begin{align*}
-Ei(x) &= -\int_x^{\infty} \frac{1}{t} d(e^{-t}) = e^{-x}/x + \int_x^{\infty}
+E_1(x) &= -\int_x^{\infty} \frac{1}{t} d(e^{-t}) = e^{-x}/x + \int_x^{\infty}
 \frac{1}{t^2} d(e^{-t}) \\
 &= e^{-x}/x - e^{-x}/x^2 + 2 \int_x^{\infty} \frac{e^{-t}}{t^3}dt  \\
 &= e^{-x} \left[ \frac{1}{x} - \frac{1}{x^2} + \frac{2!}{x^3} - \frac{3!}{x^4}
@@ -183,7 +179,7 @@ In our example, choose $N_x = [x] -1 = \sup \{j-1: j \leq x, \, j\in \mathbb{N} 
 \left| f_{N_x+2}(x)/f_{N_x+1}(x)\right| &= (N_x+2)/x &> 1 \end{array}
 \right\} \mbox{ so } f_{N_x+1} \mbox{ is the smallest term, later terms are larger} \]
 So we write
-\[ Ei(x) = \sum^{N_x} \frac{(-1)^n n! e^{-x}}{x^{n+1}} + Rem_{N_x+1}(x) \]
+\[ E_1(x) = \sum^{N_x} \frac{(-1)^n n! e^{-x}}{x^{n+1}} + Rem_{N_x+1}(x) \]
 \[ |Rem_{n+1}(x)| \leq \frac{(N_x+1)!}{x^{N_x+2}}e^{-x} =
 \frac{[x]! e^{-x}}{x^{[x]+1}} \leq
 \frac{2 \left( \frac{[x]}{e} \right)^{[x]} \sqrt{2\pi [x]} e^{-x}}{x^{[x]+1}}

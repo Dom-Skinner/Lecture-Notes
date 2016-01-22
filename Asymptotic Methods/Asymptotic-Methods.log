@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.11)  19 JAN 2016 16:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.9.5)  22 JAN 2016 16:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -178,18 +178,18 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 (./Asymptotic-Methods.aux)
 \openout1 = `Asymptotic-Methods.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -282,123 +282,134 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 30.
+LaTeX Font Info:    Try loading font information for U+msa on input line 24.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 30.
+LaTeX Font Info:    Try loading font information for U+msb on input line 24.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 31--36
+(./Asymptotic-Methods.toc)
+\tf@toc=\write3
+\openout3 = `Asymptotic-Methods.toc'.
+
+
+Overfull \hbox (57.90404pt too wide) in paragraph at lines 26--32
+\OT1/cmr/m/n/10 More de-tails can be found on the Moo-dle course site; lo-gin t
+o Moo-dle at https://www.vle.cam.ac.uk/login/index.php,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--32
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--42
+Underfull \hbox (badness 10000) in paragraph at lines 35--38
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--53
+Underfull \hbox (badness 10000) in paragraph at lines 38--49
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 53--60
+Underfull \hbox (badness 10000) in paragraph at lines 49--56
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--71
+Underfull \hbox (badness 10000) in paragraph at lines 59--67
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--71
+Underfull \hbox (badness 10000) in paragraph at lines 59--67
 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 78--83
+Underfull \hbox (badness 10000) in paragraph at lines 74--79
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 96.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 92.
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 96.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 92.
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--118
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 122--134
+Underfull \hbox (badness 10000) in paragraph at lines 109--114
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--134
+Underfull \hbox (badness 10000) in paragraph at lines 118--130
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--130
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 165--173
+Underfull \hbox (badness 10000) in paragraph at lines 161--169
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 173--180
+Underfull \hbox (badness 10000) in paragraph at lines 169--176
 
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 192--199
+Underfull \hbox (badness 10000) in paragraph at lines 188--195
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--203
+Underfull \hbox (badness 10000) in paragraph at lines 195--199
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--203
+Underfull \hbox (badness 10000) in paragraph at lines 195--199
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--213
+Underfull \hbox (badness 10000) in paragraph at lines 200--209
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--213
+Underfull \hbox (badness 10000) in paragraph at lines 200--209
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--229
+Underfull \hbox (badness 10000) in paragraph at lines 215--225
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--229
+Underfull \hbox (badness 10000) in paragraph at lines 215--225
 
  []
 
 [4] (./Asymptotic-Methods.aux) ) 
 Here is how much of TeX's memory you used:
- 2881 strings out of 493304
- 39111 string characters out of 6139871
- 115696 words of memory out of 5000000
- 6277 multiletter control sequences out of 15000+600000
+ 2893 strings out of 493304
+ 39308 string characters out of 6139872
+ 115800 words of memory out of 5000000
+ 6286 multiletter control sequences out of 15000+600000
  16760 words of font info for 62 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,16n,32p,245b,214s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -419,7 +430,7 @@ s/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 ti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
 m10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
 7.pfb>
-Output written on Asymptotic-Methods.pdf (4 pages, 183782 bytes).
+Output written on Asymptotic-Methods.pdf (4 pages, 184686 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  61 compressed objects within 1 object stream
