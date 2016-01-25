@@ -13,6 +13,7 @@
 \newcommand{\question}{\textbf{Question:}} 
 \newcommand{\theorem}{\textbf{Theorem:}} 
 \newcommand{\Log}{\mathrm{Log} \,} 
+\newcommand{\improp}{\int_{-\infty}^{\infty} } % For improper integrals, standard limits
 
 \begin{document}
 
@@ -405,7 +406,101 @@ and $0 \leq \theta_2 < \pi$.
 This cut appears to end at $+\infty$ and $-\infty$ which is not a branch point.
 However the complex plane is really a sphere, infinity is really a point and 
 the cut just happens to go through the point $\infty$.
-
-
+%
+%
+\subsection*{Cauchy Principal Value of an integral}
+Sometimes it is possible to consruct the Cauchy Principal Value of an integral,
+defined to be
+\[ P \int_A^B f(x) dx = \lim_{\epsilon \to 0} \left[ \int^{x_0 - \epsilon}_A 
+f(x) dx + \int^B_{x_0 + \epsilon} f(x) dx \right] \]
+Where the letter P before an integral indicates that it is the Principal Value
+(PV). Suppose that $f(x)$ has a singularity at $x_0$, then if the limit as
+$\epsilon \to 0$ exists, then it defines the principal value.
+\\
+\\
+If the integral were convergent, then the principal value coincides with the
+original integral.
+\\
+\\
+\examples\
+\[ P\int_{-1}^2 \frac{dx}{x} = \lim_{\epsilon \to 0} \left[ \int_{-1}^{-\epsilon}
+\frac{dx}{x} + \int^2_{\epsilon} \frac{dx}{x} \right] = 
+ \lim_{\epsilon \to 0} \left[ 
+\log |x| ^{-\epsilon}_{-1} + \log |x| ^2 _{\epsilon} \right] = \log 2 \]
+Principal balues work nicely at poles. In the complex plane this turns out to be
+rather convenient. Suppose one integrates a function that has a pole on the real 
+axis.
+% Diagram of contour with a green line
+\\
+\\
+PV corresponds to the green contour.
+\\
+\\
+This contour might be closed in the top half plane. Apply a small modification
+of Cauchy's theorem:
+\[ 2\pi i \left( \sum \mbox{ Residues in } C \right) = \int_{\Gamma} f(z) dz
++ \int_C f(z) dz + \int_{C'} f(z) dz \]
+Where $\displaystyle \int_C f(z) dz$ corresponds to the principal value.
+$C' = z_0 + \epsilon e^{i \theta} $ where $\theta$ runs from $\pi$ to $0$.
+Near $z = z_0$,
+\[f(z) = \sum_{n=-1}^{\infty} c_n ( z-z_0)^n \]
+So this has residue $c_{-1}$ at $z = z_0$.
+\[ \int_{\pi}^0 \sum_{n=-1}^{\infty} c_n ( z-z_0)^n  \, dz 
+= \int_{\pi}^0 \sum_{n=-1}^{\infty} c_n \epsilon^n e^{in\theta} 
+(i \epsilon e^{i\theta} d\theta) 
+= \int_{\pi}^0 \sum_{n=-1}^{\infty} c_n \epsilon^{n+1} e^{i(n+1)\theta} 
+i d\theta \]
+In the limit $\epsilon \to 0$ the only remaining term is $n=-1$.
+Therefore,
+\begin{align*}
+ = \int_{\pi}^0 c_{-1} i d\theta &= -i\pi c_{-1} \\
+ \implies \int_{c'} f(z) dz &= -i\pi c_{-1} 
+\end{align*}
+This shows also that higher poles can give trouble. We will only look at the case
+of simple poles in the integrand.
+\\
+\\
+\example\ Calculate the PV of 
+\[ P \int_{-\infty}^{\infty} \frac{e^{iax}}{x} dx \]
+for $a$ real and positive
+% Picture of generic contour
+Apply our modified version of Cauchy's theorem to this contour.
+\[ 2\pi i \left( \sum \mbox{ Residues in } C \right)  = 
+\int_{|z| = R, \, Im(z) >0} \frac{e^{iaz}}{z}dz +
+P \int_{-R}^{R} \frac{e^{iax}}{x} dx - i\pi c_{-1} \]
+Where $c_{-1}$ is the residue of $\frac{e^{iax}}{x}$ at $x=0$.
+\[ \implies 0 = 0 + P\int_{-\infty}^{\infty} \frac{e^{iax}}{x} dx - i \pi \]
+\[ \implies P\int_{-\infty}^{\infty} \frac{e^{iax}}{x} dx = \pi i \]
+Take the imaginary part of this expansion to get that
+\[ P \int_{-\infty}^{\infty} \frac{\sin ax}{x} dx = \pi\]
+Since the principal part of a convergent integral is the same
+as the integral, one finds that
+\[ \int_{-\infty}^{\infty} \frac{\sin ax}{x} dx = \pi \] and is indepenent
+of $a$ for $a>0$.
+\\
+\\
+\example\
+\begin{equation}
+I = \improp \frac{e^{px} - e^{qx}}{1 - e^x} dx \tag{$0 < p,q < 1$}
+\end{equation}
+This is singular at $x = 2 \pi n i$ where the denominator zero. The
+singularity at zero is removable. Hence this integral is the same as its
+principal value 
+\[I = P\improp \frac{e^{px} - e^{qx}}{1 - e^x} dx  \]
+we consider 
+\[I = \improp \frac{e^{pz} - e^{qz}}{1 - e^z} dz  \]
+Choose a rectangular contour
+% Picture of a contour
+\[ 0 = \underbrace{P\int^{R}_{-R} \frac{e^{pz} - e^{qz}}{1 - e^z} dz}_{C_1}
++ \underbrace{P \int^{-R+2\pi i}_{R+2\pi i} \frac{e^{pz} - e^{qz}}{1 - e^z} }_{C_4}
+-\underbrace{i\pi \left( \mbox{Res at } 0 \right)}_{C_2}
+-\underbrace{i\pi \left( \mbox{Res at } 2\pi i \right)}_{C_3} \]
+Now we consider
+\[ P \int \frac{e^{pz} - e^{qz}}{1-e^z} = P\int \frac{e^{pz}}{1-e^z} dz - 
+P \int \frac{e^{pz}}{1-e^z} dz \]
+The residue at 0
+\[ \lim_{z \to 0} \frac{z e^{pz}}{1- e^z} = -1 \]
+The residue at $2\pi i$
+\[ \lim_{z \to 2 \pi i} \frac{(z - 2 \pi i)e^{pz}}{1- e^z} = -e^{2 \pi i p} \]
 
 \end{document}
