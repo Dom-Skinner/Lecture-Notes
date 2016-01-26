@@ -12,6 +12,7 @@
 \newcommand{\example}{\textbf{Example:}} 
 \newcommand{\examples}{\textbf{Examples:}} 
 \newcommand{\question}{\textbf{Question:}} 
+\newcommand{\exercise}{\textbf{Exercise:}} 
 \newcommand{\theorem}{\textbf{Theorem:}} 
 \newcommand{\pder}[2] {\frac{\partial {#1}}{\partial {#2} }}%
 
@@ -222,5 +223,113 @@ The lines separating the different sectors are Stokes Lines.
 \\
 \textbf{Excercise:} Prove that the definition of asymptotics in a sector must satisfy
 that you do not approach Stokes lines too fast.
+\\
+\\
+\textbf{Terminology:} 
+\[ \left. \begin{array}{rc}
+e^{z}/2 & \mbox{dominant} \\
+-e^{z}/2 & \mbox{subdominant or recessive} \end{array} \right\} \mbox{ for Arg }
+z \in ( - \frac{\pi}{2} , \, \frac{\pi}{2} )\]
+On Stokes lines, neither of these terms is dominant. This means that the asymptotic 
+relation holds if ``\emph{$z \to \infty$ but not approaching Stokes lines.}''
+\\
+\\
+Why? Consider $z_n = 1/n + in^2$ has Re $z_n >0$, and $|z_n| \to \infty$.
+\[ \sinh z_n = \frac{1}{2} \left( e^{1/n + in^2} - e^{-1/n -in^2} \right)\]
+where
+\[ \sinh z_n \sim \frac{1}{2} e^{1/n + in^2} \]
+means that 
+\[ \left| \sinh z_n - \frac{1}{2} e^{1/n + in^2} \right| = \frac{1}{2} \left| e^{-1/n -in^2}
+\right| = \frac{1}{2} e^{-1/n}\]
+but $e^{-1/n} \neq o \left( e^{1/n} \right)$ as $n\to \infty$.
+So we must consider $z \to \infty$ with Arg $z \in [ -\frac{\pi}{2} + \epsilon, 
+\frac{\pi}{2} - \epsilon ] $for some $\epsilon >0$
+\\
+\\
+\definition\ 
+\begin{equation}\tag{$z\to \infty, \, Arg \, z \in (\alpha, \beta) $}
+f(z) \sim a_0 + \frac{a_1}{z} + \frac{a_2}{z^2} + \dots
+\end{equation}
+means given $N \in \mathbb{N}$, $\epsilon >0$ sufficiently small
+\[\left| f(z) - \sum_{i=0}^{N} \frac{a_i}{z^i} \right| = o(z^{-N})\]
+as $z \to \infty$ Arg $z \in [ \alpha + \epsilon , \beta - \epsilon ]$
+In this case we write
+\[ f(z) = \sum_{i=0}^{N} \frac{a_i}{z^i} \qquad (z \to \infty; \, Arg \, z \in
+(\alpha,\beta) )\]
+\exercise\ Write out corresponding definition for 
+\[ f(z) = \sum_{i=0}^{N} a_i(z-z_0)^i \qquad (z \to z_0; \, Arg \,( z- z_0) \in
+(\alpha,\beta) )\]
+\example\ 
+\[ \sinh \frac{1}{z} \sim \frac{1}{2} e^{1/z} \qquad (z \to 0; \, Arg \, z \in 
+(-\frac{\pi}{2}, \frac{\pi}{2} ) ) \]
+but 
+\[ \sinh \frac{1}{z} \sim -\frac{1}{2} e^{-1/z} \qquad (z \to 0; \, Arg \, z \in 
+(\frac{\pi}{2}, \frac{3\pi}{2} ) ) \]
+(fails on Stokes line)
+\\
+\\
+Consider complex analytic (holomorphic) functions:
+\[ f(z) = \sum _{n=0}^{\infty} c_n (z - z_0)^n\]
+if f is holomorphic near $z_0$ and then 
+\[ f(z) \sim \sum _{n=0}^{\infty} c_n (z - z_0)^n \qquad (z \to z_0; \, Arg \, z 
+\in [0, 2\pi])\]
+Fact: If $z_0$ is an isolated singularity, i.e. $f$ is holomorphic in 
+$\{ z : 0 < |z-z_0| < r \}$ for some $r>0$ and 
+\[ f(z) \sim \sum _{n=0}^{\infty} c_n (z - z_0)^n \qquad (z \to z_0; \, Arg \, z 
+\in [0, 2\pi])\]
+then $z_0$ is a removable singularity, and $\sum a_n (z-z_0)^n$ converges to
+$f$ in some neighbourhood of $z_0$.
+\\
+\\
+Why? At isolated singularity $z_0$ either 
+\begin{itemize}
+\item removable $\implies |f(z)|$ bounded as $z\to z_0$ 
+\item Pole $f(z) = \frac{a_{-N}}{(z-z_0)^N} + \frac{a_{-N+1}}{(z-z_0)^{N-1}} + \dots$
+\item essential singularity $f(z) = \sum_{-\infty}^{\infty} a_j(z-z_0)^j$
+      where some $a_{-n} \neq 0$ for arbitrarly large n
+\end{itemize}
+The last two have $|f(z)|\to \infty$ as $z \to z_0$ on some sequence.
+\\
+\\
+Notice that if $f(z) \sim \sum_0^{\infty} a_n (z-z_0)^n$ holds for all Arg $z$ then
+$|f(z) - a_0| = o(1)$ as $z \to z_0$ $\forall$ Arg$(z-z_0)$. I.e. $|f(z)|$
+is bounded as $|z-z_0| \to 0$.
+\\
+\\
+Therefore $z_0$ is a removable singularity, i.e. $f$ is analytic at $z_0$. So
+$f(z) = \sum a_n (z-z_0)^n$ by uniqueness of asymptotic expansions. So we will
+often end up considering asymptotic expansions at essential singularities. 
+\\
+\subsection*{Differential Equations}
+$\sinh x$ solves $\displaystyle \frac{d^2y}{dx^2} = y$, with $y(0)=0$, 
+$y'(0)=1$. $x=0$ is an ``ordinary point''.
+\\
+\\
+Recall:
+\[ y'' + C_1(x) y' + C_0(x) y =0 \]
+$x=0$ is an ordinary point if
+\[ C_j(x) = \sum_0^{\infty} c_{j_n}x^n, \quad j = 0,1\]
+(and these are convergent)
+\\
+$x=0$ is a regular singular point if 
+\[ C_1(x) = \frac{1}{x} P_1(x), \quad C_0(x) = \frac{1}{x^2}P_0(x) \]
+where $\displaystyle P_j = \sum_0^{\infty} P_{j_n} x^n, \quad j=0,1$
+(and these are convergent).
+\\
+(This is also written $x^2 y'' + xP_1(x) y' + P_0(x)y =0$)
+\\
+\\
+Let's see heuristically why $y$ can be singular at a regular point but
+not an ordinary point. Assume
+\[ y = b_0 x^a + b_1 x^{a+1} + \dots \]
+with $a<0$.
+\begin{align*}
+ y' &= ab_0 x^{a-1} + (a+1)b_1 x^{a} + \dots \\
+ y'' &= a(a-1)b_0 x^{a-2} + (a+1)ab_1 x^{a-1} + \dots 
+\end{align*}
+There is no possibility to balance the ``worst terms'' $x^{a-2}$ at
+an ordinary point. At a regular singular point we can hope to balance the 
+worst terms because
+\[ x^2 x^{a-2} = x^a \]
 
 \end{document}
