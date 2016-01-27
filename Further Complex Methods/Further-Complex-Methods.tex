@@ -492,7 +492,7 @@ we consider
 Choose a rectangular contour
 % Picture of a contour
 \[ 0 = \underbrace{P\int^{R}_{-R} \frac{e^{pz} - e^{qz}}{1 - e^z} dz}_{C_1}
-+ \underbrace{P \int^{-R+2\pi i}_{R+2\pi i} \frac{e^{pz} - e^{qz}}{1 - e^z} }_{C_4}
++ \underbrace{P \int^{-R+2\pi i}_{R+2\pi i} \frac{e^{pz} - e^{qz}}{1 - e^z} dz }_{C_4}
 -\underbrace{i\pi \left( \mbox{Res at } 0 \right)}_{C_2}
 -\underbrace{i\pi \left( \mbox{Res at } 2\pi i \right)}_{C_3} \]
 Now we consider
@@ -501,6 +501,86 @@ P \int \frac{e^{pz}}{1-e^z} dz \]
 The residue at 0
 \[ \lim_{z \to 0} \frac{z e^{pz}}{1- e^z} = -1 \]
 The residue at $2\pi i$
-\[ \lim_{z \to 2 \pi i} \frac{(z - 2 \pi i)e^{pz}}{1- e^z} = -e^{2 \pi i p} \]
-
+\[ \lim_{z \to 2 \pi i} \frac{(x - 2 \pi i)e^{px}}{1- e^x} = -e^{2 \pi i p} \]
+\[\implies  0 = 
+\int_C \frac{e^{pz}}{1-e^z} dz =
+\underbrace{P\improp \frac{e^{px}}{1 - e^x} dx}_{I_1}
++ P \int^{-\infty}_{\infty} \frac{e^{p(x+2\pi i)}}{1 - e^{x+2\pi i}} dx 
+-i\pi \left( \mbox{Res at } 0 \right)
+-i\pi \left( \mbox{Res at } 2\pi i \right) \]
+and so we can find $I_1$
+\[ 0 = I_1 - I_1 e^{2\pi i p} - i\pi(-1) - i \pi ( -e^{2i\pi p}) \]
+\[ \implies \frac{-i\pi (1+e^{2i\pi p})}{1 - e^{2\pi i p} }  =
+\pi \cot \pi p\]
+therefore
+\[ I = \pi (\cot \pi p - \cot \pi q) \]
+%
+% 
+\section*{The Hilbert Transform}
+A Hilbert transform is somewhat like the Fourier transform. Take a function of 
+a real variable $s$, $f(s)$. 
+\begin{framed}
+\noindent The Hilbert transform is 
+\[ H_f(t) = \frac{1}{\pi} P \improp \frac{f(s)}{t-s} \]
+where $t$ is another real variable.
+\end{framed}
+\noindent This can be turned into a form that is easier to work with.
+\[ H_f(t) = \frac{1}{\pi} \lim_{\epsilon \to 0} \left[
+\int_{-\infty}^{t-\epsilon}\frac{f(s)}{t-s} ds + \int^{\infty}_{t+\epsilon} 
+\frac{f(s)}{t-s} ds \right] \]
+Shift the pole in $s$ to the origin, $s-t = s'$
+\[ H_f(t) = -\frac{1}{\pi} \lim_{\epsilon \to 0} \left[
+\int_{-\infty}^{-\epsilon}\frac{f(s'+t)}{s'} ds' + \int^{\infty}_{\epsilon} 
+\frac{f(s'+t)}{s'} ds' \right] \]
+In the first integral take $s' \mapsto -s'$ to get that 
+\[ H_f(t) = \frac{1}{\pi} \lim_{\epsilon \to 0} \left[
+\int^{\infty}_{\epsilon} \frac{f(t-s')}{s'}
+-\frac{f(t+s')}{s'} ds' \right] \]
+Now lets find the inverse of the Hilbert transform. $\hat{H}_f(\omega)$ is
+the fourier transform of the Hilbert transform. Here we consider the 
+Fourier transform to be
+\[ \hat{f}(\omega) = \improp f(t) e^{i\omega t} dt \]
+Now
+\[ \hat{H}_f(\omega) = \frac{1}{\pi} \lim_{\epsilon \to 0}
+\improp \int_{\epsilon}^{\infty} (f(t-s)-f(t+s))e^{i\omega t} ds \, dt \]
+We will assume that interchanging the orders of integration is fine. Shift
+in the first integral $t-s\to t$, $t+s \to t$
+\[ \hat{H}_f(\omega) = \frac{1}{\pi} \lim_{\epsilon \to 0} \left[
+\improp \int_{\epsilon}^{\infty} \frac{1}{s} ( 
+\underbrace{f(t)e^{i\omega t}}_{\hat{f}(\omega)}e^{i\omega s}
+- \underbrace{f(t) e^{i\omega t}}_{\hat{f}(\omega)}e^{-i\omega s} 
+)ds \, dt \right] \]
+\[ = \frac{1}{\pi} \lim_{\epsilon \to 0} \hat{f}(\omega) \int_{\epsilon}^{\infty}
+\frac{1}{s} ( e^{i\omega s} - e^{-i \omega s} ) ds  = \frac{i}{\pi} \hat{f}(\omega)
+\improp \frac{\sin \omega s}{s} ds \]
+Recall
+\[P \improp \frac{\sin \omega s}{s} ds = \left\{ \begin{array}{cc}
+\pi & \omega > 0 \\
+0 & \omega =0 \\
+-i\pi & \omega <0 \end{array} \right. \]
+Therefore, for
+\begin{alignat*}{3}
+\omega > 0 & \quad & \hat{H}_f(\omega) &= \;\;\; i \hat{f}(\omega) \\
+\omega < 0 & & \hat{H}_f(\omega) &= -i \hat{f}(\omega) \\
+\omega =0 & & \hat{H}_f(\omega) &=0
+\end{alignat*}
+So
+\[ \hat{H}_f\hat{H}_f (\omega) = -f(\omega) \quad (\omega \neq 0) \]
+So we have that $H^{-1} = -H$.
+Use of the Hilbrt transform is to discover the Kramers-Kronig relations.
+Consider a function $f(s)$ of a complex variable $s$, analyic in the 
+upper half plane, and dies off faster than $1/|s|$ in the upper half plane.
+Take $t$ real. 
+% Contour picture here,
+\[ \int_c \frac{f(s)}{t-s} \]
+Integrating along the real axis gives
+\[ \underbrace{\frac{1}{\pi} P\improp \frac{f(s)}{t-s} ds}_{H_f(s)}
++\frac{1}{\pi} (-i\pi(\mbox{Res at } s=t)) =0\]
+\[ \implies \frac{1}{\pi} \improp \frac{f(s)}{t-s} ds = -i f(t) \]
+Separate $f(s)$ into its real and imaginary parts.
+Real:
+\[ \frac{1}{\pi} P \improp \frac{u(x,0)}{t-x} dx = v(t,0)\]
+Imaginary:
+\[ \frac{1}{\pi} P \improp \frac{v(x,0)}{t-x} dx = -u(t,0)\]
+So if $u$ is known on the real axis, then $v$ can be found.
 \end{document}
