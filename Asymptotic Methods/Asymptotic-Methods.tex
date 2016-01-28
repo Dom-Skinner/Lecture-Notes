@@ -331,5 +331,85 @@ There is no possibility to balance the ``worst terms'' $x^{a-2}$ at
 an ordinary point. At a regular singular point we can hope to balance the 
 worst terms because
 \[ x^2 x^{a-2} = x^a \]
-
+Consider the Airy equation
+\begin{equation}\tag{A}
+\frac{d^2 y}{dx^2} = xy
+\end{equation}
+$x=0$ is an ordinary point. The power series solution at an ordinary point is
+\[ y(x) = \sum_{n=0}^{\infty} a_n x^n \]
+This can be solved to get the relations
+\begin{alignat*}{3}
+n(n-1)a_n &=0 \quad  &n &= 0,1,2 \\
+n(n-1)a_n &= a_{n-3} \quad &n &= 3,4,\dots
+\end{alignat*}
+Therefore we have two linearly independent solutions
+\[ y_0 = a_0 \sum_{n=0}^{\infty}\frac{x^{3n}}{9^n n! \Gamma(n + \frac{2}{3})} ; \quad
+y_1 = a_1 \sum_{n=0}^{\infty}\frac{x^{3n+1}}{9^n n! \Gamma(n + \frac{4}{3})} \]
+(Can be easily seen that $\displaystyle a_n = \frac{a_{n-3}}{n(n-1)} \implies a_{3n} =
+\frac{a_{3n-3}}{3n(3n-1)}= \dots = \frac{a_0}{3^n n! 3^n (n-\frac{1}{3})
+(n-\frac{4}{3}) \cdots \frac{2}{3}} $ )
+The radius of convergence is $\infty$. (In general the radius of convergence of a
+power series solution at an ordinary point is the distance to the closest 
+singularity.)
+\\
+\\
+\question\ Is $x= + \infty$ a singular point for (A)?
+\\
+Also recall solutions of $y'' = y$, $y_0 = \cosh x, \; y_1 = \sinh x$. to analyse the
+point at infinity, let $z = 1/x$.
+\begin{align*}
+y(x) = w(1/x) &= w(z) \\
+\implies y'(x) &= - \frac{1}{x^2} w'(1/x) \\
+y''(x) &= \frac{1}{x^4} w''(1/x) + \frac{2}{x^3} w' ( 1/x)
+\end{align*}
+\[\left.  \begin{array}{ll}
+y''(x) = y(x) &\iff z^4 w'' + 2 z^3 w' = w \\
+y''(x) = xy(x) &\iff z^4 w'' + 2 z^3 w' = \frac{1}{z}w \end{array}
+\right\} \mbox{ So an irregular singular point} \] 
+Often get essential singularities.
+\\
+\subsubsection*{Behaviour of solutions as $x \to \infty$}
+Think of (A) as like $y'' = ay$ (which has solutions $\exp(\pm a^{1/2} x)$)
+but with $a$ increasing with x. So \underline{maybe} the solution looks like
+a speeded up exponential, $\exp[S(x)]$, where 
+\begin{equation}\tag{G}
+S(x) \sim c x^{\frac{3}{2}} + \dots
+\end{equation}
+\[ y'' = xy \iff S'' + (S')^2 =x \]
+If (G) holds, and also
+\begin{align*}
+S' & \sim \frac{3c}{2} x^{\frac{1}{2}} + \dots \\
+S'' & \sim \frac{3c}{4} x^{-\frac{1}{2}} + \dots 
+\end{align*}
+Dominant balance:
+\[ (S_0')^2 = x \implies S'_0 = \pm x^{1/2} \implies S_0 = \pm \frac{2}{3} x^{3/2} +c \]
+Now substitute $S_0$ into the discarded $S''$ term and generate a new improved solution
+$S_{NI}$ by solving $(S_{NI}')^2 = x - S_0'' = x\mp \frac{1}{2} x^{-1/2} $ 
+\begin{align*}
+S_{NI}' &= \pm x^{1/2} \left( 1 \mp \frac{1}{2} x^{-3/2} \right)^{1/2}  \\
+ &= \pm x^{1/2} - \frac{1}{4} x^{-1} + O(x^{-5/2}) 
+ \end{align*}
+Therefore
+\[S_{NI}(x) = \pm \frac{2}{3}x^{3/2} - \frac{1}{4} \log x + O(x^{-3/2}) \]
+This suggest solutions of (A) look like
+\begin{align*}
+y_+(x) & \sim x^{-1/4} \exp \left[ + \frac{2}{3} x^{2/3} \right] \\
+y_-(x) & \sim x^{-1/4} \exp \left[ - \frac{2}{3} x^{2/3} \right] 
+\end{align*}
+Note:
+\begin{itemize}
+\item Make informed guess
+\item throw away what you hope is small and solve the resulting equation
+      ($(S_0')^2 =x$)
+\item Check for self consistency ($S_{NI} = \pm \frac{2}{3} x^{3/2} - 
+      \frac{1}{4} \log x  +\dots$)
+\end{itemize}
+\subsubsection*{Bessel equation}
+\[ x^2 y'' + xy' - (x^2+\nu^2)y =0 \]
+\emph{Revise power series for this, look at operations on asyptotic
+expansions \S\ 3.8 Bender-Orsag and Q1 on Ex Sheet 1 }
+\\
+We can add, multiply, take reciprocals and integrate asymtotic expansions.
+But \underline{Cannot differentiate in general}. For example
+\[ f(x) \sim x^{-1/2} + x^{-3/2} \sin x^{x^3} \]
 \end{document}
