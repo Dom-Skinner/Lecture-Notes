@@ -18,6 +18,7 @@
 \newcommand{\cO}{\mathcal{O}}                               %
 \newcommand{\domain}{\mathcal{D}}                           %
 \newcommand{\example}{\textbf{Example:}}                    %
+\newcommand{\examples}{\textbf{Examples:}}                  %
 \newcommand{\definition}{\textbf{Definition:}}              %
 \newcommand{\theorem}{\textbf{Theorem:}}                    %
 \newcommand{\corollary}{\textbf{Corollary:}}                %
@@ -1640,7 +1641,7 @@ manifold is $\dot{x} = f(x,h(x,\mu);\, \mu)$
 \\
 \example\ 
 \[ \dot{x} = \mu + x^2 + xy +y^2, \quad \dot{y} = 2\mu - y + x^2 +xy \]
-At $\mu =0$ this has a nonhyperbolic fixed point at $\bx = \bm{0}$.
+At $\mu =0$ this has a non-hyperbolic fixed point at $\bx = \bm{0}$.
 The extended system is
 \[ \left( \begin{array}{c} \dot{x} \\ \dot{\mu} \\ \dot{y} \end{array} \right) =
 \left( \begin{array}{ccr} 
@@ -1683,7 +1684,7 @@ $(\bx,\bm{0}) \in E^c$. ($E^u = \phi$)
 \dot{y} &= rx - y - xz \\
 \dot{z} &= -bz + xy
 \end{align*}
-These have a ficed point at $\bm{0}$ where
+These have a fixed point at $\bm{0}$ where
 \[ A = \left( \begin{array}{rrr}
 -\sigma & \sigma & 0 \\
 r & -1 & 0 \\
@@ -1693,9 +1694,452 @@ When $r=1$ this is non hyperbolic;
 \[ \lambda=0, \;\;
 \bm{e} = \left( \begin{array}{c} 1 \\ 1 \\ 0 \end{array} \right), \;\;
 \lambda = -(\sigma +1), \; \;
-\bm{e} = \left( \begin{array}{c} \sigma \\ -1 \\ 0 \end{array} \right), \;\;
+\bm{e} = \left( \begin{array}{r} \sigma \\ -1 \\ 0 \end{array} \right), \;\;
 \lambda = -b, \; \;
 \bm{e} = \left( \begin{array}{c} 0 \\ 0 \\ 1 \end{array} \right) \]
+So the centre subspace $E^c$ is the line $x=y, \, z=0$ ($E^s$ is the plane
+$x + \sigma y=0$).
+\\
+\\
+Change variables to $\mu = r-1$, $v=y-x$. Then the extended system becomes
+\[ \left( \begin{array}{c} \dot{x} \\ \dot{\mu} \\ \dot{v} \\ \dot{z} \end{array} \right) =
+%
+\left( \begin{array}{cccr} 
+0 & 0 & \sigma & 0 \\ 
+0 & 0 & 0 & 0 \\ 
+0 & 0 & -(1+\sigma) & 0 \\
+0 & 0 & 0 & -b \end{array} \right) 
+ \left( \begin{array}{c} x \\ \mu \\ y \\ z \end{array} \right) +
+ \left( \begin{array}{c}
+ 0 \\ 0 \\
+ x(\mu -z) \\ x(x+v) \end{array} \right) 
+\]
+The extended centre subspace is $v=z=0$.
+\\
+The extended centre manifold is $v= V(x,\mu), \; z = Z(x, \mu) $
+where
+\[ V = \pder{V}{x} = \pder{V}{\mu} = Z = \pder{Z}{x} = \pder{Z}{\mu} =0 \mbox{ 
+at } x = \mu = 0 \]
+Solve 
+\[ \dot{V} = \pder{V}{x} \dot{x} \, , \quad \dot{Z} = \pder{Z}{x} \dot{x} \]
+Find that
+\[ Z = \frac{x^2}{b} + O(3) , \quad V = \frac{1}{\sigma+1}\left(\mu x - 
+\frac{x^3}{b} - \frac{\sigma \mu ^2 x}{1+ \sigma} + O(4) \right) \]
+\[ \implies \dot{x} = \frac{\sigma}{\sigma +1} \left( \mu x - \frac{x^3}{b} + 
+O(3) \right) \]
+% Include a diagram here 
+\textbf{Key idea:} If $E^u = \phi$ then all of the variables in $E^s$ collapse
+onto the centre manifold, and all of the interesting dynamics are given by
+the slow evolution on the centre manifold.
+%
+%
+\subsection{Stationary Bifurcations $(\lambda=0)$}
+If one $\lambda$ passes through 0 at $\mu=0$, and all the others satisfy
+R$(\lambda)<0$ then the dynamics reduce to $\dot{x} = f(x,\mu)$, 
+$x \in \mathbb{R}$. A Taylor expansion gives
+\[ \dot{x} = \nu_0(\mu) + \nu_1(\mu) x + \frac{1}{2} \nu_2 (\mu) x^2 + \dots \]
+where $\nu_0(0) = \nu_1(0) = 0$, so that $x=0$ is a non-hyperbolic fixed point
+at $\mu =0$.
+\subsubsection*{Normal forms}
+The simple stationary bifurcations in this course can all be reduced to one of
+the following normal forms by a suitable change of variables.
+\begin{enumerate}[(i)] % lots of figures need to be added to this section
+\item Saddle node bifurcation $\dot{x} = \mu -x^2$
+      \\
+      Two fixed points $x = \pm \sqrt{\mu}$ for $\mu >0$.
+      In $\mathbb{R}^2$ with $\dot{y} = -\lambda y$
+\item Transcritical bifurcation $\dot{x} = x(\mu -x)$
+      \\
+      Fixed points at $x=0, \mu$ which cross and exchange stability at 
+      $\mu =0$.
+\item Pitchfork bifurcation $\dot{x} = x(\mu -ax^2) $ with $a = \pm 1$
+      Fixed points at $x=0$ (stable for $\mu<0$) and $\displaystyle x = 
+      \pm \sqrt{\frac{\mu}{a}}$ if $\displaystyle \frac{\mu}{a} >0$ 
+      (stable for $a=+1$)
+      \\
+      There are two cases:
+      \begin{itemize}
+      \item Supercritical : New solutions exist after the old solution becomes
+            unstable
+      \item Subcritical : Other solutions exist before the old solution becomes
+            unstable
+      \end{itemize}
+      In $\rtwo$ \\
+      \begin{center}
+      \begin{tabular}{cc|cc}
+      \multicolumn{2}{c|}{Supercritical} & \multicolumn{2}{c}{Subcritical} 
+      \\\hline \vspace{-3mm} & & &  \\
+      $\mu <0$ & $\mu >0$ & $\mu < 0$ & $\mu >0$ \\
+      Stable node & Stable node/Saddle/Stable node & Saddle/Stable node/Saddle & Saddle 
+      \end{tabular}
+      \end{center}
+\end{enumerate}
+\subsubsection*{Classification and Reduction to Normal Form}
+The sort of bifurcation depends on which terms in 
+\[ f = \nu_0(\mu) + \nu_1(\mu) x + \frac{1}{2} \nu_2 (\mu) x^2 + \dots \]
+are most important as $x, \, \mu \to 0$.
+\\
+\\
+Since $\nu_0(0)=\nu_1(0) =0$ we generally expect $\nu_0,\nu_1 = O(\mu)$ and
+$\nu_i = O(1)$ for $i \geq 2$.
+\begin{enumerate}[(i)]
+\item If $\nu_0'(0) \neq 0$ and $\nu_2(0) \neq 0$ (the generic case) then
+      \[ \dot{x} \approx \nu_0 + \nu_1 x + \frac{1}{2} \nu_2 x^2 \]
+      Rescale time $\displaystyle T = -\frac{\nu_2 t}{2}$ and change origin
+      $\displaystyle X = x + \frac{\nu_1}{\nu_2}$ to obtain
+      \[ X_T = \underbrace{\left[ \left( \frac{\nu_1}{\nu_2} \right)^2 - 
+      \frac{2\nu_0}{\nu_2} \right]}_{\mu} - X^2 + O(3) \]
+      The normal form for a saddle-node bifurcation.
+\item If $\nu_2(0) \neq 0$, but $\nu_0 (\mu)\equiv 0$ because $x=0$ is always
+      a fixed point of the system, then
+      \[ \dot{x} \approx \nu_1 x + \frac{1}{2} \nu_2 x^2 \]
+      so $\displaystyle T = -\frac{\nu_2 t}{2} $ gives 
+      \[ X_T = \left( -\frac{2\nu_1}{\nu_2} \right)x -x^2 \] 
+      The normal form for a transcritical bifurcation. (Can also get the
+      transcritical case if $\nu_0 = O(\mu^2)$, e.g. $\dot{x} = (k_1 \mu -x)
+      (k_2 \mu -x)$ with $k_1 \neq k_2$)
+\item If $\nu_0(\mu) \equiv \nu_2(\mu) \equiv 0$ because there is a symmetry
+      $f(-x,\mu) = f(x,\mu)$ then rescaling gives the pitchfork normal form.
+      (Pitchforks also occur when $\nu_0 = O(\mu^2)$ and $\nu_2 = O(\mu)$ e.g.
+       $\dot{x} = ( x - k_1 \mu)(\mu + k_2 \mu x - x^2) $ )
+\end{enumerate}
+The saddle node bifurcation is the generic case and is structurally stable.
+The transcritical and pitchfork bifurcations are structurally unstable 
+because they depend on some coefficients being negligible.
+\\
+\\
+\example\ $\dot{x} = \epsilon + \mu x - x^2$ with $0 < |\epsilon| \ll 1$, 
+$\epsilon$ fixed.
+%Diagram goes here.
+\\
+\\
+\example\ $\dot{x} = \epsilon + \mu x - x^3$
+\\
+\\
+\example\ $\dot{x} =\mu x + \epsilon x^2 - x^3$
+\\
+\\
+If more than one $\lambda$ passes through zero at the same time,  get more 
+complicated bifurcations. (Takens-Bogdanov)
+\subsection{Oscillatory/Hopf Bifurcations $(\lambda = \pm i \omega)$}
+If a complex conjugate pair of eigenvalues crosses Re$(\lambda)=0$ at 
+$\mu =0$, with all the others in Re$(\lambda)<0$, then the dynamics on the 
+centre manifold reduce by much grusome algebra to the following normal form.
+\begin{empheq}[box=\fbox]{align}
+\dot{r} &= r(\mu -ar^2) + O(r^5) \nonumber \\
+\dot{\theta} &= \omega + \mu c - b r^2 + O(r^4) \nonumber
+\end{empheq}
+This is the Hopf bifurcation. The origin is a fixed point with eigenvalues
+$\lambda = \mu \pm i(\omega + \mu c)$ so we have an unstable focus for 
+$\mu >0$ and a stable focus for $\mu <0$. There is a limit cycle if
+$\mu/a >0$ with radius $\sqrt{\mu/a}$ and frequency 
+$\omega + \mu (c - b/a)$. Two cases arise
+% Diagram of the said two cases
+\\
+\\
+The main point of the algebra is to find the sign of $a$. An alternative is to
+use the Poincar\'e-Bendixson theorem (for example) to show that there is a limit 
+cycle for $\mu > 0$ if it is supercritical.
+\subsection{**Bifurcation of Periodic Orbits**}
+There are various interesting possibilities.
+\\
+\\
+\examples
+\begin{enumerate}[1.]
+\item Saddle node bifurcation on the periodic orbit.
+\item One or more of the floquet multipliers cross $|\lambda|=1$
+      \begin{itemize}
+      \item $\lambda = -1$, Period doubling bifurcation
+      \item $\lambda = 1$, Torus bifurcation
+      \end{itemize}
+\item Homoclinic bifurcation. When a periodic orbit collides wit a saddle point
+      (see \S 4.4).
+\end{enumerate}
+% Chapter 6 %%%%%%%%%%%%%%%%
+\section{Fixed Points and Bifurcations of Maps}
+\subsection{Introduction}
+We've seen maps arise from our analysis of flows in various ways.
+However, maps are worth studying in their own right. In general
+$\bx_{n+1} = \bm{F}(\bx_{n})$ or $\bm{F}(\bx_n;\, \mu)$. The following simple
+maps are much discussed as illustrative examples.
+\subsubsection*{1D maps}
+\begin{enumerate}[(i)]
+\item The logistic map, $x_{n+1} = \mu x_n(1-x_n)$ (often resticted to 
+      $0 \leq x_n \leq 1$, $0 \leq \mu \leq 4$.)
+      % Include picture
+      \\
+      This is an example of a unimodal (one humped) map.
+\item The tent map
+      \[ x_{n+1} = \left\{ \begin{array}{ccc} 
+      \mu x_n & \mbox{for} & 0 \leq x_n \leq \frac{1}{2} \\
+      \mu (1-x_n) & \mbox{for} & \frac{1}{2} \leq x_n \leq 1
+      \end{array} \right. \]
+      for $1 < \mu \leq 2$.
+\end{enumerate}
+\subsubsection*{Circle maps}
+Represent a circle by $\mathbb{R}/\mathbb{Z}$ (Reals mod 1)
+\begin{enumerate}[(i)]
+\item Rotation map, $x_{n+1} = x_n + \omega (\bmod 1)$
+      This is periodic if $\omega \in \mathbb{Q}$. It is aperiodic 
+      and covers $[0,1]$ if $\omega \not\in \mathbb{Q}$.
+\item Bernoulli shift map/sawtooth map, $x_{n+1} = 2x_n (\bmod 1)$.
+      This is equivalent to writing $x_n$ in binary, $x_n = 0.a_1a_2a_3\cdots$
+      with $a_i \in \{0,1\}$ and shifting left; $x_{n+1} 0.a_2a_3a_4\cdots$
+      \begin{itemize}
+      \item This converges to the fixed point $x=0$ if $\displaystyle 
+            x_0 =\frac{p}{2^n}$
+      \item This converges to a periodic orbit if $x_0= p/q \in \mathbb{Q}$
+            and $q \neq 2^n$
+      \item This is aperiodic if $x_0 \not\in \mathbb{Q}$
+      \end{itemize} 
+\end{enumerate}
+\subsection{Fixed Points, Cycles, and Stability}
+Recall (\S 1.4) a map $\bx_{n+1} = \bm{F}(\bx_n)$ has 
+\begin{itemize}
+\item A fixed point $\bx_0$ if $\bx_0 = \bm{F}(\bx_0)$
+\item An N-cycle $(\bx_0,\bx_1, \dots , \bx_{n-1})$ if $ \bm{F}(\bx_0) = \bx_1
+      , \, \bm{F}(\bx_1) = \bx_2 , \dots , \bm{F}(\bx_{n-1}) =\bx_0 = 
+      \bm{F}^n(\bx_0) $ and $\bx_i \neq \bx_0$ for $i = 1, \dots N-1$
+\item An invariant set A if $\bm{F}(A) = A$
+\item Forward orbits $\cO^+(\bx) = \{\bx, \bm{F}(\bx), \bm{F}^2(\bx), \dots \}$
+\end{itemize}
+Definitions of Lyapunov, quasi-asymptotic, and asymptotic stability of 
+invariant sets follow in the obvious way. A stable invariant set is called 
+an attractor. (usually QAS, AS)
+\\
+\\
+The stability of a fixed point $\bx_0 = \bm{F}(\bx)$ is determined by the 
+eigenvalues of the Jacobian
+\[ A_{ij} = \left. \pder{F_i}{x_j} \right|_{\bx_0} \]
+Linearising and setting $\bm{y} = \bx - \bx_0$, gives
+\[ \bm{y}_{n+1} = A \bm{y}_n + O(|\bm{y}_n|^2)\]
+Hence the fixed point is 
+\begin{enumerate}[(i)]
+\item Asypmtotically stable if all of the eigenvalues of $A$ satisfy 
+      $|\lambda|<1$
+\item Lyapunov ($\implies$ asymptotically) unstable if any eigenvalue satisfies
+      $|\lambda|>1$
+\item \definition\ Non-hyperbolic if any eigenvalue is on the unit circle 
+      $|\lambda| =1$
+\end{enumerate}
+Each point on an N-cycle $(\bx_0,\bx_1, \dots , \bx_{n-1})$ is a fixed
+point of $\bm{F}^n$. So we can use the same theory.
+Let $\displaystyle A_{ij}^{(k)} = \left. \pder{F_i}{x_j} \right|_{\bx_k}$,
+then $\bm{y}_{k+1} = A^{(k)} \bm{y}_k$ and $\bm{y}_N = A^{(N-1)}A^{(N-2)}\cdots
+A^{(0)} \bm{y}_0$. Hence the stability is determined by the eigenvalues of the 
+product $ A^{(N-1)}A^{(N-2)}\cdots A^{(0)}$.
+\\
+\\
+We get bifurcations as one or more eigenvalues cross $|\lambda|=1$.
+\subsection{Local Bifurcations in 1D}
+\[ x_{n+1} = F(x_n ; \, \mu) , \;\; x \in \mathbb{R} \]
+In 1D there is only one eigenvalue $\displaystyle \lambda = \left. 
+\frac{dF}{dx} \right|_{x_0}$, which is real, and bifurcations occur when
+$\lambda = +1$ or $-1$. Wlog (change of origin) we can assume that the 
+bifurcation occurs at $x_0=0$ when $\mu=0$ ($\implies F(0,0)=0$).
+\[ \left. \frac{dF}{dx} \right|_{x_0} = \pm 1 \]
+%
+\subsubsection{The case $\lambda =1$}
+There are subcases which are directly analogous to those for 1D flows.
+\[ F = \nu_0(\mu) + \nu_1(\mu) x + \frac{1}{2} \nu_2 (\mu) x^2 + \dots \]
+Generically, $\nu_0$ and $\nu_1$ are $O(\mu)$ and $\nu_i =O(1)$ for $i\geq 2$
+which gives a saddle node bifurcations. However, there are are special cases 
+(transcritical and pitchfork when $\nu_0 = O(\mu^2)$)
+Using, for variety, the partial derivatives of F at $(0,0)$ to state the 
+conditions,
+\begin{enumerate}[(i)]
+\item Saddle-Node. $F_{\mu} \neq 0$, $F_{xx} \neq 0 \implies $
+      \[x_{n+1} = x_n + \mu F_{\mu}
+      + \frac{1}{2} x^2 F_{xx} + O(\mu^{3/2})\]
+       where $x \sim \mu^{1/2}$
+      There is a fixed point at $\displaystyle x = \left( \frac{-2\mu F_{\mu}}
+      {F_{xx}} \right) ^{\frac{1}{2}}$ if  $\displaystyle 
+      \frac{-2\mu F_{\mu}}{F_{xx}}  >0$.
+      \\ % Diagrams here
+      \\
+      The normal form is $x_{n+1} = x_n + \mu - x_n^2$
+\item Transcritical. $F_{\mu} =0$, $F_{xx} \neq 0 \implies$
+      \[ x_{n+1} = x_n + \frac{1}{2} x^2 F_{xx} + x_n \mu F_{x\mu} + 
+      \frac{1}{2}\mu^2 F_{\mu\mu} + O(\mu^3)\] 
+      where $x \sim \mu$. The fixed points are at $x^2 F_{xx} + 
+      2 x \mu F_{x\mu} + \mu^2 F_{\mu\mu} =0$ which are real if $F_{x\mu}^2 > F_{xx}
+      F_{\mu\mu}$ and are $x = k_1 \mu , \, k_2 \mu$ for 
+      \[ k_{1,2} = \frac{-F_{x\mu} \pm \sqrt{F_{x\mu}^2 - 
+      F_{xx}F_{\mu\mu}}}{F_{xx}}\]
+      \\ % Diagrams here
+      The normal form is $x_{n+1} = x_n + x_n(\mu - x_n)$
+\item Pitchfork. $F_\mu = F_{xx} =0 \implies$
+      \[ x_{n+1} = x_n + x_n\mu F_{x\mu} + \frac{1}{6}x_n^3 F_{xxx} + 
+      O(\mu^2)\] 
+      where $x \sim \mu^{1/2}$. Fixed points at $x=0$ and $\displaystyle
+      \left(\frac{-6\mu F_{x\mu}}{F_{xxx}} \right) ^{1/2}$ when 
+      $\displaystyle \frac{-6\mu F_{x\mu}}{F_{xxx}} >0$
+      \\
+      \\
+      There are two normal forms.
+      \begin{equation}\tag{Supercritical}
+       x_{n+1} = x_n + x_n (\mu - x_n^2) \quad \end{equation}
+      \begin{equation}\tag{Subcritical} 
+      x_{n+1} = x_n + x_n (\mu + x_n^2) \quad \end{equation}
+\end{enumerate}
+\subsubsection{Case $\lambda = -1$}
+This gives a period doubling bifurcations.
+% Example included here
+\\
+(Semi-gruesome algebra)
+With the bifurcation at $x=0, \, \mu =0$
+\[ x_{n+1} = -x_n + \alpha + \beta x_n + \gamma x_n^2 + \delta x_n^3 + O(4)\]
+where $\alpha,\,\beta$ are $O(\mu)$ and $\gamma,\,\delta$ are $O(1)$.
+Keep the fixed point at the origin by setting $X = x - \alpha/2$.
+\[X_{n+1} = -X_n + (\beta + \gamma \alpha)X_n + \gamma X_n^2 + \delta X_n^3
++O(4)\]
+counting $\mu = O(X^2), \, \alpha = O(X^2)$ set $\beta + \gamma \alpha = 
+-\tilde{\mu}$ and look for a 2-cycle.
+\begin{align*}
+X_{n+2 } &= - ( 1 + \tilde{\mu})X_{n+1} + \gamma X_{n+1}^2 + \delta 
+X_{n+1}^3 + h.o.t. \\
+&= (1 + \tilde{\mu})[ ( 1 + \tilde{\mu})X_{n+1} - \gamma X_{n+1}^2 - \delta 
+X_{n+1}^3 ] + \gamma [( 1 + \tilde{\mu})X_{n+1} - \gamma X_{n+1}^2]^2 
+- \delta X_n^3 + h.o.t.  \\
+&= (1+2\tilde{\mu})X_n - 2(\gamma^2+\delta) X_n^3 + O(4)
+\end{align*}
+Which is a pitchfork bifurcationf for $F^2$. The fixed point $X=0$ is just the
+original fixed point of $F$. The fixed points $\displaystyle \pm \left( 
+\frac{\tilde{\mu}}{\gamma^2 + \delta} \right) ^{\frac{1}{2}}$ (where
+$\tilde{\mu}/(\gamma^2+\delta) >0$ ) form a 2-cycle.
+% Diagram here
+\subsection{The Logistic Map}
+ \[ \boxed{x_{n+1} = \mu x_n (1-x_n) } \]
+Fixed points satisfy $x = \mu x(1-x) \implies x= \, 0,1-1/\mu$
+\[F'(x) = \mu(1-2x) \]
+\begin{itemize}
+\item At $x=0$, $F' = \mu$ so stable for $-1 < \mu < 1$
+\item At $x=1-1/\mu$, $F' = 2-\mu$ so stable for $1 < \mu < 3$
+\end{itemize}
+Hence there is a transcritical bifurcation at $\mu_0=1$, and a period doubling
+bifurcation at $\mu =3$ (Also at $\mu = -1$)
+\\
+\\
+The bifurcating 2-cycle satisfies $F^2(x) =x \implies$
+\[ \mu [ \mu x(1-x)] [1 - \mu x (1-x) ] = x \]
+\[ \implies x(\mu^3 x^3 - 2 \mu^3 x^2 + (\mu^2 - \mu^3)x + (1-\mu)) =0 \]
+But we know that $x$ and $x-(1-1/\mu)$ are factors from the fixed points of 
+$F$.
+\[ \implies x[\mu x - (\mu-1)][\mu^2x^2 - \mu(\mu+1)x \mu + 1] =0 \]
+\[ \implies x_1,x_2 = \frac{1}{2\mu} [(1+\mu) \pm \sqrt{(\mu-3)(\mu+1)}] \]
+So the 2-cycle exists in $\mu >3$. The stability of 2-cycles is found from
+\begin{align*}
+(F^2)' &= F'(x_1)F'(x_2) \\
+&= \mu^2 (1-2x_1)(1-2x_2) \\
+&= \mu^2 ( 1-2(x_1+x_2) + 4x_1 x_2 ) \\
+&= \mu^2 \left[ 1-2\left( \frac{\mu+1}{\mu} \right) + 4 \left( \frac{\mu+1}{\mu^2}
+ \right) \right] \\
+&= 4 + 2 \mu - \mu^2 
+\end{align*}
+Where $-1 < 4 + 2 \mu - \mu^2 <1$ for $1 + \sqrt{6} > \mu >3$. So the 2-cycle is
+stable in this interval and itself becomes unstable by a period doubling 
+bifurcation at $\mu_2 = 1 + \sqrt{6}$ to a stable 4-cycle. $(1 + \sqrt{6} 
+= 3.4495)$ The fixed point $x=0$ period doubles at $\mu = -1$, and the 2-cycle
+itself period doubles at $\mu = 1- \sqrt{6}$.
+\\
+\\
+Analysis has led us thus far:
+% Diagram of bifurcations
+\\
+\\
+Numerical calculations show that period doubling continues, with $2^k-$cycles
+appearing at $\mu_k$ with $\mu_3 = 3.544, \, \mu_4 = 3.564, \, \dots , \mu_k \to 
+\mu_{\infty} = 3.5700$
+\[ \frac{\mu_k-\mu_{k-1}}{\mu_{k+1} - \mu_{k} } \to 4.6692 \quad 
+\mbox{Feigenbaum's Constant} \]
+For $\mu > \mu_{\infty} = 3.5700 $ get \underline{chaos}.
+\section{Chaos}
+\subsection{introduction}
+What do we mean by chaos in a dynamical system. Two main ideas:
+\begin{enumerate}[(a)]
+\item Arbitrarily close orbits separate from eachother
+\item There is some sort of mixing between even the smallest sets.
+\end{enumerate}
+Thus even the tiniest of errors in the initial conditions, or in 
+numerical integration of the flow/iteration of the map will eventually
+grow to such an extent that it is impossible to predict the future evolution
+of the system, even though the system is entirely deterministic.
+\\
+\\
+Sometimes only a subspace of a state space is chaotic. A stable invariant set
+on which there is chaos is called a strange attractor. We formalise ideas (a) and
+(b) as follows.
+\\
+\\
+Let $F$ be a continous map $I \to I$ where $I$ is a bounded interval in 
+$\mathbb{R}$. Let $\Lambda \subseteq I$ be an $F$ invariant set.
+\\
+\\
+\definition\ $F$ has sensitive dependance on initial conditions (SDIC)
+if $\exists \, \delta >0$ s.t. for any $x \in \Lambda$, and any $\epsilon >0$,
+$\exists \, n >0$ and $y \in \Lambda$ s.t. $|x-y| < \epsilon$ and 
+$|F^n(x) - F^n(y)| > \delta$
+\\
+\\
+\definition\ $F$ is topologically transitive (TT) on $\Lambda$ if for all open 
+sets $U,V$ s.t. $U \cap V \neq \emptyset$ and $U \cap \Lambda \neq \emptyset$
+$\exists \, n>0$ s.t. $F^n(U) \cap V \neq \emptyset$.
+\\
+\\
+TT means that some points from any neighbourhood of $\Lambda$, however small,
+will eventually move into any other neighbourhood of $\Lambda$. This implies
+that $\Lambda$ cannot be decomposed into disjoint invariant sets.
+\\
+\\
+\example\ The rotation map $x_{n+1} = x_n + \omega \, (\bmod 1)$ with $\omega \not\in
+\mathbb{Q}$ is TT on $[0,1)$ but not SDIC.
+\\
+\\
+\example\ The map 
+\[x_{n+1}= \begin{array}{cc}
+2x_{n} & |x| < \frac{1}{2} \\
+2(sign(x_n) - x_n) & \frac{1}{2} < |x| < 1
+\end{array} \]
+Has SDIC on $[-1,1]$. \\
+Does not have TT on $[-1,1]$ as there is no mixing of $x>0$ and $x<0$.
+\\
+\\
+\definition\ Chaos (according to Devany)
+$F$ is chaotic on $\Lambda$ if
+\begin{enumerate}[(i)]
+\item $F$ has SDIC on $\Lambda$
+\item $F$ has TT on $\Lambda$
+\item Periodic points are dense in $\Lambda$
+\end{enumerate}
+The following definitions look quite different, but are actually almost the
+same, and are easier to work with.
+\\
+\\
+\definition\ Horseshoe property
+\\
+$F$ has a horseshoe if there exists an open interval $J$ and disjoint open
+subintervals $K_0,K_1$ such that $F(K_0) = J$ and $F(K_1) = J$.
+\\
+\\
+\definition\ Chaos (according to Glendinning)
+\\
+$F$ is chaotic if $F^n$ has has a horseshoe for some $n$.
+\\
+\\
+Notes:
+\begin{enumerate}[(1)]
+\item We shall show in the following sections that Glendinning's Chaos $\implies$
+      Devaney's Chaos.
+\item Glendinning's chaos $\implies$ neigbouring orbits diverge exponentially.
+      (though Devaney's chaos \& SDIC only guarantees that some neigbouring 
+       orbits diverge, and possibly only algebraically.)
+\item Glendinning's definition shows why ``Stretching and Folding'' is good for
+      mixing.
+\end{enumerate}
+\subsection{The sawtooth map (Bernoulli shift map)}
+\[ \boxed{x_{n+1} = 2 x_n \, (\bmod 1) }\]
+Clearly $F$ has a horseshoe with $J = (0,1)$, $K_0 = (0, \frac{1}{2}),
+K_1 = (\frac{1}{2}, 1) \implies$ chaos (Glendinning)
 
 
 \end{document}
