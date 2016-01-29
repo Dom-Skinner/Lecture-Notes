@@ -13,6 +13,7 @@
 \newcommand{\question}{\textbf{Question:}} 
 \newcommand{\theorem}{\textbf{Theorem:}} 
 \newcommand{\Log}{\mathrm{Log} \,} 
+\newcommand{\improp}{\int_{-\infty}^{\infty} } % For improper integrals, standard limits
 
 \begin{document}
 
@@ -348,7 +349,238 @@ There is a branch point at infinity, send $z \to 1/w$,
 \[ (z-1)^{1/4} \to \left( \frac{1}{w} -1 \right) ^{1/4} =
 w^{-\frac{1}{4}} ( 1-w)^{\frac{1}{4}} \]
 Hence a branch point at $w=0$ and so at $z=\infty$.
-
-
-
+\\
+\\
+\example\ $\displaystyle I = \int^{\infty}_0 \frac{x^{1/2}}{1+x^2} dx$
+with $x$ real. We can convert this to a contour integral taking
+$\displaystyle I = \int^{\infty}_0 \frac{z^{1/2}}{1+z^2} dz$ where now
+$\displaystyle f(z)= \frac{z^{1/2}}{1+z^2} $ has Branch points at
+$0,\infty$ and simple poles at $\pm i$. We restrict the argument of $z$ to
+run between $0$ and $2\pi$.
+%Diagram of Keyhole integral
+\[ \int_C \frac{z^{1/2}}{1+z^2} dz = 2\pi i \left( \mbox{residues at }
+e^{i\pi /2} \mbox{ and } e^{-3i\pi /2} \right) \]
+Along $C_1, \, z = x e^{0i}$ one just gets 
+$\displaystyle I = \int^{\infty}_0 \frac{x^{1/2}}{1+x^2} dx$\\
+Along $C_2, \, z = R e^{i\theta}$ for $R$ very large. Therefore
+$dz = iR e^{i\theta} d\theta$ and
+\[ \int_{C_2} f(z) dz = \int_0^{2\pi} \frac{R^{1/2} e^{i\theta/2}}{1 + R^2 e^{2i\theta}} 
+i R e^{i\theta} d\theta = O(R^{-1/2}) \to 0 \mbox{ as } R \to \infty \]
+Along $C_3, \, z = x e^{2\pi i}$  and so 
+\[ \int_{C_3} f(z) dz = \int_{\infty}^0 \frac{x^{1/2} e^{\pi i} }{1+ x^2 e^{4\pi i}} dx
+= \int_0^{\infty} \frac{x^{1/2}}{1+x^2} dx = I \]
+Along $C_4, \, z = \epsilon e^{i\theta}$ for $\theta$ very small. Therefore
+$dz = i\epsilon e^{i\theta} d\theta$ and
+\[ \int_{C_4} f(z) dz = \int_{2\pi}^0 \frac{\epsilon^{1/2} e^{i\theta/2}}
+{1 + \epsilon^2 e^{2i\theta}} i \epsilon e^{-i\theta} d\theta = O(\epsilon^{3/2})
+\to 0 \mbox{ as } \epsilon \to 0 \]
+What are the residues at $z = e^{i \pi /2}, \, e^{3 i \pi /2} $?
+Since these are simple poles, it is easiest to find
+\[ \lim_{z \to e^{i\pi/2}} \left( \frac{z - e^{i\pi /2}}{z^2 + 1} z^{1/2} 
+\right) \to  \lim_{z \to e^{i\pi/2}} \left( \frac{1}{2z} z^{1/2} \right)
+= \frac{1}{2} e^{-i\pi /4} \]
+and at $z = e^{3i \pi /2}$ the residue is 
+\[ \lim_{z \to e^{3i\pi/2}} \left( \frac{z - e^{3i\pi /2}}{z^2 + 1} z^{1/2} 
+\right) \to  \lim_{z \to e^{3i\pi/2}} \left( \frac{1}{2z} z^{1/2} \right)
+= \frac{1}{2} e^{-3i\pi /4} \]
+\[ \implies \int_C \frac{z^{1/2}}{1+z^2} dz = 2\pi i \left(
+\frac{1}{2} e^{-i \pi /4} + \frac{1}{2} e^{-3i\pi /4} \right) =
+2\pi \sin \frac{\pi}{4} = \frac{\pi}{\sqrt{2}} \]
+\\
+\example\ Another example of a branch cut.
+\[f(z) = \sqrt{(z-a)(z-b)}\]
+with $a,b \in \mathbb{R}, \; \>0,\, b<0$ This has branch points at $z= a, \, b$.
+What aboutat infinity? As usual take $z = 1/w$
+\[f(w) = \sqrt{\left(\frac{1}{w} - a\right)\left(\frac{1}{w} -b\right)} 
+= \frac{1}{w} \sqrt{(1-aw)(1-bw)}\]
+which is fine apart from a pole at $\infty$, which is not the same as a branch 
+point. 
+% Insert diagram here
+\[f(z) = \sqrt{(z-a)(z-b)} = \sqrt{\rho_1 \rho_2}e^{i(\theta_1+\theta_2)/2}\]
+with say $0 \leq \theta_1 , \, \theta_2 < 2\pi$. In this case the cut is 
+directly beween $a$ and $b$. Making a different choice, $-\pi \leq \theta_1 < \pi$.
+and $0 \leq \theta_2 < \pi$.
+% Diagram
+\\
+\\
+This cut appears to end at $+\infty$ and $-\infty$ which is not a branch point.
+However the complex plane is really a sphere, infinity is really a point and 
+the cut just happens to go through the point $\infty$.
+%
+%
+\subsection*{Cauchy Principal Value of an integral}
+Sometimes it is possible to consruct the Cauchy Principal Value of an integral,
+defined to be
+\[ P \int_A^B f(x) dx = \lim_{\epsilon \to 0} \left[ \int^{x_0 - \epsilon}_A 
+f(x) dx + \int^B_{x_0 + \epsilon} f(x) dx \right] \]
+Where the letter P before an integral indicates that it is the Principal Value
+(PV). Suppose that $f(x)$ has a singularity at $x_0$, then if the limit as
+$\epsilon \to 0$ exists, then it defines the principal value.
+\\
+\\
+If the integral were convergent, then the principal value coincides with the
+original integral.
+\\
+\\
+\examples\
+\[ P\int_{-1}^2 \frac{dx}{x} = \lim_{\epsilon \to 0} \left[ \int_{-1}^{-\epsilon}
+\frac{dx}{x} + \int^2_{\epsilon} \frac{dx}{x} \right] = 
+ \lim_{\epsilon \to 0} \left[ 
+\log |x| ^{-\epsilon}_{-1} + \log |x| ^2 _{\epsilon} \right] = \log 2 \]
+Principal balues work nicely at poles. In the complex plane this turns out to be
+rather convenient. Suppose one integrates a function that has a pole on the real 
+axis.
+% Diagram of contour with a green line
+\\
+\\
+PV corresponds to the green contour.
+\\
+\\
+This contour might be closed in the top half plane. Apply a small modification
+of Cauchy's theorem:
+\[ 2\pi i \left( \sum \mbox{ Residues in } C \right) = \int_{\Gamma} f(z) dz
++ \int_C f(z) dz + \int_{C'} f(z) dz \]
+Where $\displaystyle \int_C f(z) dz$ corresponds to the principal value.
+$C' = z_0 + \epsilon e^{i \theta} $ where $\theta$ runs from $\pi$ to $0$.
+Near $z = z_0$,
+\[f(z) = \sum_{n=-1}^{\infty} c_n ( z-z_0)^n \]
+So this has residue $c_{-1}$ at $z = z_0$.
+\[ \int_{\pi}^0 \sum_{n=-1}^{\infty} c_n ( z-z_0)^n  \, dz 
+= \int_{\pi}^0 \sum_{n=-1}^{\infty} c_n \epsilon^n e^{in\theta} 
+(i \epsilon e^{i\theta} d\theta) 
+= \int_{\pi}^0 \sum_{n=-1}^{\infty} c_n \epsilon^{n+1} e^{i(n+1)\theta} 
+i d\theta \]
+In the limit $\epsilon \to 0$ the only remaining term is $n=-1$.
+Therefore,
+\begin{align*}
+ = \int_{\pi}^0 c_{-1} i d\theta &= -i\pi c_{-1} \\
+ \implies \int_{c'} f(z) dz &= -i\pi c_{-1} 
+\end{align*}
+This shows also that higher poles can give trouble. We will only look at the case
+of simple poles in the integrand.
+\\
+\\
+\example\ Calculate the PV of 
+\[ P \int_{-\infty}^{\infty} \frac{e^{iax}}{x} dx \]
+for $a$ real and positive
+% Picture of generic contour
+Apply our modified version of Cauchy's theorem to this contour.
+\[ 2\pi i \left( \sum \mbox{ Residues in } C \right)  = 
+\int_{|z| = R, \, Im(z) >0} \frac{e^{iaz}}{z}dz +
+P \int_{-R}^{R} \frac{e^{iax}}{x} dx - i\pi c_{-1} \]
+Where $c_{-1}$ is the residue of $\frac{e^{iax}}{x}$ at $x=0$.
+\[ \implies 0 = 0 + P\int_{-\infty}^{\infty} \frac{e^{iax}}{x} dx - i \pi \]
+\[ \implies P\int_{-\infty}^{\infty} \frac{e^{iax}}{x} dx = \pi i \]
+Take the imaginary part of this expansion to get that
+\[ P \int_{-\infty}^{\infty} \frac{\sin ax}{x} dx = \pi\]
+Since the principal part of a convergent integral is the same
+as the integral, one finds that
+\[ \int_{-\infty}^{\infty} \frac{\sin ax}{x} dx = \pi \] and is indepenent
+of $a$ for $a>0$.
+\\
+\\
+\example\
+\begin{equation}
+I = \improp \frac{e^{px} - e^{qx}}{1 - e^x} dx \tag{$0 < p,q < 1$}
+\end{equation}
+This is singular at $x = 2 \pi n i$ where the denominator zero. The
+singularity at zero is removable. Hence this integral is the same as its
+principal value 
+\[I = P\improp \frac{e^{px} - e^{qx}}{1 - e^x} dx  \]
+we consider 
+\[I = \improp \frac{e^{pz} - e^{qz}}{1 - e^z} dz  \]
+Choose a rectangular contour
+% Picture of a contour
+\[ 0 = \underbrace{P\int^{R}_{-R} \frac{e^{pz} - e^{qz}}{1 - e^z} dz}_{C_1}
++ \underbrace{P \int^{-R+2\pi i}_{R+2\pi i} \frac{e^{pz} - e^{qz}}{1 - e^z} dz }_{C_4}
+-\underbrace{i\pi \left( \mbox{Res at } 0 \right)}_{C_2}
+-\underbrace{i\pi \left( \mbox{Res at } 2\pi i \right)}_{C_3} \]
+Now we consider
+\[ P \int \frac{e^{pz} - e^{qz}}{1-e^z} = P\int \frac{e^{pz}}{1-e^z} dz - 
+P \int \frac{e^{pz}}{1-e^z} dz \]
+The residue at 0
+\[ \lim_{z \to 0} \frac{z e^{pz}}{1- e^z} = -1 \]
+The residue at $2\pi i$
+\[ \lim_{z \to 2 \pi i} \frac{(x - 2 \pi i)e^{px}}{1- e^x} = -e^{2 \pi i p} \]
+\[\implies  0 = 
+\int_C \frac{e^{pz}}{1-e^z} dz =
+\underbrace{P\improp \frac{e^{px}}{1 - e^x} dx}_{I_1}
++ P \int^{-\infty}_{\infty} \frac{e^{p(x+2\pi i)}}{1 - e^{x+2\pi i}} dx 
+-i\pi \left( \mbox{Res at } 0 \right)
+-i\pi \left( \mbox{Res at } 2\pi i \right) \]
+and so we can find $I_1$
+\[ 0 = I_1 - I_1 e^{2\pi i p} - i\pi(-1) - i \pi ( -e^{2i\pi p}) \]
+\[ \implies \frac{-i\pi (1+e^{2i\pi p})}{1 - e^{2\pi i p} }  =
+\pi \cot \pi p\]
+therefore
+\[ I = \pi (\cot \pi p - \cot \pi q) \]
+%
+% 
+\section*{The Hilbert Transform}
+A Hilbert transform is somewhat like the Fourier transform. Take a function of 
+a real variable $s$, $f(s)$. 
+\begin{framed}
+\noindent The Hilbert transform is 
+\[ H_f(t) = \frac{1}{\pi} P \improp \frac{f(s)}{t-s} \]
+where $t$ is another real variable.
+\end{framed}
+\noindent This can be turned into a form that is easier to work with.
+\[ H_f(t) = \frac{1}{\pi} \lim_{\epsilon \to 0} \left[
+\int_{-\infty}^{t-\epsilon}\frac{f(s)}{t-s} ds + \int^{\infty}_{t+\epsilon} 
+\frac{f(s)}{t-s} ds \right] \]
+Shift the pole in $s$ to the origin, $s-t = s'$
+\[ H_f(t) = -\frac{1}{\pi} \lim_{\epsilon \to 0} \left[
+\int_{-\infty}^{-\epsilon}\frac{f(s'+t)}{s'} ds' + \int^{\infty}_{\epsilon} 
+\frac{f(s'+t)}{s'} ds' \right] \]
+In the first integral take $s' \mapsto -s'$ to get that 
+\[ H_f(t) = \frac{1}{\pi} \lim_{\epsilon \to 0} \left[
+\int^{\infty}_{\epsilon} \frac{f(t-s')}{s'}
+-\frac{f(t+s')}{s'} ds' \right] \]
+Now lets find the inverse of the Hilbert transform. $\hat{H}_f(\omega)$ is
+the fourier transform of the Hilbert transform. Here we consider the 
+Fourier transform to be
+\[ \hat{f}(\omega) = \improp f(t) e^{i\omega t} dt \]
+Now
+\[ \hat{H}_f(\omega) = \frac{1}{\pi} \lim_{\epsilon \to 0}
+\improp \int_{\epsilon}^{\infty} (f(t-s)-f(t+s))e^{i\omega t} ds \, dt \]
+We will assume that interchanging the orders of integration is fine. Shift
+in the first integral $t-s\to t$, $t+s \to t$
+\[ \hat{H}_f(\omega) = \frac{1}{\pi} \lim_{\epsilon \to 0} \left[
+\improp \int_{\epsilon}^{\infty} \frac{1}{s} ( 
+\underbrace{f(t)e^{i\omega t}}_{\hat{f}(\omega)}e^{i\omega s}
+- \underbrace{f(t) e^{i\omega t}}_{\hat{f}(\omega)}e^{-i\omega s} 
+)ds \, dt \right] \]
+\[ = \frac{1}{\pi} \lim_{\epsilon \to 0} \hat{f}(\omega) \int_{\epsilon}^{\infty}
+\frac{1}{s} ( e^{i\omega s} - e^{-i \omega s} ) ds  = \frac{i}{\pi} \hat{f}(\omega)
+\improp \frac{\sin \omega s}{s} ds \]
+Recall
+\[P \improp \frac{\sin \omega s}{s} ds = \left\{ \begin{array}{cc}
+\pi & \omega > 0 \\
+0 & \omega =0 \\
+-i\pi & \omega <0 \end{array} \right. \]
+Therefore, for
+\begin{alignat*}{3}
+\omega > 0 & \quad & \hat{H}_f(\omega) &= \;\;\; i \hat{f}(\omega) \\
+\omega < 0 & & \hat{H}_f(\omega) &= -i \hat{f}(\omega) \\
+\omega =0 & & \hat{H}_f(\omega) &=0
+\end{alignat*}
+So
+\[ \hat{H}_f\hat{H}_f (\omega) = -f(\omega) \quad (\omega \neq 0) \]
+So we have that $H^{-1} = -H$.
+Use of the Hilbrt transform is to discover the Kramers-Kronig relations.
+Consider a function $f(s)$ of a complex variable $s$, analyic in the 
+upper half plane, and dies off faster than $1/|s|$ in the upper half plane.
+Take $t$ real. 
+% Contour picture here,
+\[ \int_c \frac{f(s)}{t-s} \]
+Integrating along the real axis gives
+\[ \underbrace{\frac{1}{\pi} P\improp \frac{f(s)}{t-s} ds}_{H_f(s)}
++\frac{1}{\pi} (-i\pi(\mbox{Res at } s=t)) =0\]
+\[ \implies \frac{1}{\pi} \improp \frac{f(s)}{t-s} ds = -i f(t) \]
+Separate $f(s)$ into its real and imaginary parts.
+Real:
+\[ \frac{1}{\pi} P \improp \frac{u(x,0)}{t-x} dx = v(t,0)\]
+Imaginary:
+\[ \frac{1}{\pi} P \improp \frac{v(x,0)}{t-x} dx = -u(t,0)\]
+So if $u$ is known on the real axis, then $v$ can be found.
 \end{document}
