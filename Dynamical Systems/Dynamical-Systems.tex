@@ -9,11 +9,13 @@
 \usepackage{framed}
 \usepackage{enumerate}
 \usepackage{array}
-%\usepackage{pgfplots}
+\usepackage{tikz}
 \usepackage{caption}
 \usepackage{amsfonts}
 \usepackage[margin=3cm]{geometry}
 \usepackage{float}
+
+\usetikzlibrary{arrows}
 
 \newcommand{\cO}{\mathcal{O}}                               %
 \newcommand{\domain}{\mathcal{D}}                           %
@@ -2140,6 +2142,312 @@ Notes:
 \[ \boxed{x_{n+1} = 2 x_n \, (\bmod 1) }\]
 Clearly $F$ has a horseshoe with $J = (0,1)$, $K_0 = (0, \frac{1}{2}),
 K_1 = (\frac{1}{2}, 1) \implies$ chaos (Glendinning)
+\begin{enumerate}[(a)]
+\item If $x$ and $y$ differ first in the $(n+1)^{th}$ place in their binary
+      expansion then $|F^r(x) - F^r(y)|= 2^r |x-y|$ for $r \leq n$. So let
+      $0<\delta < \frac{1}{2} $. Given $x$ and $\epsilon >0$, choose $n$ such
+      that $2^{-n-1} < \epsilon$ and $y$ to differ from $x$ in only the 
+      $(n+1)^{th}$ place. Then $|F^n(x) - F^n(y)| = \frac{1}{2} > \delta $.
+\item Given any $u = 0.u_1u_2 \dots$, and $v= 0.v_1v_2 \dots$, define
+      \[ u_N = 0.u_1u_2 \dots u_N v_1 v_2 v_3 \dots \]
+      Then $F^N(u_N) = v$ and can make $u_N$ arbitrarily close to $u$. Therefore
+      the sawtooth map is TT on $[0,1)$.
+\item Given any $w=0.w_1w_2w_3 \dots$ define 
+      \[ w_N = 0.w_1w_2 \dots w_N w_1 w_2 \dots w_N w_1 \dots \]
+      (written $0.\dot{w}_1 \dots \dot{w}_N$) which is a periodic orbit 
+      arbitrarily close to $w$. Hence periodic orbits are dense in $[0,1)$.
+\end{enumerate}
+(a), (b) \& (c) $\implies$ the sawtooth map is chaotic (Devany).
+\subsection{Horseshoes, Symbolic Dynamics, and the Shift Map}
+We aim to show that a map with a horseshoe acts on a certain invariant 
+subset $\Lambda$ in essentially the same way as the sawtooth map acts on 
+$\mathbb{R}/\mathbb{Z}$.
+\\
+\\
+Suppose a continous map $F$ has a horseshoe on the 
+open interval $J$ and define the closed intervals $I = \bar{J}$, 
+$I_0 = \bar{K}_0$, $I_1 = \bar{K}_1$. Suppose for simplicity that the graph
+of $F$ has the following shape.
+% Picture of the shape...
+\\
+\\
+$F$ is monotonic on $I_0$ and $I_1$, $I_0 \cap I_1 = \emptyset$. If 
+$x,F(x) \in I$ then $x \in I_0 \cup I_1$. Define
+\[ \Lambda = \{ x \in I : F^n(x) \in I \; \forall n \geq 0\} \]
+Clearly $x \in \Lambda \implies F(x) \in  \Lambda$, and 
+$x \in \Lambda \overset{IVT}{\implies} \exists \, y \in \Lambda$ s.t. 
+$F(y)=x$. Therefore $\Lambda$ is invariant, i.e. $F(\Lambda) = \Lambda$.
+\\
+\\
+For each $x \in \Lambda$, $F^i(x) \in \Lambda \implies F^{i-1}(x) \in 
+I_0 \cup I_1$. Define
+\[ x_ i = \left\{ \begin{array}{c}
+0 \mbox{ if } F^{i-1}(x) \in I_0 \\
+1 \mbox{ if } F^{i-1}(x) \in I_1
+\end{array} \right. \;\; (\mbox{for }i \geq 1) \]
+If $x$ corresponds to the symbol sequence $x_1x_2x_3 \dots$
+then $F(x)$ corresponds to the sequence $x_2x_3x_4 \dots$
+i.e. $F$ acts on $\Lambda$ in the same way as the shift map acts
+on the space $\{0,1\}^{\mathbb{N}}$ of $\infty$ sequences of 0's  and 1's.
+This is not quite the same as the sawtooth map because
+$0111\dot{1}$ and $1000\dot{0}$ are distinct symbolic sequences, but the same
+as binary numbers. However, it differs only on a countable set $\{p/2^n\}$ and
+does not affect the constructions in \S 7.2.
+\\
+\\
+I.e. Glendinning's chaos $\iff$ horseshoe $\implies$ like the sawtooth map 
+$\implies$ Devany's chaos. 
+\\
+\\
+To construct $\Lambda$ note that for any closed interval 
+$A \subseteq I$, $F^{-1}(A) \equiv \{ x \in I \, : \, F(x) \in A \}$ comprises
+two closed intervals namely $F^{-1}(A) \cap I_0$ and $F^{-1}(A) \cap I_1$.
+Therefore $F^{-n}(I)$ is $2^n$ closed intervals and $\Lambda = 
+\bigcap_{n=0}^{\infty} F^{-n}(I) $.
+\\
+\\
+cf Cantor middle third set
+% Image of Cantor middle third set
+\subsection{Period 3 implies Chaos}
+Recall the intermediate value theorem (IVT):
+\\
+If $f:[a,b] \to \mathbb{R}$ is continous and $f(a)=c$, $f(b)=d$ then
+$\forall \, y \in [c,d] \; \exists \, x \in [a,b]$ s.t. $f(x)=y$, with the
+corollary that if $f$ changes sign on $[a,b]$ then $\exists \, x_0$ s.t. 
+$f(x_0)=x_0$.
+\\
+\\
+\theorem\ Period 3 implies chaos
+\\
+If a continous map $F$ on $I \subseteq \mathbb{R}$ has a 3-cycle then $F^2$
+has a horseshoe and so $F$ is chaotic (Glendinning).
+\begin{proof}
+Let $x_1 < x_2 < x_3$ be the elements of the 3-cycle and wlog assume 
+$F(x_1)=x_2$, $F(x_2)=x_3$ and $F(x_3)=x_1$. (If $x_1 \to x_3 \to x_2$ just
+consider $-F(-x)$). Then 
+\begin{align*} 
+F(x_2) &= x_3 > x_2 \\
+F(x_3) &= x_2 < x_3 
+\end{align*}
+\[\implies \exists \, z \in (x_2,x_3) \mbox{ with } F(z) =z  \]
+Also
+\begin{align*} 
+F(x_1) &= x_2 < z \\
+F(x_2) &= x_3 > z 
+\end{align*}
+\[\implies \exists \, y \in (x_1,x_2) \mbox{ with } F(y) =z  \]
+\\
+Now $F^2(y)=F^2(z)=z$ and $F^2(x_2)=x_1<y$. Therefore
+\begin{align*}
+\exists \mbox{ smallest } &r \in (y,x_2) \; s.t. \; F^2(r)=y \\
+\exists \mbox{ largest } \;\; &s \in (x_2,z) \; s.t. \; F^2(s)=y 
+\end{align*}
+Therefore $F^2$ has a horseshoe with $J=(y,z)$, $K_0 = (y,r)$, $K_1 = (s,z)$.
+\end{proof}
+\subsection{The existence of N-cycles}
+Since a 3-cycle in $F$ implies that there is a horseshoe in $F^2$, we know that
+$F^2$ has cycles of all orders (like the sawtooth/shift map). In fact we can
+show directly that $F$ itself has cycles of all orders. We use the result from
+IA that if $F$ is a continous function, and $V \subseteq F(U)$ where $U$ and 
+$V$ are closed intervals, then $\exists$ a closed interval $K \subseteq U$,
+with $F(K)=V$.
+\\
+\\
+\theorem\ \\
+If a continous map $F$ on $I \subseteq \mathbb{R}$ has a 3-cycle then it has
+an N-cycle $\forall \, N \geq 1$.
+\begin{proof}
+As before, wlog $x_1<x_2< x_3$ with $F(x_i)=x_{i+1}$.
+\\
+\\
+$\boxed{N=1}$ $x_1=F(x_3) < x_2 < x_3 < F(x_2) \overset{IVT}{\implies} \exists$
+a fixed point in $(x_2,x_3)$.
+\\
+\\
+$\boxed{N \geq 2}$ Let $I_0 = [x_1,x_2]$, $I_1=[x_2,x_3]$. by IVT, $F(I_0) 
+\supseteq I_1$, $F(I_1) \supseteq I_0 \cup I_1 $
+\\[2pt]
+Let $J_N = I_1$, use the IA result repeatedly to construct 
+$J_{N-1} \subseteq I_0$, $J_{N-2},J_{N-3}, \dots , J_0 \subseteq I_1$ with
+$F(J_i) = J_{i+1}$ for $0 \leq i \leq N-1$
+\\[2pt]
+$F^{N}(J_0) = I_1 \implies \exists \, a,b\in J_0$ with $F^N(a)=x_2$, 
+$F^N(b) =x_3$. Now $J_0 \subseteq I_1 \implies$
+\[ x_2 = F^N(a) \leq a,b \leq F^N(b) =x_3 \]
+Hence $\exists \, z \in [a,b]$ with $F^N(z)=z$
+\\[2pt]
+We are not done yet, we need to check that $z$ has \underline{least} period 
+$N$. If $F^{N-1}(z)=x_2 \in I_0 \cap I_1$, then $F^N(z)=x_3$. But if 
+\begin{itemize}
+\item $N=2$, $F^2(x_3) = x_2 \neq x_3$ \# 
+\item $N\neq2$, then $F(x_3)=x_1 \not\in I_1$ \#
+\end{itemize}
+%
+so $J_1 \subseteq I_1$. Hence $F^{N-1}(z) \neq x_2$ and is in $I_0$ by construction. 
+\\
+$\implies F^{N-1}(z) \not \in I_1$ 
+\\
+$\implies \cO (z) $ leaves $I_1$ exactly once. Therefore this is an N cycle.
+\end{proof}
+\noindent This kind of construction can be represented graphically. We write 
+$F(I_0) \supseteq I_1$, $F(I_1) \supseteq I_0 \cup I_1$ as the 
+\underline{directed graph}.
+\begin{center}
+\begin{tikzpicture}
+\tikzset{edge/.style = {->,>=latex'}}
+\node (a) at (0,0) {$I_{0}$};
+\node (b) at (2,0) {$I_{1}$};
 
+\draw[edge] (a)[bend left] to (b);
+\draw[edge] (b)[bend left] to (a);
+\draw[edge] (b)[loop right] to (b);
+\end{tikzpicture}
+\end{center}
+On which the N-cycle follows the allowed closed path.
+\begin{center}
+\begin{tikzpicture}
+\tikzset{edge/.style = {->,>=latex'}}
+\node (a) at (0,0) {$I_{1}$};
+\node (b) at (0.5,0) {$I_{1}$};
+\node (c) at (1.5,0) {$I_{1}$};
+\node (d) at (2,0) {$I_{0}$};
 
+\node (a1) at (-0.2,-0.1) {};
+\node (d1) at (2.1,-0.1) {};
+
+\draw[edge] (d1)[bend left] to (a1);
+\path (a) to node {$\cdot$} (b);
+\path (b) to node {$\cdots$} (c);
+\path (c) to node {$\cdot$} (d);
+
+\end{tikzpicture}
+\end{center}
+\example\ If there is a 4-cycle with
+\[ x_1 = F(x_4)\,<\,x_3 = F(x_2) \,<\, x_2 = F(x_1) \,<\, x_4 = F(x_3) \]
+Let $I_{\alpha} = [x_1,x_3]$, $I_{\beta} = [x_3,x_2]$, 
+$I_{\gamma} = [x_2, x_4]$. Then
+\[ F(I_{\alpha}) \supseteq I_{\gamma} \qquad 
+F(I_{\beta}) \supseteq I_{\beta} \cup I_{\gamma} \qquad 
+F(I_{\gamma}) \supseteq I_{\alpha} \]
+\begin{center}
+\begin{tikzpicture}
+\tikzset{edge/.style = {->,>=latex'}}
+\node (a) at (0,0) {$I_{\alpha}$};
+\node (c) at (2,0) {$I_{\gamma}$};
+\node (b) at (4,0) {$I_{\beta}$};
+
+\draw[edge] (a)[bend left] to (c);
+\draw[edge] (c)[bend left] to (a);
+\draw[edge] (b) to (c);
+\draw[edge] (b)[loop right] to (b);
+\end{tikzpicture}
+\end{center}
+There is a fixed point in $I_{\beta}$, a 2-cycle oscillating between 
+$I_{\alpha}$ and $I_{\gamma}$, but no obvious way to find a 3-cycle or 5-cycle
+etc.
+These sorts of arguments can be used to prove the remarkable result.
+\\
+\\
+\theorem\ Sharkovsky \\
+If $F$ is a continous map $\mathbb{R} \to \mathbb{R}$, $F$ has an N-cycle
+and $N \rhd n$ with respect to the following ordering, then $F$ has an n-cycle.
+\begin{equation*}
+\begin{array}{c}
+3 \rhd 5 \rhd 7 \rhd 9 \rhd \cdots \\
+\rhd 2\cdot3 \rhd 2\cdot5 \rhd 2\cdot7 \rhd 2\cdot9 \rhd \cdots \\
+\rhd 2^2\cdot3 \rhd 2^2\cdot5 \rhd 2^2\cdot7 \rhd 2^2\cdot9 \rhd \cdots \\
+\vdots \\
+\rhd 2^i\cdot3 \rhd 2^i\cdot5 \rhd 2^i\cdot7 \rhd \cdots \\
+\vdots \\
+\rhd 2^i \rhd 2^{i-1} \rhd \cdots \rhd 4 \rhd 2 \rhd 1 \\
+\end{array}
+\end{equation*}
+Proof: Not in course.
+\\
+\\
+E.g. 
+\begin{itemize}
+\item 3-cycles $\implies$ cycles of all order (already proved)
+\item 4-cycles $\implies$ 2 cycles \& fixed point regardless of order 
+      $x_1,\dots ,x_4$
+\end{itemize}
+\subsection{The Tent Map}
+\[ x_{n+1} = \left\{ \begin{array}{ccc} 
+\mu x_n & \mbox{for} & 0 \leq x_n \leq \frac{1}{2} \\
+\mu (1-x_n) & \mbox{for} & \frac{1}{2} \leq x_n \leq 1
+\end{array} \right. \]
+This only maps $[0,1]$ into itself if $0 \leq \mu \leq 2$. There is always a
+fixed point at $x=0$, which is stable for $\mu < 1$ (dull) and unstable
+for $\mu >1$.
+\\
+\\
+For $1 < \mu \leq 2$ there is another fixed point where 
+$\displaystyle x_0 - \mu(1-x_0) \implies x_0 = \frac{\mu}{1+\mu} > \frac{1}{2}$
+which is always unstable (because $F'(x_0)=-\mu < -1$).
+\\
+\\
+The interesting range is $1<\mu\leq 2$ for which neither fixed points is an
+attractor, and the orbits are bounded. We will show that $F$ is chaotic 
+throughout this range.
+\\
+\\
+We proceed to establish a horseshoe for $\mu>1$ in several steps:
+\begin{enumerate}[1.]
+\item Every orbit (apart from $x=0$) eventually enters and remains in the 
+      interval \[A = [F^2(1/2),F(1/2)] = [\mu(1-\mu/2),\mu/2]\]
+      \begin{proof} % The proof is a picture!
+      Note: since $x_0$ is unstable, orbits can only reach the neighbourhood 
+      of $x_0 = \frac{\mu}{1+\mu}$ if its preimage $x_{-1} = \frac{1}{1+\mu}
+      \in A \implies \frac{1}{1+\mu} > \mu(1-\frac{\mu}{2}) \implies \mu^2 >2 $
+      \end{proof}
+\item Consider
+      \[\arraycolsep=1.1pt\def\arraystretch{1.2} F^2(x)= \left\{ \begin{array}{lcrcl}
+      \mu^2 x         &~\quad& 0        &\leq x \leq& 1/2\mu \\
+      \mu(1-\mu x)    &~\quad& 1/2\mu   &\leq x \leq& 1/2 \\
+      \mu(1-\mu(1-x)) &~\quad& 1/2      &\leq x \leq& 1-1/2\mu \\
+      \mu^2(1-x)      &~\quad& 1-1/2\mu &\leq x \leq& 1 
+      \end{array} \right. \]
+      with $F(1/2\mu) = F(1-1/2\mu) = 1/2$. \\
+      Let $x_{-2}$ be the preimage of $x_{-1}$ in $x>1/2$. $F^2(x_{-2})=F(x_{-1})
+      = x_0$. Therefore 
+     \[\mu(1-x_{-2}) = \frac{1}{\mu+1} \implies x_{-2} = 1 - 
+     \frac{1}{\mu(1+\mu)} \]
+\item Change of coordinates (renormalisation). $F^2$ acts on the intervals 
+      $J_L = [x_{-1},x_0]$ and $J_R = [x_0, x_{-2}]$ like a tent map with
+      parameter $\mu^2$. There are two cases:
+      \begin{itemize}
+      \item $\mu^2 \geq 2$.
+            \[ F^2(1/2) = \mu(1-\frac{\mu}{2}) < x_{-1}=\frac{1}{1+\mu}\]
+            \[ F(1/2) = \frac{\mu}{2} > x_{-2}=1-\frac{1}{\mu(1+\mu)}\]
+            $F^2$ has horseshoes on both $J_L$ and $J_R$. $F$ is chaotic and
+            the chaotic attractor is the whole of $A = [F^2(1/2),F(1/2)]$.
+      \item $\mu^2 <2$ \\
+            $F^2$ maps both of $J_L$ and $J_R$ into themselves, and there are
+            attracting subintervals
+            \[ A_L = [F^2(1/2), F^4(1/2)] \subset J_L\]
+            \[ A_R = [F^3(1/2), F(1/2)] \subset J_R\]
+            with $F(A_R)=A_L$, $F(A_L) \subseteq A_R$, $x_0 \not \in A_L \cup A_R$
+      \end{itemize}
+\item \theorem\ \\
+      If $\displaystyle 2^{\frac{1}{2^{n+1}}} \leq \mu < 2^{\frac{1}{2^n}}$ then
+      $F^{2^{n+1}}$ has a horseshoe, $F$ is chaotic and the chaotic attractor
+      consists of $2^n$ intervals, which are permuted by $F$.
+      \begin{proof} Apply arguments 1-3 inductively \end{proof}
+\end{enumerate}
+\subsection{The Logistic Map}
+\[ x_{n+1} = \mu x_n ( 1- x_n) \]
+Find numerically that there exists a period doubling cascade in 
+$3<\mu<\mu_{\infty} =3.5700\cdots$ with $\mu_{\infty}-\mu_k \sim A \delta^{-k}$
+as $k \to \infty$ with $\delta = 4.6692016\cdots$ There is chaos for 
+$\mu_{\infty} < \mu \leq 4$. In this range there are ``windows'' of stable
+N-cycles e.g. P3 in $1+\sqrt{8}=3.8284<\mu < 3.8415$
+\\
+\\
+There exists period-doubling cascades of the N-cycles, e.g. P3$\to$P6$\to$P12 
+etc. accumalating at $\mu_{\infty}^{(3)} = 3.8396$ with 
+$\mu_{\infty}^{(3)}-\mu_k \sim B \delta^{-k}$ and the same $\delta$.
+In fact, get the same $\delta$ for all maps with a quadratic maximum. Why?
+\\
+(Note: ``P3 $\implies$ Chaos'' so the chaotic sets are still there just not 
+attracting.)
 \end{document}
