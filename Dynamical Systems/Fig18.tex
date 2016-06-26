@@ -1,0 +1,18 @@
+\documentclass{standalone}
+\usepackage{tikz,color}
+\begin{document}
+
+\begin{tikzpicture}
+\draw [->,thick] (-2,0) to (2,0);
+\draw [-,thick] (0,-1) to (0,1.5);
+\draw [->,thick] (0,1) to (0,0.5);
+\draw [->,thick] (0,-1) to (0,-0.5);
+\draw [<->, thick, domain =-2:2] plot({\x},{0.15*\x*\x});
+\node at (2.4,0) {$E^u$};
+\node at (2.4,0.6) {$W^u$};
+\node at (-2.4,0.6) {$W^u$};
+\node at (0.7,1.2) {$W^s,E^s$};
+\end{tikzpicture}
+
+
+\end{document}

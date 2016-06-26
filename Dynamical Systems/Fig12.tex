@@ -1,0 +1,11 @@
+\documentclass{standalone}
+\usepackage{tikz,color}
+\begin{document}
+
+\begin{tikzpicture}
+\draw [<-, thick, domain=1:8, samples=30] plot({0.3*sin(\x r)},{0.3*cos(\x r)});
+\draw [<-, thick, domain=1:8, samples=30] plot({0.65*sin(\x r)},{0.65*cos(\x r)});
+\draw [<-, thick, domain=1:8, samples=30] plot({sin(\x r)},{cos(\x r)});
+
+\end{tikzpicture}
+\end{document}

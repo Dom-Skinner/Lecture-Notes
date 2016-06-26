@@ -1,0 +1,12 @@
+\documentclass{standalone}
+\usepackage{tikz,color}
+\begin{document}
+
+\begin{tikzpicture}[scale=0.8]
+\draw [<-,ultra thick, domain=0.2:0.8, samples=50] plot({(1+\x)*sin(5*\x r)},{(1+\x)*cos(5*\x r)});
+\draw [<-, ultra thick, domain=0.7:1.1, samples=50] plot({(1+\x)*sin(5*\x r)},{(1+\x)*cos(5*\x r)});
+\draw [<-, ultra thick, domain=0:7, samples=50] plot({sin(\x r)},{cos(\x r)});
+\draw [->,ultra thick, domain=0.2:0.85, samples=50] plot({-\x*sin(10*\x r)},{\x*cos(10*\x r)});
+
+\end{tikzpicture}
+\end{document}
