@@ -38,6 +38,7 @@
 \LaTeX\  by Dominic Skinner \\
 Dom-Skinner@github.com}
 \maketitle
+\tableofcontents
 \section*{Introduction}
 A dynamical system is a set of equations describing the evolution of a system
 with respect to a time-like variable. Usually they are non-linear.
@@ -91,17 +92,31 @@ $\dot{s} = 0$ if $s=0$ or $r+s = 2$. \\
 Therefore $\dot{r} = \dot{s} = 0$ at the fixed points $(0,0), \; (3,0), \; (0,2)$.
 This gives the phase portrait/diagram/plane%
 \footnote{Phase portrait, phase diagram, phase plane will be used interchangably}
-% INCLUDE GRAPHIS HERE
 \begin{figure}[H]
-\centering
-\includegraphics[width=4cm, height=4cm]{fig0.png}
-\end{figure}
-\noindent
+\begin{minipage}[c]{0.35\linewidth}
+\begin{tikzpicture}[scale =0.7]
+\draw [<->, thick] (0,4) -- (0,0) -- (4,0);
+\draw [->, thick] (0.2,0.2) -- (0.7,0.7);
+\draw [<-, thick] (2.1,2.1) -- (2.6,2.6);
+\draw [->, thick] (1,1) -- (1.5,1);
+\draw [->, thick] (1.2,1.8) -- (1.2,1.3);
+\draw [->, thick] (0.4,2.1) -- (0.8,1.7);
+
+\draw [dashed, thick] (0,2) -- (2,0);
+\draw [dashed, thick] (0,3) -- (3,0);
+\node at (0,4) [above] {s};
+\node at (4,0) [right] {r};
+\node at (0,2) [left]  {(0,2)};
+\node at (3,0) [below] {(3,0)};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c]{0.55\linewidth}
 The most important feature of the phase portrait is that all solutions with 
 $r >0$ tend to the stable fixed point $(3,0)$. The fixed points $(0,0)$ and
 $(0,2)$ are unstable. There are no periodic orbits.
-\\
-\\
+\end{minipage}
+\end{figure}
+\noindent
 \example\   
 \begin{align*}
 \dot{r} &= r(3 - r -s) \\
@@ -133,11 +148,39 @@ In our example, they become
 \dot{\theta} &= 1
 \end{align*}
 Consider $\dot{r}$ and $\dot{\theta}$:
-% INSERT DIAGRAM HERE
-\begin{figure}[H]
-\centering
-\includegraphics[width=8cm, height=6cm]{fig1.png}
-\end{figure}
+\begin{center}
+\begin{tikzpicture}
+\draw [ultra thick, domain=0.2:0.8, samples=100] plot({\x*sin(5*\x r)},{\x*cos(5*\x r)});
+\draw [<-, ultra thick, domain=0.7:1.5, samples=100] plot({\x*sin(5*\x r)},{\x*cos(5*\x r)});
+\draw [<-, ultra thick, domain=1.4:2, samples=100] plot({\x*sin(5*\x r)},{\x*cos(5*\x r)});
+\node at (0,-2.6) {$\epsilon>0,\,\mu<0$};
+
+\draw [<-, ultra thick, domain=0:7, samples=100] plot({0.4*sin(\x r)+4},{0.4*cos(\x r)});
+\draw [<-, ultra thick, domain=0:7, samples=100] plot({0.85*sin(\x r)+4},{0.85*cos(\x r)});
+\draw [<-, ultra thick, domain=0:7, samples=100] plot({1.3*sin(\x r)+4},{1.3*cos(\x r)});
+\node at (4,-2.6) {$\epsilon=0$};
+
+\draw [ultra thick, domain=0.2:0.8, samples=100] plot({8-\x*sin(5*\x r)},{\x*cos(5*\x r)});
+\draw [->, ultra thick, domain=0.7:1.5, samples=100] plot({8-\x*sin(5*\x r)},{\x*cos(5*\x r)});
+\draw [->, ultra thick, domain=1.4:2, samples=100] plot({8-\x*sin(5*\x r)},{\x*cos(5*\x r)});
+\node at (8,-2.6) {$\epsilon<0,\,\mu<0$};
+
+
+\draw [<-,ultra thick, domain=0.2:0.8, samples=50] plot({2+(1+\x)*sin(5*\x r)},{(1+\x)*cos(5*\x r)-5});
+\draw [<-, ultra thick, domain=0.7:1.1, samples=50] plot({2+(1+\x)*sin(5*\x r)},{(1+\x)*cos(5*\x r)-5});
+\draw [<-, ultra thick, domain=0:7, samples=50] plot({2+sin(\x r)},{cos(\x r)-5});
+\draw [->,ultra thick, domain=0.2:0.85, samples=50] plot({2-\x*sin(10*\x r)},{\x*cos(10*\x r)-5});
+\node at (2,-7.4) {$\epsilon>0,\,\mu<0$};
+
+
+\draw [->,ultra thick, domain=0.2:0.8, samples=50] plot({6-(1+\x)*sin(5*\x r)},{(1+\x)*cos(5*\x r)-5});
+\draw [->, ultra thick, domain=0.7:1.1, samples=50] plot({6-(1+\x)*sin(5*\x r)},{(1+\x)*cos(5*\x r)-5});
+\draw [->,dashed, ultra thick, domain=0:7, samples=50] plot({6-sin(\x r)},{cos(\x r)-5});
+\draw [<-,ultra thick, domain=0.3:0.85, samples=50] plot({6+\x*sin(10*\x r)},{\x*cos(10*\x r)-5});
+\node at (6,-7.4) {$\epsilon>0,\,\mu<0$};
+\end{tikzpicture}
+\end{center}
+\noindent
 The infinite set of periodic solutions for $\epsilon = 0$ is destroyed by any 
 perturbation to $\epsilon \neq 0$. This is an example of structural instability.
 If $\mu > 0$ then just one limit cycle survives and is stable (unstable) for 
@@ -332,16 +375,29 @@ Similarly the $\alpha$ limit set is defined by sequences with $t_n \to - \infty$
 \\
 \\
 \example\ \\
-%
+\begin{minipage}[c][0.22\textwidth][c]{0.2\textwidth}
+\end{minipage}
+\hspace{0.2\textwidth}
+\begin{minipage}[c][0.22\textwidth][c]{0.3\textwidth}
 \begin{center}
-\begin{tabular}{ m{4.5cm} m{4.5cm}  }\centering 
-\includegraphics[scale = 0.35]{fig4.png}  & 
+\begin{tikzpicture}[scale=0.8]
+\draw [<-,ultra thick, domain=0.2:0.8, samples=50] plot({(1+\x)*sin(5*\x r)},{(1+\x)*cos(5*\x r)});
+\draw [<-, ultra thick, domain=0.7:1.1, samples=50] plot({(1+\x)*sin(5*\x r)},{(1+\x)*cos(5*\x r)});
+\draw [<-, ultra thick, domain=0:7, samples=50] plot({sin(\x r)},{cos(\x r)});
+\draw [->,ultra thick, domain=0.2:0.85, samples=50] plot({-\x*sin(10*\x r)},{\x*cos(10*\x r)});
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+%
+\begin{minipage}[c][0.22\textwidth][c]{0.3\textwidth}
+\begin{center}
 $ \begin{array}{rl}
 \dot{r} &= r(1-r^2) \\
 \dot{\theta} &= 1
- \end{array}$
-\end{tabular} 
+\end{array}$
 \end{center}
+\end{minipage}
+\\
 %
 For $\bm{x}$ with $0 < |\bm{x}| < 1$ we have that
 \[ \omega ( \bm{x} ) = \{ \bm{y} : |\bm{y}| = 1 \}  \qquad  \alpha ( \bm{x} ) = \{\bm{0} \} \]
@@ -391,85 +447,258 @@ with $D = ad - bc$, $T = a+d$ and the eigenvalues are
 \begin{enumerate}[(i)]
 \item Saddle points ($D<0$, real $\lambda$'s with opposite signs)
 \\
-\begin{tabular}{ m{5cm} m{3cm} m{3cm}} 
-\includegraphics[scale = 0.15]{fig5.png}  & 
+\begin{minipage}[c][0.25\textwidth][c]{0.25\textwidth}
+\begin{tikzpicture}[scale=1.3]
+\draw [->,thick] (-1,0) to (-0.5,0);
+\draw [->,thick] (1,0)  to (0.5,0);
+\draw [-,thick ] (-1,0) to (1,0);
+\draw [->,thick] (0,0) to (0,-0.5);
+\draw [->,thick] (0,0)  to (0,0.5);
+\draw [-,thick ] (0,-1) to (0,1);
+\draw [-,thick, domain=-1:0, samples=25] plot({0.4*exp(\x)},{0.4*exp(-\x)});
+\draw [<-,thick, domain=  0:1, samples=25] plot({0.4*exp(\x)},{0.4*exp(-\x)});
+\draw [-,thick, domain=-1:0, samples=25] plot({-0.4*exp(\x)},{0.4*exp(-\x)});
+\draw [<-,thick, domain=  0:1, samples=25] plot({-0.4*exp(\x)},{0.4*exp(-\x)});
+\draw [-,thick, domain=-1:0, samples=25] plot({0.4*exp(\x)},{-0.4*exp(-\x)});
+\draw [<-,thick, domain=  0:1, samples=25] plot({0.4*exp(\x)},{-0.4*exp(-\x)});
+\draw [-,thick, domain=-1:0, samples=25] plot({-0.4*exp(\x)},{-0.4*exp(-\x)});
+\draw [<-,thick, domain=  0:1, samples=25] plot({-0.4*exp(\x)},{-0.4*exp(-\x)});
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c][0.25\textwidth][c]{0.25\textwidth}
  $ A = \left( \begin{array}{cc}
 		\lambda _1 &  \\
-		 & \lambda _2 \end{array} \right) $ & \makebox[5pt][l]{$ \lambda_1 < 0 <\lambda_2 $} \\
-\end{tabular}
-
+		 & \lambda _2 \end{array} \right) $ 
+\end{minipage}
+\begin{minipage}[c][0.25\textwidth][c]{0.25\textwidth}
+$ \lambda_1 < 0 <\lambda_2 $ 
+\end{minipage}
+%
 \item Stable nodes ($0< 4D < T^2$, $T<0$, real roots, both negative)
 \\
-\begin{tabular}{ m{3.5cm} m{2cm} m{6cm}} 
-\includegraphics[scale = 0.15]{fig6.png}  & 
-$ \lambda_1 < \lambda_2 < 0 $ & $ \frac{y_2}{y_1} \propto \
+\begin{minipage}[c][0.25\textwidth][c]{0.25\textwidth}
+\begin{tikzpicture}[scale=1.3]
+\draw [->,thick] (-1,0) to (-0.5,0);
+\draw [->,thick] (1,0)  to (0.5,0);
+\draw [-,thick ] (-1,0) to (1,0);
+\draw [->,thick] (0,1) to (0,0.5);
+\draw [->,thick] (0,-1)  to (0,-0.5);
+\draw [-,thick ] (0,-1) to (0,1);
+\draw [->,thick, domain=-0.4:0, samples=25] plot({0.4*exp(-2*\x)},{0.4*exp(-\x)});
+\draw [-,thick, domain=  0:5, samples=25] plot({0.4*exp(-2*\x)},{0.4*exp(-\x)});
+\draw [->,thick, domain=-0.4:0, samples=25] plot({-0.4*exp(-2*\x)},{0.4*exp(-\x)});
+\draw [-,thick, domain=  0:5, samples=25] plot({-0.4*exp(-2*\x)},{0.4*exp(-\x)});
+\draw [->,thick, domain=-0.4:0, samples=25] plot({0.4*exp(-2*\x)},{-0.4*exp(-\x)});
+\draw [-,thick, domain=  0:5, samples=25] plot({0.4*exp(-2*\x)},{-0.4*exp(-\x)});
+\draw [->,thick, domain=-0.4:0, samples=25] plot({-0.4*exp(-2*\x)},{-0.4*exp(-\x)});
+\draw [-,thick, domain=  0:5, samples=25] plot({-0.4*exp(-2*\x)},{-0.4*exp(-\x)});
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c][0.25\textwidth][c]{0.25\textwidth}
+ $ \lambda_1 < \lambda_2 < 0 $
+\end{minipage}
+\begin{minipage}[c][0.25\textwidth][c]{0.35\textwidth}
+$ \frac{y_2}{y_1} \propto 
 e^{(\lambda_2-\lambda_1)t} \to \infty \;\; \mbox{as} \;\; t \to \infty $
-\end{tabular}
-
+\end{minipage}
+\\
 \item Unstable node ($0 < 4D < T^2$, $T>0$, real roots, both positive)
 \\
-\begin{tabular}{ m{4.5cm} m{2cm} m{6cm}} 
-\includegraphics[scale = 0.15]{fig7.png}  & 
-$ \lambda_1 < \lambda_2 < 0 $ & $ \frac{y_2}{y_1} \propto \
-e^{(\lambda_2-\lambda_1)t} \to 0 \;\; \mbox{as} \;\; t \to -\infty $
-\end{tabular}
-
+\begin{minipage}[c][0.25\textwidth][c]{0.25\textwidth}
+\begin{tikzpicture}[scale=1.3]
+\draw [->,thick] (0,0) to (-0.6,0);
+\draw [->,thick] (0,0)  to (0.6,0);
+\draw [-,thick ] (-1,0) to (1,0);
+\draw [->,thick] (0,0) to (0,0.6);
+\draw [->,thick] (0,0)  to (0,-0.6);
+\draw [-,thick ] (0,-1) to (0,1);
+\draw [->,thick, domain=-4:0, samples=25] plot({0.4*exp(\x)},{0.4*exp(2*\x)});
+\draw [-,thick, domain=  0:0.4, samples=25] plot({0.4*exp(\x)},{0.4*exp(2*\x)});
+\draw [->,thick, domain=-4:0, samples=25] plot({-0.4*exp(\x)},{0.4*exp(2*\x)});
+\draw [-,thick, domain=  0:0.4, samples=25] plot({-0.4*exp(\x)},{0.4*exp(2*\x)});
+\draw [->,thick, domain=-4:0, samples=25] plot({0.4*exp(\x)},{-0.4*exp(2*\x)});
+\draw [-,thick, domain=  0:0.4, samples=25] plot({0.4*exp(\x)},{-0.4*exp(2*\x)});
+\draw [->,thick, domain=-4:0, samples=25] plot({-0.4*exp(\x)},{-0.4*exp(2*\x)});
+\draw [-,thick, domain=  0:0.4, samples=25] plot({-0.4*exp(\x)},{-0.4*exp(2*\x)});
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c][0.25\textwidth][c]{0.25\textwidth}
+ $ 0<\lambda_1 < \lambda_2 $
+\end{minipage}
+\begin{minipage}[c][0.25\textwidth][c]{0.35\textwidth}
+$ \frac{y_2}{y_1} \propto 
+e^{(\lambda_2-\lambda_1)t} \to 0\;\; \mbox{as} \;\; t \to -\infty $
+\end{minipage}
+\\
+%
 \item Stable focus ($ T^2 < 4D $, $T<0$, complex roots, 
 $\lambda = \rho \pm i \omega$, $\rho < 0$)
 \\
-\begin{tabular}{ m{5.5cm} m{3cm} m{3cm} } 
-\includegraphics[scale = 0.18]{fig8.png}  & 
+\begin{minipage}[c][0.25\textwidth][c]{0.35\textwidth}
+\begin{tikzpicture}
+\draw [thick, domain=-4.2:-1.8, samples=100] 
+		plot({exp(0.2*\x)*sin(2*\x r)},{exp(0.2*\x)*cos(2*\x r)});
+\draw [<-, thick, domain=-1.9:0.5, samples=100] 
+		plot({exp(0.2*\x)*sin(2*\x r)},{exp(0.2*\x)*cos(2*\x r)});
+\draw [<-, thick, domain=0.4:1, samples=100] 
+		plot({exp(0.2*\x)*sin(2*\x r)},{exp(0.2*\x)*cos(2*\x r)});
+\node at (0,-1.2) {$\omega>0$};
+
+\draw [thick, domain=-4.2:-1.8, samples=100] 
+		plot({3-exp(0.2*\x)*sin(2*\x r)},{exp(0.2*\x)*cos(2*\x r)});
+\draw [<-, thick, domain=-1.9:0.5, samples=100] 
+		plot({3-exp(0.2*\x)*sin(2*\x r)},{exp(0.2*\x)*cos(2*\x r)});
+\draw [<-, thick, domain=0.4:1, samples=100] 
+		plot({3-exp(0.2*\x)*sin(2*\x r)},{exp(0.2*\x)*cos(2*\x r)});
+\node at (3,-1.2) {$\omega<0$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c][0.25\textwidth][c]{0.25\textwidth}
 $  A = \left( \begin{array}{cc}
 		\rho & -\omega \\
 		 \omega & \rho \end{array} \right) $
- & $ \dot{r} = \rho r \qquad \dot{\theta} = \omega $
-\end{tabular}
-
+\end{minipage}
+\begin{minipage}[c][0.25\textwidth][c]{0.35\textwidth}
+$ \dot{r} = \rho r \qquad \dot{\theta} = \omega $
+\end{minipage}
+\\
 \item Unstable focus ($ T^2 < 4D $, $T>0$, complex roots, $\rho > 0$)
 
 \item Two degenerate cases with equal eigenvalues on the border $T^2 = 4D$
 between nodes and foci. (e.g. $\lambda > 0$)
-\[\begin{array}{c@{\hspace{2cm}}c}
-\mbox{Stellar Node} & \mbox{Improper Node} \\ \\
-  A = \left( \begin{array}{cc}
-		\lambda & 0 \\
-		 0 & \lambda \end{array} \right)  & 
-  A = \left( \begin{array}{cc}
-		\lambda & 1 \\
-		 0 & \lambda \end{array} \right)   \\
-\end{array}
-\]
+\\
 \begin{center}
-\hspace{1mm} \includegraphics[scale=0.15]{fig95.png}
+\begin{minipage}[c][0.35\textwidth][t]{0.25\textwidth}
+\begin{center}
+Stellar Node 
+  \[A = \left( \begin{array}{cc}
+		\lambda & 0 \\
+		 0 & \lambda \end{array} \right)  \]
+
+\begin{tikzpicture}
+\draw [->,thick] (0,0) to (-0.6,0);
+\draw [->,thick] (0,0)  to (0.6,0);
+\draw [-,thick ] (-1,0) to (1,0);
+\draw [->,thick] (0,0) to (0,0.6);
+\draw [->,thick] (0,0)  to (0,-0.6);
+\draw [-,thick ] (0,-1) to (0,1);
+\draw [->,thick, domain= 0:0.5, samples=25] plot({\x},{\x});
+\draw [-,thick, domain=  0.5:0.8, samples=25] plot({\x},{\x});
+\draw [->,thick, domain= 0:0.5, samples=25] plot({-\x},{\x});
+\draw [-,thick, domain=  0.5:0.8, samples=25] plot({-\x)},{\x});
+\draw [->,thick, domain= 0:0.5, samples=25] plot({\x},{-\x});
+\draw [-,thick, domain=  0.5:0.8, samples=25] plot({\x},{-\x)});
+\draw [->,thick, domain= 0:0.5, samples=25] plot({-\x},{-\x});
+\draw [-,thick, domain=  0.5:0.8, samples=25] plot({-\x},{-\x});
+\end{tikzpicture}
 \end{center}
+\end{minipage}
+\hspace{0.1\textwidth}
+\begin{minipage}[c][0.35\textwidth][t]{0.25\textwidth}
+\begin{center}
+Improper Node
+\[  A = \left( \begin{array}{cc}
+		\lambda & 1 \\
+		 0 & \lambda \end{array} \right) \]
+\begin{tikzpicture}
+\draw [->, thick] (0,0) to (-0.8,0);
+\draw [->, thick] (0,0)  to (0.8,0);
+\draw [-, thick ] (-1,0) to (1,0);
+\draw [->, thick, domain= -6:0.2, samples=25]
+	 plot({0.1*exp(0.6*\x)+0.5*\x*exp(0.6*\x)},{0.5*exp(0.6*\x)});
+\draw [->, thick, domain= -6:0.2, samples=25]
+	 plot({0.2*exp(0.6*\x)+\x*exp(0.6*\x)},{exp(0.6*\x)});
+\draw [->, thick, domain= -6:0.2, samples=25] 
+	plot({0.3*exp(0.6*\x)+1.5*\x*exp(0.6*\x)},{1.5*exp(0.6*\x)});
+\draw [->, thick, domain= -6:0.2, samples=25] 
+	plot({-0.1*exp(0.6*\x)-0.5*\x*exp(0.6*\x)},{-0.5*exp(0.6*\x)});
+\draw [->, thick, domain= -6:0.2, samples=25]
+	 plot({-0.2*exp(0.6*\x)-\x*exp(0.6*\x)},{-exp(0.6*\x)});
+\draw [->, thick, domain= -6:0.2, samples=25] 
+	plot({-0.3*exp(0.6*\x)-1.5*\x*exp(0.6*\x)},{-1.5*exp(0.6*\x)});
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+\end{center}
+%
 \item Centres ($T=0$, $D>0$, $\lambda = \pm i \omega$)
 \\
-\begin{tabular}{ m{4.5cm} m{8cm}  } 
-\includegraphics[scale = 0.15]{fig11.png}  & 
+\begin{minipage}[c][0.2\textwidth][c]{0.25\textwidth}
+\begin{tikzpicture}
+\draw [<-, thick, domain=1:8, samples=30] plot({0.3*sin(\x r)},{0.3*cos(\x r)});
+\draw [<-, thick, domain=1:8, samples=30] plot({0.65*sin(\x r)},{0.65*cos(\x r)});
+\draw [<-, thick, domain=1:8, samples=30] plot({sin(\x r)},{cos(\x r)});
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c][0.2\textwidth][c]{0.65\textwidth}
 All trajectories are closed. This is on the border between stable foci and
 unstable foci.
-\end{tabular}
-
-\item Line of Fixed points. Specia case on the border $D=0$ between saddles and
+\end{minipage}
+\\
+\item Line of Fixed points. Special case on the border $D=0$ between saddles and
 nodes, where at least one $\lambda$ is zero. For example, 
 \\
-\\
-\begin{tabular}{ m{4.5cm} m{8cm}  } 
-\includegraphics[scale = 0.15]{fig12.png}  & 
+\begin{minipage}[c][0.2\textwidth][c]{0.25\textwidth}
+\begin{tikzpicture}
+\draw [-, thick] (-1.4,0)  to (1.4,0);
+\draw [->, thick] (-1,1) to (-1,0.5);
+\draw [->, thick] (0,1)  to (0,0.5);
+\draw [->, thick] (1,1)  to (1,0.5);
+\draw [->, thick] (-1,-1) to (-1,-0.5);
+\draw [->, thick] (0,-1)  to (0,-0.5);
+\draw [->, thick] (1,-1)  to (1,-0.5);
+\draw [-, thick] (-1,-1) to (-1,1);
+\draw [-, thick] (0,-1)  to (0,1);
+\draw [-, thick] (1,-1)  to (1,1);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c][0.2\textwidth][c]{0.65\textwidth}
 $ A = \left( \begin{array}{cc}
 		0 & 0 \\
-		 0 & \lambda \end{array} \right)   \quad(\lambda < 0) $ \\
-\includegraphics[scale = 0.15]{fig13.png}  & 
+		 0 & \lambda \end{array} \right)   \quad(\lambda < 0) $
+\end{minipage}
+\\
+\begin{minipage}[c][0.2\textwidth][c]{0.25\textwidth}
+\begin{tikzpicture}
+\draw [-, thick] (-1,0)  to (1,0);
+\draw [-, thick] (0,-1)  to (0,1);
+\draw [->, thick] (0,0.2) to (0.2,0.2);
+\draw [->, thick] (0,0.5)  to (0.5,0.5);
+\draw [->, thick] (0,0.8)  to (0.8,0.8);
+\draw [->, thick] (0,-0.2) to (-0.2,-0.2);
+\draw [->, thick] (0,-0.5)  to (-0.5,-0.5);
+\draw [->, thick] (0,-0.8)  to (-0.8,-0.8);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c][0.2\textwidth][c]{0.65\textwidth}
 $ A = \left( \begin{array}{cc}
 		0 & 1 \\
 		 0 & 0 \end{array} \right)  $ 
-\end{tabular}
+\end{minipage}
 \end{enumerate}
 In summary 
-\begin{figure}[H]
-\centering
-\includegraphics[width=14.4cm, height=10cm]{Diagram1.png}
-\end{figure}
+\begin{center}
+\begin{tikzpicture}
+\draw [->,thick] (-5,0) to (5,0);
+\draw [->,thick] (0,-2) to (0,5);
+\draw [-, thick, domain=-4:4, samples=20] plot({\x },{0.25*\x*\x});
+\node at (0,5.5) {\Large{$D$}};
+\node at (5.5,0) {\Large{$T$}};
+\node at (-4,1) {Stable nodes};
+\node at (4,1) {Unstable nodes};
+\node at (-1.4,3) {Stable foci};
+\node at (1.4,3) {Unstable foci};
+\node at (-2,-1.5) {Saddle Points};
+\node at (2,-1.5) {Saddle Points};
+\node [rotate=-90] at (0.2,1) {Centres};
+\node at (6,4) {Stellar/improper nodes};
+\node at (-7.5,4) {};
+\node at (4,0.2) {Lines of};
+\node at (4,-0.2) {fixed points};
+\draw[->,thick] (6,3.7)[bend left] to (3.8,3.5);
+
+\end{tikzpicture}
+\end{center}
 %
 Notes:
 \begin{enumerate}[(1)]
@@ -530,7 +759,16 @@ In n-dimensions $(n \geq 0)$ we classify a hyperbolic fixed point as
 \end{enumerate}
 In 2D
 \begin{center}
-\includegraphics[scale = 0.15]{Diagram2.png}
+\begin{tikzpicture}
+\draw [->,thick] (-2,0) to (2,0);
+\draw [->,thick] (0,-1) to (0,2);
+\node at (0,2.5) {\large{$D$}};
+\node at (2.5,0) {\large{$T$}};
+\node at (-1.2,1.2) {Sinks};
+\node at (1.2,1.2) {Sources};
+\node at (-0.6,-0.5) {Saddle};
+\node at (0.6,-0.5) {Points};
+\end{tikzpicture}
 \end{center}
 % Diagram goes here!!
 Non hyperbolic fixed points are important in bifurcation theory.
@@ -605,12 +843,19 @@ Wlog (Change of origin and basis) assume that the saddle is at $\bm{x}=\bm{0}$
 and that $E^s$ is $x=0$ and $E^u$ is $y=0$.
 \\
 \\
-\begin{tabular}{ m{4.5cm} m{9cm}  } 
-\includegraphics[scale = 0.15]{fig14.png}  & 
-
+\begin{minipage}[c][0.2\textwidth][c]{0.2\textwidth}
+\begin{tikzpicture}
+\draw [<->,thick] (-0.5,0) to (0.5,0);
+\draw [-,thick] (-1,0) to (1,0);
+\draw [-,thick] (0,-1) to (0,1);
+\draw [->,thick] (0,1) to (0,0.5);
+\draw [->,thick] (0,-1) to (0,-0.5);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}[c][0.2\textwidth][c]{0.6\textwidth}
 Then $W^s_{loc}$ becomes $x = S(y)$ with $S(0) =0, \; S'(0)=0$ 
 $W^u_{loc}$ is $y = U(x)$ with $U(0) =0, \; U'(0)=0$.
-\end{tabular}
+\end{minipage}
 \\
 Since $W^s$ and $W^u$ are invariant,
 \\
@@ -636,7 +881,17 @@ a_4 &= \frac{2}{45} \quad \mbox{etc.}
 \end{align*}
 Locally for $|\bm{x}| \ll 1$ \\
 \begin{center}
-\includegraphics[scale = 0.15]{Diagram3.png}
+\begin{tikzpicture}
+\draw [->,thick] (-2,0) to (2,0);
+\draw [-,thick] (0,-1) to (0,1.5);
+\draw [->,thick] (0,1) to (0,0.5);
+\draw [->,thick] (0,-1) to (0,-0.5);
+\draw [<->, thick, domain =-2:2] plot({\x},{0.15*\x*\x});
+\node at (2.4,0) {$E^u$};
+\node at (2.4,0.6) {$W^u$};
+\node at (-2.4,0.6) {$W^u$};
+\node at (0.7,1.2) {$W^s,E^s$};
+\end{tikzpicture}
 \end{center}
 In higher dimensions, would write $\bm{y} = \bm{U}(\bm{x})$ and solve
 \[ \dot{y}_i = \frac{\partial U_i}{\partial x_i} \dot{x_j} \]
